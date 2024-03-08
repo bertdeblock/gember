@@ -10,6 +10,7 @@
     "gember": "bin/gember.js"
   },
   "files": [
+    ".scaffdog/",
     "bin/",
     "dist/",
     "CHANGELOG.md"

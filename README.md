@@ -30,22 +30,21 @@ yarn add -D @bertdeblock/gember
 ```shell
 pnpm gember component foo
 pnpm gember component foo --gts
+pnpm gember component foo --path="src/-private"
 
 pnpm gember helper foo
 pnpm gember helper foo --ts
+pnpm gember helper foo --path="src/-private"
 
 pnpm gember modifier foo
 pnpm gember modifier foo --ts
+pnpm gember modifier foo --path="src/-private"
 
 pnpm gember service foo
 pnpm gember service foo --ts
+pnpm gember service foo --path="src/-private"
 ```
 
 ## Caveats
 
 - Only supports `.gjs` (default) and `.gts` files for components at the moment
-- Only supports generating files in a "classic" structure at the moment:
-  - `src/components/...`
-  - `src/helpers/...`
-  - `src/modifiers/...`
-  - `src/services/...`
