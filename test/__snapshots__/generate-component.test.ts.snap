@@ -11,7 +11,37 @@ export default class FooComponent extends Component {
 "
 `;
 
+exports[`generates a \`.gjs\` component at a custom path 1`] = `
+"import Component from "@glimmer/component";
+
+export default class FooComponent extends Component {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
 exports[`generates a \`.gts\` component 1`] = `
+"import Component from "@glimmer/component";
+
+export interface FooSignature {
+  Args: {};
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class FooComponent extends Component<FooSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`generates a \`.gts\` component at a custom path 1`] = `
 "import Component from "@glimmer/component";
 
 export interface FooSignature {

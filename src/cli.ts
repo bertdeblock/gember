@@ -24,10 +24,18 @@ yargs(hideBin(process.argv))
           default: false,
           description: "Generate a `.gts` component",
           type: "boolean",
+        })
+        .option("path", {
+          default: "",
+          description: "Generate a component at a custom path",
+          type: "string",
         });
     },
     handler(options) {
-      generateComponent(options.name, cwd(), { gts: options.gts });
+      generateComponent(options.name, cwd(), {
+        gts: options.gts,
+        path: options.path,
+      });
     },
   })
   .command({
@@ -41,6 +49,11 @@ yargs(hideBin(process.argv))
           description: "The helper's name",
           type: "string",
         })
+        .option("path", {
+          default: "",
+          description: "Generate a helper at a custom path",
+          type: "string",
+        })
         .option("ts", {
           default: false,
           description: "Generate a `.ts` helper",
@@ -48,7 +61,10 @@ yargs(hideBin(process.argv))
         });
     },
     handler(options) {
-      generateHelper(options.name, cwd(), { ts: options.ts });
+      generateHelper(options.name, cwd(), {
+        path: options.path,
+        ts: options.ts,
+      });
     },
   })
   .command({
@@ -62,6 +78,11 @@ yargs(hideBin(process.argv))
           description: "The modifier's name",
           type: "string",
         })
+        .option("path", {
+          default: "",
+          description: "Generate a modifier at a custom path",
+          type: "string",
+        })
         .option("ts", {
           default: false,
           description: "Generate a `.ts` modifier",
@@ -69,7 +90,10 @@ yargs(hideBin(process.argv))
         });
     },
     handler(options) {
-      generateModifier(options.name, cwd(), { ts: options.ts });
+      generateModifier(options.name, cwd(), {
+        path: options.path,
+        ts: options.ts,
+      });
     },
   })
   .command({
@@ -83,6 +107,11 @@ yargs(hideBin(process.argv))
           description: "The service's name",
           type: "string",
         })
+        .option("path", {
+          default: "",
+          description: "Generate a service at a custom path",
+          type: "string",
+        })
         .option("ts", {
           default: false,
           description: "Generate a `.ts` service",
@@ -90,7 +119,10 @@ yargs(hideBin(process.argv))
         });
     },
     handler(options) {
-      generateService(options.name, cwd(), { ts: options.ts });
+      generateService(options.name, cwd(), {
+        path: options.path,
+        ts: options.ts,
+      });
     },
   })
   .demandCommand()
