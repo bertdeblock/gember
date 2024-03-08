@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.gjs\` component 1`] = `
+"import Component from "@glimmer/component";
+
+export default class FooComponent extends Component {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`generates a \`.gts\` component 1`] = `
+"import Component from "@glimmer/component";
+
+export interface FooSignature {
+  Args: {};
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class FooComponent extends Component<FooSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;

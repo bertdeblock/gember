@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` service 1`] = `
+"import Service from "@ember/service";
+
+export default class FooService extends Service {}
+"
+`;
+
+exports[`generates a \`.ts\` service 1`] = `
+"import Service from "@ember/service";
+
+export default class FooService extends Service {}
+
+declare module "@ember/service" {
+  interface Registry {
+    "foo": FooService;
+  }
+}
+"
+`;
