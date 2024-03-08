@@ -2,7 +2,7 @@ import chalk from "chalk";
 import { execa } from "execa";
 import { ensureDir } from "fs-extra";
 import { writeFile } from "node:fs/promises";
-import { dirname, join, parse } from "node:path";
+import { dirname, isAbsolute, join, parse } from "node:path";
 import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
 import { type DocumentName } from "./types.js";
@@ -18,7 +18,7 @@ export async function generateDocument(
   documentName: DocumentName,
   entityName: string,
   cwd: string,
-  inputs: GenerateInputs,
+  { inputs = {}, path = "" }: { inputs?: GenerateInputs; path?: string } = {},
 ) {
   const directory = dirname(fileURLToPath(import.meta.url));
   const scaffdog = await loadScaffdog(join(directory, "..", ".scaffdog"));
@@ -26,8 +26,13 @@ export async function generateDocument(
   const document = documents.find((document) => document.name === documentName);
 
   if (document) {
-    const path = join(cwd, "src", DOCUMENT_NAME_DIRECTORY[documentName]);
-    const files = await scaffdog.generate(document, path, {
+    const documentPath = path
+      ? isAbsolute(path)
+        ? path
+        : join(cwd, path)
+      : join(cwd, "src", DOCUMENT_NAME_DIRECTORY[documentName]);
+
+    const files = await scaffdog.generate(document, documentPath, {
       inputs: { ...inputs, name: entityName },
     });
 

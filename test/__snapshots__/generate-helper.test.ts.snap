@@ -7,7 +7,21 @@ exports[`generates a \`.js\` helper 1`] = `
 "
 `;
 
+exports[`generates a \`.js\` helper at a custom path 1`] = `
+"export default function fooHelper(positional /*, named*/) {
+  return positional;
+}
+"
+`;
+
 exports[`generates a \`.ts\` helper 1`] = `
+"export default function fooHelper(positional /*, named*/) {
+  return positional;
+}
+"
+`;
+
+exports[`generates a \`.ts\` helper at a custom path 1`] = `
 "export default function fooHelper(positional /*, named*/) {
   return positional;
 }

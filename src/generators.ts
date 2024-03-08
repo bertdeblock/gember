@@ -4,31 +4,43 @@ import { DocumentName } from "./types.js";
 export function generateComponent(
   name: string,
   cwd: string,
-  options: { gts: boolean } = { gts: false },
+  { gts = false, path = "" } = {},
 ) {
-  return generateDocument(DocumentName.Component, name, cwd, options);
+  return generateDocument(DocumentName.Component, name, cwd, {
+    inputs: { gts },
+    path: path,
+  });
 }
 
 export function generateHelper(
   name: string,
   cwd: string,
-  options: { ts: boolean } = { ts: false },
+  { path = "", ts = false } = {},
 ) {
-  return generateDocument(DocumentName.Helper, name, cwd, options);
+  return generateDocument(DocumentName.Helper, name, cwd, {
+    inputs: { ts },
+    path: path,
+  });
 }
 
 export function generateModifier(
   name: string,
   cwd: string,
-  options: { ts: boolean } = { ts: false },
+  { path = "", ts = false } = {},
 ) {
-  return generateDocument(DocumentName.Modifier, name, cwd, options);
+  return generateDocument(DocumentName.Modifier, name, cwd, {
+    inputs: { ts },
+    path: path,
+  });
 }
 
 export function generateService(
   name: string,
   cwd: string,
-  options: { ts: boolean } = { ts: false },
+  { path = "", ts = false } = {},
 ) {
-  return generateDocument(DocumentName.Service, name, cwd, options);
+  return generateDocument(DocumentName.Service, name, cwd, {
+    inputs: { ts },
+    path: path,
+  });
 }

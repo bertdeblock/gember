@@ -11,7 +11,6 @@ afterEach(() => fsExtra.remove(cwd));
 
 it("generates a `.js` service", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
-  console.log(cwd);
 
   await generateService("foo", cwd);
 
@@ -26,6 +25,29 @@ it("generates a `.ts` service", async (ctx) => {
   await generateService("foo", cwd, { ts: true });
 
   const content = await readFile(join(cwd, "src/services/foo.ts"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a `.js` service at a custom path", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateService("foo", cwd, { path: "src/-private" });
+
+  const content = await readFile(join(cwd, "src/-private/foo.js"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a `.ts` service at a custom path", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateService("foo", cwd, {
+    path: "src/-private",
+    ts: true,
+  });
+
+  const content = await readFile(join(cwd, "src/-private/foo.ts"), "utf-8");
 
   ctx.expect(content).toMatchSnapshot();
 });

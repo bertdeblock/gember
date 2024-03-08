@@ -7,7 +7,21 @@ export default modifier(function foo(element /*, positional, named*/) {});
 "
 `;
 
+exports[`generates a \`.js\` modifier at a custom path 1`] = `
+"import { modifier } from "ember-modifier";
+
+export default modifier(function foo(element /*, positional, named*/) {});
+"
+`;
+
 exports[`generates a \`.ts\` modifier 1`] = `
+"import { modifier } from "ember-modifier";
+
+export default modifier(function foo(element /*, positional, named*/) {});
+"
+`;
+
+exports[`generates a \`.ts\` modifier at a custom path 1`] = `
 "import { modifier } from "ember-modifier";
 
 export default modifier(function foo(element /*, positional, named*/) {});

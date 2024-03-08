@@ -11,7 +11,6 @@ afterEach(() => fsExtra.remove(cwd));
 
 it("generates a `.js` modifier", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
-  console.log(cwd);
 
   await generateModifier("foo", cwd);
 
@@ -26,6 +25,29 @@ it("generates a `.ts` modifier", async (ctx) => {
   await generateModifier("foo", cwd, { ts: true });
 
   const content = await readFile(join(cwd, "src/modifiers/foo.ts"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a `.js` modifier at a custom path", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateModifier("foo", cwd, { path: "src/-private" });
+
+  const content = await readFile(join(cwd, "src/-private/foo.js"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a `.ts` modifier at a custom path", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateModifier("foo", cwd, {
+    path: "src/-private",
+    ts: true,
+  });
+
+  const content = await readFile(join(cwd, "src/-private/foo.ts"), "utf-8");
 
   ctx.expect(content).toMatchSnapshot();
 });
