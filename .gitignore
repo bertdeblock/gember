@@ -3,3 +3,6 @@
 /node_modules/
 /test/output/
 /.eslintcache
+
+# https://github.com/embroider-build/create-release-plan-setup/issues/88
+/stderr.log
