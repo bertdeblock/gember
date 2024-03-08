@@ -1,0 +1,17 @@
+{
+  "solution": {
+    "@bertdeblock/gember": {
+      "impact": "minor",
+      "oldVersion": "0.0.0",
+      "newVersion": "0.1.0",
+      "constraints": [
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        }
+      ],
+      "pkgJSONPath": "./package.json"
+    }
+  },
+  "description": "## Release (2024-03-08)\n\n@bertdeblock/gember 0.1.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#4](https://github.com/bertdeblock/gember/pull/4) Support a `--path` option for all generators ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+}
