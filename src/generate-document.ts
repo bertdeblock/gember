@@ -2,7 +2,8 @@ import chalk from "chalk";
 import { execa } from "execa";
 import { ensureDir } from "fs-extra";
 import { writeFile } from "node:fs/promises";
-import { dirname, isAbsolute, join, parse } from "node:path";
+import { dirname, isAbsolute, join, parse, relative } from "node:path";
+import { cwd as processCwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
 import { type DocumentName } from "./types.js";
@@ -17,8 +18,15 @@ const DOCUMENT_NAME_DIRECTORY: Record<DocumentName, string> = {
 export async function generateDocument(
   documentName: DocumentName,
   entityName: string,
-  cwd: string,
-  { inputs = {}, path = "" }: { inputs?: GenerateInputs; path?: string } = {},
+  {
+    cwd = processCwd(),
+    inputs = {},
+    path = "",
+  }: {
+    cwd?: string;
+    inputs?: GenerateInputs;
+    path?: string;
+  } = {},
 ) {
   const directory = dirname(fileURLToPath(import.meta.url));
   const scaffdog = await loadScaffdog(join(directory, "..", ".scaffdog"));
@@ -50,9 +58,13 @@ export async function generateDocument(
         // 🤫
       }
 
-      console.log(chalk.green(`Generated "${file.path}"`));
+      console.log(
+        chalk.green(
+          `🫚 Generated ${documentName} "${entityName}" at "${relative(cwd, file.path)}".`,
+        ),
+      );
     }
   } else {
-    throw new Error(`Document "${documentName}" not found.`);
+    throw new Error(`[BUG] Document "${documentName}" not found.`);
   }
 }

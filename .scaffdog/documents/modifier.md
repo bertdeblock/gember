@@ -4,7 +4,7 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.name + (inputs.ts ? ".ts" : ".js")]]
+# [[inputs.name]].[[inputs.authoringFormat]]
 
 ```ts
 import { modifier } from "ember-modifier";

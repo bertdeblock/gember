@@ -1,4 +1,3 @@
-import { cwd } from "node:process";
 import { hideBin } from "yargs/helpers";
 import yargs from "yargs/yargs";
 import {
@@ -32,8 +31,8 @@ yargs(hideBin(process.argv))
         });
     },
     handler(options) {
-      generateComponent(options.name, cwd(), {
-        gts: options.gts,
+      generateComponent(options.name, {
+        authoringFormat: options.gts ? "gts" : "gjs",
         path: options.path,
       });
     },
@@ -61,9 +60,9 @@ yargs(hideBin(process.argv))
         });
     },
     handler(options) {
-      generateHelper(options.name, cwd(), {
+      generateHelper(options.name, {
+        authoringFormat: options.ts ? "ts" : "js",
         path: options.path,
-        ts: options.ts,
       });
     },
   })
@@ -90,9 +89,9 @@ yargs(hideBin(process.argv))
         });
     },
     handler(options) {
-      generateModifier(options.name, cwd(), {
+      generateModifier(options.name, {
+        authoringFormat: options.ts ? "ts" : "js",
         path: options.path,
-        ts: options.ts,
       });
     },
   })
@@ -119,9 +118,9 @@ yargs(hideBin(process.argv))
         });
     },
     handler(options) {
-      generateService(options.name, cwd(), {
+      generateService(options.name, {
+        authoringFormat: options.ts ? "ts" : "js",
         path: options.path,
-        ts: options.ts,
       });
     },
   })

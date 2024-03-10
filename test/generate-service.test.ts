@@ -12,7 +12,7 @@ afterEach(() => fsExtra.remove(cwd));
 it("generates a `.js` service", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateService("foo", cwd);
+  await generateService("foo", { cwd });
 
   const content = await readFile(join(cwd, "src/services/foo.js"), "utf-8");
 
@@ -22,7 +22,7 @@ it("generates a `.js` service", async (ctx) => {
 it("generates a `.ts` service", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateService("foo", cwd, { ts: true });
+  await generateService("foo", { authoringFormat: "ts", cwd });
 
   const content = await readFile(join(cwd, "src/services/foo.ts"), "utf-8");
 
@@ -32,7 +32,7 @@ it("generates a `.ts` service", async (ctx) => {
 it("generates a `.js` service at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateService("foo", cwd, { path: "src/-private" });
+  await generateService("foo", { cwd, path: "src/-private" });
 
   const content = await readFile(join(cwd, "src/-private/foo.js"), "utf-8");
 
@@ -42,9 +42,10 @@ it("generates a `.js` service at a custom path", async (ctx) => {
 it("generates a `.ts` service at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateService("foo", cwd, {
+  await generateService("foo", {
+    authoringFormat: "ts",
+    cwd,
     path: "src/-private",
-    ts: true,
   });
 
   const content = await readFile(join(cwd, "src/-private/foo.ts"), "utf-8");

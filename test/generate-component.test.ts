@@ -12,7 +12,7 @@ afterEach(() => fsExtra.remove(cwd));
 it("generates a `.gjs` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", cwd);
+  await generateComponent("foo", { cwd });
 
   const content = await readFile(join(cwd, "src/components/foo.gjs"), "utf-8");
 
@@ -22,7 +22,7 @@ it("generates a `.gjs` component", async (ctx) => {
 it("generates a `.gts` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", cwd, { gts: true });
+  await generateComponent("foo", { authoringFormat: "gts", cwd });
 
   const content = await readFile(join(cwd, "src/components/foo.gts"), "utf-8");
 
@@ -32,7 +32,7 @@ it("generates a `.gts` component", async (ctx) => {
 it("generates a `.gjs` component at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", cwd, { path: "src/-private" });
+  await generateComponent("foo", { cwd, path: "src/-private" });
 
   const content = await readFile(join(cwd, "src/-private/foo.gjs"), "utf-8");
 
@@ -42,8 +42,9 @@ it("generates a `.gjs` component at a custom path", async (ctx) => {
 it("generates a `.gts` component at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", cwd, {
-    gts: true,
+  await generateComponent("foo", {
+    authoringFormat: "gts",
+    cwd,
     path: "src/-private",
   });
 
