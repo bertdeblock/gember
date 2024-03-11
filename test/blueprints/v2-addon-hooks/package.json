@@ -1,0 +1,7 @@
+{
+  "name": "v2-addon-hooks",
+  "private": true,
+  "volta": {
+    "extends": "../../../package.json"
+  }
+}

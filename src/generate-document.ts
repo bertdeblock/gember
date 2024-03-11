@@ -5,6 +5,7 @@ import { dirname, isAbsolute, join, parse, relative } from "node:path";
 import { cwd as processCwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
+import { getConfig } from "./config.js";
 import { type DocumentName } from "./types.js";
 
 const DOCUMENT_NAME_DIRECTORY: Record<DocumentName, string> = {
@@ -28,7 +29,7 @@ export async function generateDocument(
   } = {},
 ) {
   const directory = dirname(fileURLToPath(import.meta.url));
-  const scaffdog = await loadScaffdog(join(directory, "..", ".scaffdog"));
+  const scaffdog = await loadScaffdog(join(directory, "../.scaffdog"));
   const documents = await scaffdog.list();
   const document = documents.find((document) => document.name === documentName);
 
@@ -46,18 +47,24 @@ export async function generateDocument(
     inputs: { ...inputs, name: entityName },
   });
 
-  for (const file of files) {
-    if (file.skip) {
-      continue;
-    }
+  const filesToGenerate = files.filter((file) => file.skip === false);
 
+  for (const file of filesToGenerate) {
     await ensureDir(parse(file.path).dir);
     await writeFile(file.path, file.content);
 
-    console.log(
-      chalk.green(
-        `🫚 Generated ${documentName} "${entityName}" at "${relative(cwd, file.path)}".`,
-      ),
-    );
+    console.log(chalk.green(`🫚 Generated "${relative(cwd, file.path)}".`));
   }
+
+  const config = await getConfig(cwd);
+
+  await config.hooks?.postGenerate?.({
+    documentName,
+    entityName,
+    files: filesToGenerate.map((file) => ({
+      content: file.content,
+      name: file.name,
+      path: file.path,
+    })),
+  });
 }
