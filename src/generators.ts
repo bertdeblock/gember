@@ -3,44 +3,76 @@ import { DocumentName } from "./types.js";
 
 export function generateComponent(
   name: string,
-  cwd: string,
-  { gts = false, path = "" } = {},
+  {
+    authoringFormat = "gjs",
+    cwd = "",
+    path = "",
+  }: {
+    authoringFormat?: "gjs" | "gts";
+    cwd?: string;
+    path?: string;
+  } = {},
 ) {
-  return generateDocument(DocumentName.Component, name, cwd, {
-    inputs: { gts },
-    path: path,
+  return generateDocument(DocumentName.Component, name, {
+    cwd,
+    inputs: { authoringFormat },
+    path,
   });
 }
 
 export function generateHelper(
   name: string,
-  cwd: string,
-  { path = "", ts = false } = {},
+  {
+    authoringFormat = "js",
+    cwd = "",
+    path = "",
+  }: {
+    authoringFormat?: "js" | "ts";
+    cwd?: string;
+    path?: string;
+  } = {},
 ) {
-  return generateDocument(DocumentName.Helper, name, cwd, {
-    inputs: { ts },
-    path: path,
+  return generateDocument(DocumentName.Helper, name, {
+    cwd,
+    inputs: { authoringFormat },
+    path,
   });
 }
 
 export function generateModifier(
   name: string,
-  cwd: string,
-  { path = "", ts = false } = {},
+  {
+    authoringFormat = "js",
+    cwd = "",
+    path = "",
+  }: {
+    authoringFormat?: "js" | "ts";
+    cwd?: string;
+    path?: string;
+  } = {},
 ) {
-  return generateDocument(DocumentName.Modifier, name, cwd, {
-    inputs: { ts },
-    path: path,
+  return generateDocument(DocumentName.Modifier, name, {
+    cwd,
+    inputs: { authoringFormat },
+    path,
   });
 }
 
 export function generateService(
   name: string,
-  cwd: string,
-  { path = "", ts = false } = {},
+  {
+    authoringFormat = "js",
+    cwd = "",
+    path = "",
+  }: {
+    authoringFormat?: "js" | "ts";
+    cwd?: string;
+    path?: string;
+  } = {},
 ) {
-  return generateDocument(DocumentName.Service, name, cwd, {
-    inputs: { ts },
-    path: path,
+  return generateDocument(DocumentName.Service, name, {
+    cwd,
+    inputs: { authoringFormat },
+    path,
   });
 }

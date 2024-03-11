@@ -4,12 +4,12 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.name + (inputs.gts ? ".gts" : ".gjs")]]
+# [[inputs.name]].[[inputs.authoringFormat]]
 
 ```gts
 [[name := pascal(inputs.name)-]]
 import Component from "@glimmer/component";
-[[if inputs.gts]]
+[[if inputs.authoringFormat == "gts"]]
 export interface [[name]]Signature {
   Args: {};
   Blocks: {
