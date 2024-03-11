@@ -45,6 +45,40 @@ pnpm gember service foo --ts
 pnpm gember service foo --path="src/-private"
 ```
 
+## Configuration
+
+gember supports the following config files:
+
+- `gember.config.js`
+- `gember.config.cjs`
+- `gember.config.mjs`
+
+A gember config file must export a gember config object, or a sync/async function that returns a gember config object.
+
+### Configuration Options
+
+#### `hooks.postGenerate`
+
+A hook that will be executed post generating a document.
+
+```js
+// gember.config.js
+
+import { execa } from "execa";
+
+export default {
+  hooks: {
+    postGenerate: async ({ files }) => {
+      await execa("npx", [
+        "prettier",
+        "--write",
+        ...files.map((file) => file.path),
+      ]);
+    },
+  },
+};
+```
+
 ## Caveats
 
 - Only supports `.gjs` (default) and `.gts` files for components at the moment

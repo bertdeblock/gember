@@ -4,3 +4,9 @@ export enum DocumentName {
   Modifier = "modifier",
   Service = "service",
 }
+
+export type File = {
+  content: string;
+  name: string;
+  path: string;
+};

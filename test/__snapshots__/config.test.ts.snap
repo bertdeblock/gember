@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`runs the \`postGenerate\` hook 1`] = `
+"{
+  "documentName": "component",
+  "entityName": "foo",
+  "files": [
+    {
+      "content": "import Component from \\"@glimmer/component\\";\\n\\nexport default class FooComponent extends Component {\\n  <template>\\n    {{yield}}\\n  </template>\\n}\\n",
+      "name": "foo.gjs",
+      "path": "/Users/bertdeblock/Code/open-source/source/@bertdeblock/gember/test/output/post-generate-info/src/components/foo.gjs"
+    }
+  ]
+}"
+`;
