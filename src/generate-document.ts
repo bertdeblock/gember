@@ -1,5 +1,4 @@
 import chalk from "chalk";
-import { execa } from "execa";
 import { ensureDir } from "fs-extra";
 import { writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, parse, relative } from "node:path";
@@ -33,38 +32,32 @@ export async function generateDocument(
   const documents = await scaffdog.list();
   const document = documents.find((document) => document.name === documentName);
 
-  if (document) {
-    const documentPath = path
-      ? isAbsolute(path)
-        ? path
-        : join(cwd, path)
-      : join(cwd, "src", DOCUMENT_NAME_DIRECTORY[documentName]);
-
-    const files = await scaffdog.generate(document, documentPath, {
-      inputs: { ...inputs, name: entityName },
-    });
-
-    for (const file of files) {
-      if (file.skip) {
-        continue;
-      }
-
-      await ensureDir(parse(file.path).dir);
-      await writeFile(file.path, file.content);
-
-      try {
-        await execa("npx", ["prettier", "--write", file.path]);
-      } catch {
-        // 🤫
-      }
-
-      console.log(
-        chalk.green(
-          `🫚 Generated ${documentName} "${entityName}" at "${relative(cwd, file.path)}".`,
-        ),
-      );
-    }
-  } else {
+  if (document === undefined) {
     throw new Error(`[BUG] Document "${documentName}" not found.`);
+  }
+
+  const documentPath = path
+    ? isAbsolute(path)
+      ? path
+      : join(cwd, path)
+    : join(cwd, "src", DOCUMENT_NAME_DIRECTORY[documentName]);
+
+  const files = await scaffdog.generate(document, documentPath, {
+    inputs: { ...inputs, name: entityName },
+  });
+
+  for (const file of files) {
+    if (file.skip) {
+      continue;
+    }
+
+    await ensureDir(parse(file.path).dir);
+    await writeFile(file.path, file.content);
+
+    console.log(
+      chalk.green(
+        `🫚 Generated ${documentName} "${entityName}" at "${relative(cwd, file.path)}".`,
+      ),
+    );
   }
 }
