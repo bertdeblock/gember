@@ -5,17 +5,19 @@ export function generateComponent(
   name: string,
   {
     authoringFormat = "gjs",
+    classBased = false,
     cwd = "",
     path = "",
   }: {
     authoringFormat?: "gjs" | "gts";
+    classBased?: boolean;
     cwd?: string;
     path?: string;
   } = {},
 ) {
   return generateDocument(DocumentName.Component, name, {
     cwd,
-    inputs: { authoringFormat },
+    inputs: { authoringFormat, classBased },
     path,
   });
 }

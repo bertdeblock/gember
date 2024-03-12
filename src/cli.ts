@@ -19,6 +19,12 @@ yargs(hideBin(process.argv))
           description: "The component's name",
           type: "string",
         })
+        .option("class-based", {
+          alias: ["class"],
+          default: false,
+          description: "Generate a class-based component",
+          type: "boolean",
+        })
         .option("gts", {
           default: false,
           description: "Generate a `.gts` component",
@@ -33,6 +39,7 @@ yargs(hideBin(process.argv))
     handler(options) {
       generateComponent(options.name, {
         authoringFormat: options.gts ? "gts" : "gjs",
+        classBased: options.classBased,
         path: options.path,
       });
     },

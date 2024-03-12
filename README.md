@@ -29,6 +29,7 @@ yarn add -D @bertdeblock/gember
 
 ```shell
 pnpm gember component foo
+pnpm gember component foo --class
 pnpm gember component foo --gts
 pnpm gember component foo --path="src/-private"
 
@@ -45,6 +46,6 @@ pnpm gember service foo --ts
 pnpm gember service foo --path="src/-private"
 ```
 
-## Caveats
+## Notes
 
-- Only supports `.gjs` (default) and `.gts` files for components at the moment
+- Only supports `.gjs` (default) and `.gts` files for components
