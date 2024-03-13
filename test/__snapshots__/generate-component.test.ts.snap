@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`generates a \`.gjs\` class-based component 1`] = `
+exports[`generates a class-based \`.gjs\` component 1`] = `
 "import Component from "@glimmer/component";
 
 export default class Foo extends Component {
@@ -9,17 +9,7 @@ export default class Foo extends Component {
 "
 `;
 
-exports[`generates a \`.gjs\` template-only component 1`] = `
-"<template>{{yield}}</template>
-"
-`;
-
-exports[`generates a \`.gjs\` template-only component at a custom path 1`] = `
-"<template>{{yield}}</template>
-"
-`;
-
-exports[`generates a \`.gts\` class-based component 1`] = `
+exports[`generates a class-based \`.gts\` component 1`] = `
 "import Component from "@glimmer/component";
 
 export interface FooSignature {
@@ -38,7 +28,17 @@ export default class Foo extends Component<FooSignature> {
 "
 `;
 
-exports[`generates a \`.gts\` template-only component 1`] = `
+exports[`generates a template-only \`.gjs\` component 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`generates a template-only \`.gjs\` component at a custom path 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`generates a template-only \`.gts\` component 1`] = `
 "import type { TOC } from '@ember/component/template-only';
 
 export interface FooSignature {
@@ -55,7 +55,7 @@ export default Foo;
 "
 `;
 
-exports[`generates a \`.gts\` template-only component at a custom path 1`] = `
+exports[`generates a template-only \`.gts\` component at a custom path 1`] = `
 "import type { TOC } from '@ember/component/template-only';
 
 export interface FooSignature {

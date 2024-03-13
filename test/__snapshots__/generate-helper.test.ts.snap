@@ -1,28 +1,50 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`generates a \`.js\` helper 1`] = `
-"export default function fooHelper(positional /*, named*/) {
+exports[`generates a class-based \`.js\` helper 1`] = `
+"import Helper from "@ember/component/helper";
+
+export default class Foo extends Helper {
+  compute(positional /*, named*/) {
+    return positional;
+  }
+}
+"
+`;
+
+exports[`generates a class-based \`.ts\` helper 1`] = `
+"import Helper from "@ember/component/helper";
+
+export default class Foo extends Helper {
+  compute(positional /*, named*/) {
+    return positional;
+  }
+}
+"
+`;
+
+exports[`generates a function-based \`.js\` helper 1`] = `
+"export default function foo(positional /*, named*/) {
   return positional;
 }
 "
 `;
 
-exports[`generates a \`.js\` helper at a custom path 1`] = `
-"export default function fooHelper(positional /*, named*/) {
+exports[`generates a function-based \`.js\` helper at a custom path 1`] = `
+"export default function foo(positional /*, named*/) {
   return positional;
 }
 "
 `;
 
-exports[`generates a \`.ts\` helper 1`] = `
-"export default function fooHelper(positional /*, named*/) {
+exports[`generates a function-based \`.ts\` helper 1`] = `
+"export default function foo(positional /*, named*/) {
   return positional;
 }
 "
 `;
 
-exports[`generates a \`.ts\` helper at a custom path 1`] = `
-"export default function fooHelper(positional /*, named*/) {
+exports[`generates a function-based \`.ts\` helper at a custom path 1`] = `
+"export default function foo(positional /*, named*/) {
   return positional;
 }
 "

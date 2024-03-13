@@ -33,7 +33,7 @@ export async function generateDocument(
   const document = documents.find((document) => document.name === documentName);
 
   if (document === undefined) {
-    throw new Error(`[BUG] Document "${documentName}" not found.`);
+    throw new Error(`[BUG] Document \`${documentName}\` not found.`);
   }
 
   const documentPath = path
@@ -56,7 +56,7 @@ export async function generateDocument(
 
     console.log(
       chalk.green(
-        `🫚 Generated ${documentName} "${entityName}" at "${relative(cwd, file.path)}".`,
+        `🫚 Generated ${documentName} \`${entityName}\` at \`${relative(cwd, file.path)}\`.`,
       ),
     );
   }

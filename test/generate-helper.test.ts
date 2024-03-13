@@ -9,7 +9,7 @@ let cwd: string;
 
 afterEach(() => fsExtra.remove(cwd));
 
-it("generates a `.js` helper", async (ctx) => {
+it("generates a function-based `.js` helper", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateHelper("foo", { cwd });
@@ -19,17 +19,17 @@ it("generates a `.js` helper", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.ts` helper", async (ctx) => {
+it("generates a class-based `.js` helper", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateHelper("foo", { authoringFormat: "ts", cwd });
+  await generateHelper("foo", { classBased: true, cwd });
 
-  const content = await readFile(join(cwd, "src/helpers/foo.ts"), "utf-8");
+  const content = await readFile(join(cwd, "src/helpers/foo.js"), "utf-8");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.js` helper at a custom path", async (ctx) => {
+it("generates a function-based `.js` helper at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateHelper("foo", { cwd, path: "src/-private" });
@@ -39,7 +39,27 @@ it("generates a `.js` helper at a custom path", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.ts` helper at a custom path", async (ctx) => {
+it("generates a function-based `.ts` helper", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateHelper("foo", { authoringFormat: "ts", cwd });
+
+  const content = await readFile(join(cwd, "src/helpers/foo.ts"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a class-based `.ts` helper", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateHelper("foo", { authoringFormat: "ts", classBased: true, cwd });
+
+  const content = await readFile(join(cwd, "src/helpers/foo.ts"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a function-based `.ts` helper at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateHelper("foo", {

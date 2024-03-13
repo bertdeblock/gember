@@ -15,6 +15,7 @@ output: "**/*"
 
 ```gjs
 [[name := pascal(inputs.name)-]]
+
 import Component from "@glimmer/component";
 
 export default class [[name]] extends Component {
@@ -27,6 +28,7 @@ export default class [[name]] extends Component {
 
 ```gts
 [[name := pascal(inputs.name)-]]
+
 import type { TOC } from '@ember/component/template-only';
 
 export interface [[name]]Signature {
@@ -47,6 +49,7 @@ export default [[name]];
 
 ```gts
 [[name := pascal(inputs.name)-]]
+
 import Component from "@glimmer/component";
 
 export interface [[name]]Signature {
