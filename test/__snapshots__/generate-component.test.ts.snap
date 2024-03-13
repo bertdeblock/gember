@@ -1,28 +1,25 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`generates a \`.gjs\` component 1`] = `
+exports[`generates a \`.gjs\` class-based component 1`] = `
 "import Component from "@glimmer/component";
 
-export default class FooComponent extends Component {
-  <template>
-    {{yield}}
-  </template>
+export default class Foo extends Component {
+  <template>{{yield}}</template>
 }
 "
 `;
 
-exports[`generates a \`.gjs\` component at a custom path 1`] = `
-"import Component from "@glimmer/component";
-
-export default class FooComponent extends Component {
-  <template>
-    {{yield}}
-  </template>
-}
+exports[`generates a \`.gjs\` template-only component 1`] = `
+"<template>{{yield}}</template>
 "
 `;
 
-exports[`generates a \`.gts\` component 1`] = `
+exports[`generates a \`.gjs\` template-only component at a custom path 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`generates a \`.gts\` class-based component 1`] = `
 "import Component from "@glimmer/component";
 
 export interface FooSignature {
@@ -33,7 +30,7 @@ export interface FooSignature {
   Element: null;
 }
 
-export default class FooComponent extends Component<FooSignature> {
+export default class Foo extends Component<FooSignature> {
   <template>
     {{yield}}
   </template>
@@ -41,8 +38,8 @@ export default class FooComponent extends Component<FooSignature> {
 "
 `;
 
-exports[`generates a \`.gts\` component at a custom path 1`] = `
-"import Component from "@glimmer/component";
+exports[`generates a \`.gts\` template-only component 1`] = `
+"import type { TOC } from '@ember/component/template-only';
 
 export interface FooSignature {
   Args: {};
@@ -52,10 +49,25 @@ export interface FooSignature {
   Element: null;
 }
 
-export default class FooComponent extends Component<FooSignature> {
-  <template>
-    {{yield}}
-  </template>
+const Foo: TOC<FooSignature> = <template>{{yield}}</template>;
+
+export default Foo;
+"
+`;
+
+exports[`generates a \`.gts\` template-only component at a custom path 1`] = `
+"import type { TOC } from '@ember/component/template-only';
+
+export interface FooSignature {
+  Args: {};
+  Blocks: {
+    default: [];
+  };
+  Element: null;
 }
+
+const Foo: TOC<FooSignature> = <template>{{yield}}</template>;
+
+export default Foo;
 "
 `;
