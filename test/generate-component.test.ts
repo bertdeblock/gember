@@ -9,7 +9,7 @@ let cwd: string;
 
 afterEach(() => fsExtra.remove(cwd));
 
-it("generates a `.gjs` template-only component", async (ctx) => {
+it("generates a template-only `.gjs` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateComponent("foo", { cwd });
@@ -19,7 +19,7 @@ it("generates a `.gjs` template-only component", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.gjs` class-based component", async (ctx) => {
+it("generates a class-based `.gjs` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateComponent("foo", { classBased: true, cwd });
@@ -29,7 +29,7 @@ it("generates a `.gjs` class-based component", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.gjs` template-only component at a custom path", async (ctx) => {
+it("generates a template-only `.gjs` component at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateComponent("foo", { cwd, path: "src/-private" });
@@ -39,7 +39,7 @@ it("generates a `.gjs` template-only component at a custom path", async (ctx) =>
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.gts` template-only component", async (ctx) => {
+it("generates a template-only `.gts` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateComponent("foo", { authoringFormat: "gts", cwd });
@@ -49,7 +49,7 @@ it("generates a `.gts` template-only component", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.gts` class-based component", async (ctx) => {
+it("generates a class-based `.gts` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateComponent("foo", {
@@ -63,7 +63,7 @@ it("generates a `.gts` class-based component", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.gts` template-only component at a custom path", async (ctx) => {
+it("generates a template-only `.gts` component at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateComponent("foo", {

@@ -8,6 +8,7 @@ output: "**/*"
 
 ```ts
 [[name := pascal(inputs.name)-]]
+
 import Service from "@ember/service";
 
 export default class [[name]]Service extends Service {}

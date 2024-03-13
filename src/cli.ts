@@ -55,6 +55,12 @@ yargs(hideBin(process.argv))
           description: "The helper's name",
           type: "string",
         })
+        .option("class-based", {
+          alias: ["class"],
+          default: false,
+          description: "Generate a class-based helper",
+          type: "boolean",
+        })
         .option("path", {
           default: "",
           description: "Generate a helper at a custom path",
@@ -69,6 +75,7 @@ yargs(hideBin(process.argv))
     handler(options) {
       generateHelper(options.name, {
         authoringFormat: options.ts ? "ts" : "js",
+        classBased: options.classBased,
         path: options.path,
       });
     },

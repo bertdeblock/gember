@@ -34,6 +34,7 @@ pnpm gember component foo --gts
 pnpm gember component foo --path="src/-private"
 
 pnpm gember helper foo
+pnpm gember helper foo --class
 pnpm gember helper foo --ts
 pnpm gember helper foo --path="src/-private"
 
