@@ -3,25 +3,25 @@
 exports[`generates a \`.js\` service 1`] = `
 "import Service from "@ember/service";
 
-export default class FooService extends Service {}
+export default class Foo extends Service {}
 "
 `;
 
 exports[`generates a \`.js\` service at a custom path 1`] = `
 "import Service from "@ember/service";
 
-export default class FooService extends Service {}
+export default class Foo extends Service {}
 "
 `;
 
 exports[`generates a \`.ts\` service 1`] = `
 "import Service from "@ember/service";
 
-export default class FooService extends Service {}
+export default class Foo extends Service {}
 
 declare module "@ember/service" {
   interface Registry {
-    "foo": FooService;
+    "foo": Foo;
   }
 }
 "
@@ -30,11 +30,11 @@ declare module "@ember/service" {
 exports[`generates a \`.ts\` service at a custom path 1`] = `
 "import Service from "@ember/service";
 
-export default class FooService extends Service {}
+export default class Foo extends Service {}
 
 declare module "@ember/service" {
   interface Registry {
-    "foo": FooService;
+    "foo": Foo;
   }
 }
 "

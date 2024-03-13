@@ -11,11 +11,11 @@ output: "**/*"
 
 import Service from "@ember/service";
 
-export default class [[name]]Service extends Service {}
+export default class [[name]] extends Service {}
 [[if inputs.authoringFormat == "ts"]]
 declare module "@ember/service" {
   interface Registry {
-    "[[inputs.name]]": [[name]]Service;
+    "[[inputs.name]]": [[name]];
   }
 }
 [[end]]
