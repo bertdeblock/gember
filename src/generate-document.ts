@@ -66,7 +66,7 @@ function getDocumentPath(
     if (isAbsolute(path)) {
       return path;
     } else {
-      join(cwd, path);
+      return join(cwd, path);
     }
   }
 
