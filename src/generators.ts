@@ -1,5 +1,4 @@
 import { generateDocument } from "./generate-document.js";
-import { DocumentName } from "./types.js";
 
 export function generateComponent(
   name: string,
@@ -15,7 +14,7 @@ export function generateComponent(
     path?: string;
   } = {},
 ) {
-  return generateDocument(DocumentName.Component, name, {
+  return generateDocument("component", name, {
     cwd,
     inputs: { authoringFormat, classBased },
     path,
@@ -36,7 +35,7 @@ export function generateHelper(
     path?: string;
   } = {},
 ) {
-  return generateDocument(DocumentName.Helper, name, {
+  return generateDocument("helper", name, {
     cwd,
     inputs: { authoringFormat, classBased },
     path,
@@ -55,7 +54,7 @@ export function generateModifier(
     path?: string;
   } = {},
 ) {
-  return generateDocument(DocumentName.Modifier, name, {
+  return generateDocument("modifier", name, {
     cwd,
     inputs: { authoringFormat },
     path,
@@ -74,7 +73,7 @@ export function generateService(
     path?: string;
   } = {},
 ) {
-  return generateDocument(DocumentName.Service, name, {
+  return generateDocument("service", name, {
     cwd,
     inputs: { authoringFormat },
     path,
