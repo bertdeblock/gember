@@ -1,29 +1,75 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`generates a \`.js\` modifier 1`] = `
-"import { modifier } from "ember-modifier";
+exports[`generates a class-based \`.js\` modifier 1`] = `
+"import Modifier from "ember-modifier";
 
-export default modifier(function foo(element /*, positional, named*/) {});
+export default class Foo extends Modifier {
+  modify(element, positional, named) {}
+}
 "
 `;
 
-exports[`generates a \`.js\` modifier at a custom path 1`] = `
-"import { modifier } from "ember-modifier";
+exports[`generates a class-based \`.ts\` modifier 1`] = `
+"import Modifier, { type NamedArgs, type PositionalArgs } from "ember-modifier";
 
-export default modifier(function foo(element /*, positional, named*/) {});
+export interface FooSignature {
+  Args: {
+    Named: {};
+    Positional: [];
+  };
+  Element: null;
+}
+
+export default class Foo extends Modifier<FooSignature> {
+  modify(
+    element: FooSignature["Element"],
+    positional: PositionalArgs<FooSignature>,
+    named: NamedArgs<FooSignature>,
+  ) {}
+}
 "
 `;
 
-exports[`generates a \`.ts\` modifier 1`] = `
+exports[`generates a function-based \`.js\` modifier 1`] = `
 "import { modifier } from "ember-modifier";
 
-export default modifier(function foo(element /*, positional, named*/) {});
+export default modifier(function foo(element, positional, named) {});
 "
 `;
 
-exports[`generates a \`.ts\` modifier at a custom path 1`] = `
+exports[`generates a function-based \`.js\` modifier at a custom path 1`] = `
 "import { modifier } from "ember-modifier";
 
-export default modifier(function foo(element /*, positional, named*/) {});
+export default modifier(function foo(element, positional, named) {});
+"
+`;
+
+exports[`generates a function-based \`.ts\` modifier 1`] = `
+"import { modifier, type NamedArgs, type PositionalArgs } from "ember-modifier";
+
+export interface FooSignature {
+  Args: {
+    Named: {};
+    Positional: [];
+  };
+  Element: null;
+}
+
+export default modifier<FooSignature>(function foo(element, positional, named) {});
+"
+`;
+
+exports[`generates a function-based \`.ts\` modifier at a custom path 1`] = `
+"import { modifier, type NamedArgs, type PositionalArgs } from "ember-modifier";
+
+export interface FooSignature {
+  Args: {
+    Named: {};
+    Positional: [];
+  };
+  Element: null;
+}
+
+export default modifier<FooSignature>(function foo(element, positional, named) {});
 "
 `;

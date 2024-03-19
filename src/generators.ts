@@ -46,17 +46,19 @@ export function generateModifier(
   name: string,
   {
     authoringFormat = "js",
+    classBased = false,
     cwd = "",
     path = "",
   }: {
     authoringFormat?: "js" | "ts";
+    classBased?: boolean;
     cwd?: string;
     path?: string;
   } = {},
 ) {
   return generateDocument("modifier", name, {
     cwd,
-    inputs: { authoringFormat },
+    inputs: { authoringFormat, classBased },
     path,
   });
 }

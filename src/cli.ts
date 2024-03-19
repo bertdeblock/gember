@@ -91,6 +91,12 @@ yargs(hideBin(process.argv))
           description: "The modifier's name",
           type: "string",
         })
+        .option("class-based", {
+          alias: ["class"],
+          default: false,
+          description: "Generate a class-based modifier",
+          type: "boolean",
+        })
         .option("path", {
           default: "",
           description: "Generate a modifier at a custom path",
@@ -105,6 +111,7 @@ yargs(hideBin(process.argv))
     handler(options) {
       generateModifier(options.name, {
         authoringFormat: options.ts ? "ts" : "js",
+        classBased: options.classBased,
         path: options.path,
       });
     },

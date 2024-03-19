@@ -1,4 +1,4 @@
 export default {
-  files: ["documents/*.md"],
+  files: ["*.md"],
   tags: ["[[", "]]"],
 };
