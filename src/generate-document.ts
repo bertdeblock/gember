@@ -21,7 +21,7 @@ export async function generateDocument(
   } = {},
 ) {
   const directory = dirname(fileURLToPath(import.meta.url));
-  const scaffdog = await loadScaffdog(join(directory, "..", ".scaffdog"));
+  const scaffdog = await loadScaffdog(join(directory, "../documents"));
   const documents = await scaffdog.list();
   const document = documents.find((document) => document.name === documentName);
 

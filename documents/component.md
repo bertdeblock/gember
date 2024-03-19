@@ -28,10 +28,11 @@ export default class [[name]] extends Component {
 
 ```gts
 [[name := pascal(inputs.name)-]]
+[[signature := (name + "Signature")-]]
 
 import type { TOC } from '@ember/component/template-only';
 
-export interface [[name]]Signature {
+export interface [[signature]] {
   Args: {};
   Blocks: {
     default: [];
@@ -39,7 +40,7 @@ export interface [[name]]Signature {
   Element: null;
 }
 
-const [[name]]: TOC<[[name]]Signature> = <template>{{yield}}</template>;
+const [[name]]: TOC<[[signature]]> = <template>{{yield}}</template>;
 
 export default [[name]];
 
@@ -49,10 +50,11 @@ export default [[name]];
 
 ```gts
 [[name := pascal(inputs.name)-]]
+[[signature := (name + "Signature")-]]
 
 import Component from "@glimmer/component";
 
-export interface [[name]]Signature {
+export interface [[signature]] {
   Args: {};
   Blocks: {
     default: [];
@@ -60,7 +62,7 @@ export interface [[name]]Signature {
   Element: null;
 }
 
-export default class [[name]] extends Component<[[name]]Signature> {
+export default class [[name]] extends Component<[[signature]]> {
   <template>
     {{yield}}
   </template>

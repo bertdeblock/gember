@@ -9,7 +9,7 @@ let cwd: string;
 
 afterEach(() => fsExtra.remove(cwd));
 
-it("generates a `.js` modifier", async (ctx) => {
+it("generates a function-based `.js` modifier", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateModifier("foo", { cwd });
@@ -19,17 +19,17 @@ it("generates a `.js` modifier", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.ts` modifier", async (ctx) => {
+it("generates a class-based `.js` modifier", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateModifier("foo", { authoringFormat: "ts", cwd });
+  await generateModifier("foo", { classBased: true, cwd });
 
-  const content = await readFile(join(cwd, "src/modifiers/foo.ts"), "utf-8");
+  const content = await readFile(join(cwd, "src/modifiers/foo.js"), "utf-8");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.js` modifier at a custom path", async (ctx) => {
+it("generates a function-based `.js` modifier at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateModifier("foo", { cwd, path: "src/-private" });
@@ -39,7 +39,31 @@ it("generates a `.js` modifier at a custom path", async (ctx) => {
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a `.ts` modifier at a custom path", async (ctx) => {
+it("generates a function-based `.ts` modifier", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateModifier("foo", { authoringFormat: "ts", cwd });
+
+  const content = await readFile(join(cwd, "src/modifiers/foo.ts"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a class-based `.ts` modifier", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateModifier("foo", {
+    authoringFormat: "ts",
+    classBased: true,
+    cwd,
+  });
+
+  const content = await readFile(join(cwd, "src/modifiers/foo.ts"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});
+
+it("generates a function-based `.ts` modifier at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateModifier("foo", {
