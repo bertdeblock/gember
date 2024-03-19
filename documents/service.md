@@ -4,7 +4,7 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.name]].[[inputs.authoringFormat]]
+# [[inputs.name]].[[inputs.ts ? "ts" : "js"]]
 
 ```ts
 [[name := pascal(inputs.name)-]]
@@ -12,7 +12,7 @@ output: "**/*"
 import Service from "@ember/service";
 
 export default class [[name]] extends Service {}
-[[if inputs.authoringFormat == "ts"]]
+[[if inputs.ts]]
 declare module "@ember/service" {
   interface Registry {
     "[[inputs.name]]": [[name]];

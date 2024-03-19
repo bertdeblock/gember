@@ -25,22 +25,22 @@ yargs(hideBin(process.argv))
           description: "Generate a class-based component",
           type: "boolean",
         })
-        .option("gts", {
-          default: false,
-          description: "Generate a `.gts` component",
-          type: "boolean",
-        })
         .option("path", {
           default: "",
           description: "Generate a component at a custom path",
           type: "string",
+        })
+        .option("ts", {
+          default: false,
+          description: "Generate a `.gts` component",
+          type: "boolean",
         });
     },
     handler(options) {
       generateComponent(options.name, {
-        authoringFormat: options.gts ? "gts" : "gjs",
         classBased: options.classBased,
         path: options.path,
+        ts: options.ts,
       });
     },
   })
@@ -74,9 +74,9 @@ yargs(hideBin(process.argv))
     },
     handler(options) {
       generateHelper(options.name, {
-        authoringFormat: options.ts ? "ts" : "js",
         classBased: options.classBased,
         path: options.path,
+        ts: options.ts,
       });
     },
   })
@@ -110,9 +110,9 @@ yargs(hideBin(process.argv))
     },
     handler(options) {
       generateModifier(options.name, {
-        authoringFormat: options.ts ? "ts" : "js",
         classBased: options.classBased,
         path: options.path,
+        ts: options.ts,
       });
     },
   })
@@ -140,8 +140,8 @@ yargs(hideBin(process.argv))
     },
     handler(options) {
       generateService(options.name, {
-        authoringFormat: options.ts ? "ts" : "js",
         path: options.path,
+        ts: options.ts,
       });
     },
   })

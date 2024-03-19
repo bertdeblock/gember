@@ -4,7 +4,7 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.classBased ? "!" : ""]][[inputs.name]].[[inputs.authoringFormat]]
+# [[inputs.classBased ? "!" : ""]][[inputs.name]].[[inputs.ts ? "ts" : "js"]]
 
 ```ts
 [[name := camel(inputs.name)-]]
@@ -15,7 +15,7 @@ export default function [[name]](positional /*, named*/) {
 
 ```
 
-# [[inputs.classBased ? "" : "!"]][[inputs.name]].[[inputs.authoringFormat]]
+# [[inputs.classBased ? "" : "!"]][[inputs.name]].[[inputs.ts ? "ts" : "js"]]
 
 ```ts
 [[name := pascal(inputs.name)-]]

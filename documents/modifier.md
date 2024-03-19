@@ -4,7 +4,7 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.authoringFormat == "js" ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].js
+# [[inputs.ts ? "!" : (inputs.classBased ? "!" : "")]][[inputs.name]].js
 
 ```js
 [[name := camel(inputs.name)-]]
@@ -15,7 +15,7 @@ export default modifier(function [[name]](element, positional, named) {});
 
 ```
 
-# [[inputs.authoringFormat == "js" ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].js
+# [[inputs.ts ? "!" : (inputs.classBased ? "" : "!")]][[inputs.name]].js
 
 ```js
 [[name := pascal(inputs.name)-]]
@@ -28,7 +28,7 @@ export default class [[name]] extends Modifier {
 
 ```
 
-# [[inputs.authoringFormat == "ts" ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].ts
+# [[inputs.ts ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].ts
 
 ```ts
 [[name := camel(inputs.name)-]]
@@ -48,7 +48,7 @@ export default modifier<[[signature]]>(function [[name]](element, positional, na
 
 ```
 
-# [[inputs.authoringFormat == "ts" ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].ts
+# [[inputs.ts ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].ts
 
 ```ts
 [[name := pascal(inputs.name)-]]

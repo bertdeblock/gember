@@ -4,14 +4,14 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.authoringFormat == "gjs" ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].gjs
+# [[inputs.ts ? "!" : (inputs.classBased ? "!" : "")]][[inputs.name]].gjs
 
 ```gjs
 <template>{{yield}}</template>
 
 ```
 
-# [[inputs.authoringFormat == "gjs" ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].gjs
+# [[inputs.ts ? "!" : (inputs.classBased ? "" : "!")]][[inputs.name]].gjs
 
 ```gjs
 [[name := pascal(inputs.name)-]]
@@ -24,7 +24,7 @@ export default class [[name]] extends Component {
 
 ```
 
-# [[inputs.authoringFormat == "gts" ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].gts
+# [[inputs.ts ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].gts
 
 ```gts
 [[name := pascal(inputs.name)-]]
@@ -46,7 +46,7 @@ export default [[name]];
 
 ```
 
-# [[inputs.authoringFormat == "gts" ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].gts
+# [[inputs.ts ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].gts
 
 ```gts
 [[name := pascal(inputs.name)-]]
