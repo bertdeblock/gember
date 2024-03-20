@@ -10,22 +10,22 @@ export default class Foo extends Modifier {
 `;
 
 exports[`generates a class-based \`.ts\` modifier 1`] = `
-"import Modifier, { type NamedArgs, type PositionalArgs } from "ember-modifier";
+"import Modifier from "ember-modifier";
+
+type Named = {};
+type Positional = [];
+type Element = null;
 
 export interface FooSignature {
   Args: {
-    Named: {};
-    Positional: [];
+    Named: Named;
+    Positional: Positional;
   };
-  Element: null;
+  Element: Element;
 }
 
 export default class Foo extends Modifier<FooSignature> {
-  modify(
-    element: FooSignature["Element"],
-    positional: PositionalArgs<FooSignature>,
-    named: NamedArgs<FooSignature>,
-  ) {}
+  modify(element: Element, positional: Positional, named: Named) {}
 }
 "
 `;
@@ -45,7 +45,7 @@ export default modifier(function foo(element, positional, named) {});
 `;
 
 exports[`generates a function-based \`.ts\` modifier 1`] = `
-"import { modifier, type NamedArgs, type PositionalArgs } from "ember-modifier";
+"import { modifier } from "ember-modifier";
 
 export interface FooSignature {
   Args: {
@@ -60,7 +60,7 @@ export default modifier<FooSignature>(function foo(element, positional, named) {
 `;
 
 exports[`generates a function-based \`.ts\` modifier at a custom path 1`] = `
-"import { modifier, type NamedArgs, type PositionalArgs } from "ember-modifier";
+"import { modifier } from "ember-modifier";
 
 export interface FooSignature {
   Args: {
