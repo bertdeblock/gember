@@ -42,7 +42,7 @@ it("generates a function-based `.js` helper at a custom path", async (ctx) => {
 it("generates a function-based `.ts` helper", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateHelper("foo", { authoringFormat: "ts", cwd });
+  await generateHelper("foo", { cwd, ts: true });
 
   const content = await readFile(join(cwd, "src/helpers/foo.ts"), "utf-8");
 
@@ -52,7 +52,7 @@ it("generates a function-based `.ts` helper", async (ctx) => {
 it("generates a class-based `.ts` helper", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateHelper("foo", { authoringFormat: "ts", classBased: true, cwd });
+  await generateHelper("foo", { classBased: true, cwd, ts: true });
 
   const content = await readFile(join(cwd, "src/helpers/foo.ts"), "utf-8");
 
@@ -63,9 +63,9 @@ it("generates a function-based `.ts` helper at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
   await generateHelper("foo", {
-    authoringFormat: "ts",
     cwd,
     path: "src/-private",
+    ts: true,
   });
 
   const content = await readFile(join(cwd, "src/-private/foo.ts"), "utf-8");

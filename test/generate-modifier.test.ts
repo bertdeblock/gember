@@ -42,7 +42,7 @@ it("generates a function-based `.js` modifier at a custom path", async (ctx) => 
 it("generates a function-based `.ts` modifier", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateModifier("foo", { authoringFormat: "ts", cwd });
+  await generateModifier("foo", { cwd, ts: true });
 
   const content = await readFile(join(cwd, "src/modifiers/foo.ts"), "utf-8");
 
@@ -52,11 +52,7 @@ it("generates a function-based `.ts` modifier", async (ctx) => {
 it("generates a class-based `.ts` modifier", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateModifier("foo", {
-    authoringFormat: "ts",
-    classBased: true,
-    cwd,
-  });
+  await generateModifier("foo", { classBased: true, cwd, ts: true });
 
   const content = await readFile(join(cwd, "src/modifiers/foo.ts"), "utf-8");
 
@@ -66,11 +62,7 @@ it("generates a class-based `.ts` modifier", async (ctx) => {
 it("generates a function-based `.ts` modifier at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateModifier("foo", {
-    authoringFormat: "ts",
-    cwd,
-    path: "src/-private",
-  });
+  await generateModifier("foo", { cwd, path: "src/-private", ts: true });
 
   const content = await readFile(join(cwd, "src/-private/foo.ts"), "utf-8");
 

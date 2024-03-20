@@ -42,7 +42,7 @@ it("generates a template-only `.gjs` component at a custom path", async (ctx) =>
 it("generates a template-only `.gts` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", { authoringFormat: "gts", cwd });
+  await generateComponent("foo", { cwd, ts: true });
 
   const content = await readFile(join(cwd, "src/components/foo.gts"), "utf-8");
 
@@ -52,11 +52,7 @@ it("generates a template-only `.gts` component", async (ctx) => {
 it("generates a class-based `.gts` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", {
-    authoringFormat: "gts",
-    classBased: true,
-    cwd,
-  });
+  await generateComponent("foo", { classBased: true, cwd, ts: true });
 
   const content = await readFile(join(cwd, "src/components/foo.gts"), "utf-8");
 
@@ -66,11 +62,7 @@ it("generates a class-based `.gts` component", async (ctx) => {
 it("generates a template-only `.gts` component at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", {
-    authoringFormat: "gts",
-    cwd,
-    path: "src/-private",
-  });
+  await generateComponent("foo", { cwd, path: "src/-private", ts: true });
 
   const content = await readFile(join(cwd, "src/-private/foo.gts"), "utf-8");
 
