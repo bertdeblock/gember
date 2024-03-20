@@ -1,12 +1,13 @@
 import chalk from "chalk";
 import { camelCase, kebabCase, pascalCase } from "change-case";
-import { ensureDir } from "fs-extra";
+import { ensureDir, readJson } from "fs-extra/esm";
 import { writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, parse, relative } from "node:path";
 import { cwd as processCwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
 import { getConfig } from "./config.js";
+import { isAddon, isV2Addon } from "./helpers.js";
 import { type DocumentName } from "./types.js";
 
 export async function generateDocument(
@@ -31,7 +32,7 @@ export async function generateDocument(
     throw new Error(`[BUG] Document \`${documentName}\` not found.`);
   }
 
-  const documentPath = getDocumentPath(documentName, cwd, path);
+  const documentPath = await getDocumentPath(documentName, cwd, path);
   const files = await scaffdog.generate(document, documentPath, {
     inputs: {
       ...inputs,
@@ -82,11 +83,11 @@ const DOCUMENT_DIRECTORY: Record<DocumentName, string> = {
   service: "services",
 };
 
-function getDocumentPath(
+export async function getDocumentPath(
   documentName: DocumentName,
   cwd: string,
-  path: string,
-): string {
+  path?: string,
+): Promise<string> {
   if (path) {
     if (isAbsolute(path)) {
       return path;
@@ -95,5 +96,12 @@ function getDocumentPath(
     }
   }
 
-  return join(cwd, "src", DOCUMENT_DIRECTORY[documentName]);
+  const packageJson = await readJson(join(cwd, "package.json"));
+  const srcDirectory = isAddon(packageJson)
+    ? isV2Addon(packageJson)
+      ? "src" // v2 addon
+      : "addon" // v1 addon
+    : "app"; // v1 app
+
+  return join(cwd, srcDirectory, DOCUMENT_DIRECTORY[documentName]);
 }

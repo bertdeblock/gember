@@ -1,0 +1,8 @@
+{
+  "name": "v1-addon",
+  "keywords": [
+    "ember-addon"
+  ],
+  "ember": {},
+  "ember-addon": {}
+}
