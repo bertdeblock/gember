@@ -10,7 +10,7 @@ import { type DocumentName } from "./types.js";
 
 export async function generateDocument(
   documentName: DocumentName,
-  entityName: string,
+  name: string,
   {
     cwd = processCwd(),
     inputs = {},
@@ -35,12 +35,12 @@ export async function generateDocument(
     inputs: {
       ...inputs,
       name: {
-        camel: camelCase(entityName),
-        kebab: kebabCase(entityName),
-        pascal: pascalCase(entityName),
-        raw: entityName,
+        camel: camelCase(name),
+        kebab: kebabCase(name),
+        pascal: pascalCase(name),
+        raw: name,
       },
-      signature: pascalCase(entityName) + "Signature",
+      signature: pascalCase(name) + "Signature",
     },
   });
 
@@ -54,7 +54,7 @@ export async function generateDocument(
 
     console.log(
       chalk.green(
-        `🫚 Generated ${documentName} \`${entityName}\` at \`${relative(cwd, file.path)}\`.`,
+        `🫚 Generated ${documentName} \`${name}\` at \`${relative(cwd, file.path)}\`.`,
       ),
     );
   }

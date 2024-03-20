@@ -6,4 +6,8 @@ export default defineConfig({
       ignored: ["**/test/output/**"],
     },
   },
+  test: {
+    name: "gember",
+    onConsoleLog: () => false,
+  },
 });
