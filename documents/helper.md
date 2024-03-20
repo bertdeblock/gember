@@ -4,26 +4,82 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.classBased ? "!" : ""]][[inputs.name]].[[inputs.ts ? "ts" : "js"]]
+# [[inputs.ts ? "!" : (inputs.classBased ? "!" : "")]][[inputs.name]].js
 
-```ts
+```js
 [[name := camel(inputs.name)-]]
 
-export default function [[name]](positional /*, named*/) {
+import { helper } from "@ember/component/helper";
+
+export default helper(function [[name]](positional, named) {
   return positional;
-}
+});
 
 ```
 
-# [[inputs.classBased ? "" : "!"]][[inputs.name]].[[inputs.ts ? "ts" : "js"]]
+# [[inputs.ts ? "!" : (inputs.classBased ? "" : "!")]][[inputs.name]].js
 
-```ts
+```js
 [[name := pascal(inputs.name)-]]
 
 import Helper from "@ember/component/helper";
 
 export default class [[name]] extends Helper {
-  compute(positional /*, named*/) {
+  compute(positional, named) {
+    return positional;
+  }
+}
+
+```
+
+# [[inputs.ts ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].ts
+
+```ts
+[[name := camel(inputs.name)-]]
+[[signature := (pascal(inputs.name) + "Signature")-]]
+
+import { helper } from "@ember/component/helper";
+
+type Named = {};
+type Positional = [];
+type Return = Positional;
+
+export interface [[signature]] {
+  Args: {
+    Named: Named;
+    Positional: Positional;
+  };
+  Return: Return;
+}
+
+export default helper<[[signature]]>(function [[name]](positional, named) {
+  return positional;
+});
+
+```
+
+# [[inputs.ts ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].ts
+
+```ts
+[[name := pascal(inputs.name)-]]
+[[signature := (pascal(inputs.name) + "Signature")-]]
+
+import Helper from "@ember/component/helper";
+
+type Named = {};
+type Positional = [];
+type Return = Positional;
+
+export interface [[signature]] {
+  Args: {
+    Named: Named;
+    Positional: Positional;
+  };
+  Return: Return;
+}
+
+export default class [[name]] extends Helper<[[signature]]> {
+  compute(positional: Positional, named: Named): Return {
     return positional;
   }
 }
