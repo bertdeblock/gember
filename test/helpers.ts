@@ -2,10 +2,16 @@ import { join } from "node:path";
 import recursiveCopy from "recursive-copy";
 import { v4 as uuidv4 } from "uuid";
 
-export async function copyBlueprint(name: "v2-addon") {
+type Blueprint = "v1-app" | "v1-addon" | "v2-addon";
+
+export function blueprintPath(name: Blueprint) {
+  return join("test/blueprints", name);
+}
+
+export async function copyBlueprint(name: Blueprint) {
   const cwd = join("test/output", uuidv4());
 
-  await recursiveCopy(join("test/blueprints", name), cwd);
+  await recursiveCopy(blueprintPath(name), cwd);
 
   return cwd;
 }
