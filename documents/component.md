@@ -4,35 +4,35 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.ts ? "!" : (inputs.classBased ? "!" : "")]][[inputs.name]].gjs
+# {{inputs.ts ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name}}.gjs
 
 ```gjs
-<template>{{yield}}</template>
+<template>{{"{{"}}yield{{"}}"}}</template>
 
 ```
 
-# [[inputs.ts ? "!" : (inputs.classBased ? "" : "!")]][[inputs.name]].gjs
+# {{inputs.ts ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name}}.gjs
 
 ```gjs
-[[name := pascal(inputs.name)-]]
+{{name := pascal(inputs.name)-}}
 
 import Component from "@glimmer/component";
 
-export default class [[name]] extends Component {
-  <template>{{yield}}</template>
+export default class {{name}} extends Component {
+  <template>{{"{{"}}yield{{"}}"}}</template>
 }
 
 ```
 
-# [[inputs.ts ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].gts
+# {{inputs.ts ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name}}.gts
 
 ```gts
-[[name := pascal(inputs.name)-]]
-[[signature := (name + "Signature")-]]
+{{name := pascal(inputs.name)-}}
+{{signature := (name + "Signature")-}}
 
 import type { TOC } from '@ember/component/template-only';
 
-export interface [[signature]] {
+export interface {{signature}} {
   Args: {};
   Blocks: {
     default: [];
@@ -40,21 +40,21 @@ export interface [[signature]] {
   Element: null;
 }
 
-const [[name]]: TOC<[[signature]]> = <template>{{yield}}</template>;
+const {{name}}: TOC<{{signature}}> = <template>{{"{{"}}yield{{"}}"}}</template>;
 
-export default [[name]];
+export default {{name}};
 
 ```
 
-# [[inputs.ts ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].gts
+# {{inputs.ts ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name}}.gts
 
 ```gts
-[[name := pascal(inputs.name)-]]
-[[signature := (name + "Signature")-]]
+{{name := pascal(inputs.name)-}}
+{{signature := (name + "Signature")-}}
 
 import Component from "@glimmer/component";
 
-export interface [[signature]] {
+export interface {{signature}} {
   Args: {};
   Blocks: {
     default: [];
@@ -62,9 +62,9 @@ export interface [[signature]] {
   Element: null;
 }
 
-export default class [[name]] extends Component<[[signature]]> {
+export default class {{name}} extends Component<{{signature}}> {
   <template>
-    {{yield}}
+    {{"{{"}}yield{{"}}"}}
   </template>
 }
 

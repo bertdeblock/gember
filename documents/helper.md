@@ -4,27 +4,27 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.ts ? "!" : (inputs.classBased ? "!" : "")]][[inputs.name]].js
+# {{inputs.ts ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name}}.js
 
 ```js
-[[name := camel(inputs.name)-]]
+{{name := camel(inputs.name)-}}
 
 import { helper } from "@ember/component/helper";
 
-export default helper(function [[name]](positional, named) {
+export default helper(function {{name}}(positional, named) {
   return positional;
 });
 
 ```
 
-# [[inputs.ts ? "!" : (inputs.classBased ? "" : "!")]][[inputs.name]].js
+# {{inputs.ts ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name}}.js
 
 ```js
-[[name := pascal(inputs.name)-]]
+{{name := pascal(inputs.name)-}}
 
 import Helper from "@ember/component/helper";
 
-export default class [[name]] extends Helper {
+export default class {{name}} extends Helper {
   compute(positional, named) {
     return positional;
   }
@@ -32,11 +32,11 @@ export default class [[name]] extends Helper {
 
 ```
 
-# [[inputs.ts ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].ts
+# {{inputs.ts ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name}}.ts
 
 ```ts
-[[name := camel(inputs.name)-]]
-[[signature := (pascal(inputs.name) + "Signature")-]]
+{{name := camel(inputs.name)-}}
+{{signature := (pascal(inputs.name) + "Signature")-}}
 
 import { helper } from "@ember/component/helper";
 
@@ -44,7 +44,7 @@ type Named = {};
 type Positional = [];
 type Return = Positional;
 
-export interface [[signature]] {
+export interface {{signature}} {
   Args: {
     Named: Named;
     Positional: Positional;
@@ -52,17 +52,17 @@ export interface [[signature]] {
   Return: Return;
 }
 
-export default helper<[[signature]]>(function [[name]](positional, named) {
+export default helper<{{signature}}>(function {{name}}(positional, named) {
   return positional;
 });
 
 ```
 
-# [[inputs.ts ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].ts
+# {{inputs.ts ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name}}.ts
 
 ```ts
-[[name := pascal(inputs.name)-]]
-[[signature := (pascal(inputs.name) + "Signature")-]]
+{{name := pascal(inputs.name)-}}
+{{signature := (pascal(inputs.name) + "Signature")-}}
 
 import Helper from "@ember/component/helper";
 
@@ -70,7 +70,7 @@ type Named = {};
 type Positional = [];
 type Return = Positional;
 
-export interface [[signature]] {
+export interface {{signature}} {
   Args: {
     Named: Named;
     Positional: Positional;
@@ -78,7 +78,7 @@ export interface [[signature]] {
   Return: Return;
 }
 
-export default class [[name]] extends Helper<[[signature]]> {
+export default class {{name}} extends Helper<{{signature}}> {
   compute(positional: Positional, named: Named): Return {
     return positional;
   }
