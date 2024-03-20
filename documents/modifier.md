@@ -34,7 +34,7 @@ export default class [[name]] extends Modifier {
 [[name := camel(inputs.name)-]]
 [[signature := (pascal(inputs.name) + "Signature")-]]
 
-import { modifier, type NamedArgs, type PositionalArgs } from "ember-modifier";
+import { modifier } from "ember-modifier";
 
 export interface [[signature]] {
   Args: {
@@ -54,22 +54,22 @@ export default modifier<[[signature]]>(function [[name]](element, positional, na
 [[name := pascal(inputs.name)-]]
 [[signature := (pascal(inputs.name) + "Signature")-]]
 
-import Modifier, { type NamedArgs, type PositionalArgs } from "ember-modifier";
+import Modifier from "ember-modifier";
+
+type Named = {};
+type Positional = [];
+type Element = null;
 
 export interface [[signature]] {
   Args: {
-    Named: {};
-    Positional: [];
+    Named: Named;
+    Positional: Positional;
   };
-  Element: null;
+  Element: Element;
 }
 
 export default class [[name]] extends Modifier<[[signature]]> {
-  modify(
-    element: [[signature]]["Element"],
-    positional: PositionalArgs<[[signature]]>,
-    named: NamedArgs<[[signature]]>,
-  ) {}
+  modify(element: Element, positional: Positional, named: Named) {}
 }
 
 ```
