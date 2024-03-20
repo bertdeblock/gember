@@ -4,7 +4,7 @@ exports[`generates a class-based \`.js\` helper 1`] = `
 "import Helper from "@ember/component/helper";
 
 export default class Foo extends Helper {
-  compute(positional /*, named*/) {
+  compute(positional, named) {
     return positional;
   }
 }
@@ -14,8 +14,20 @@ export default class Foo extends Helper {
 exports[`generates a class-based \`.ts\` helper 1`] = `
 "import Helper from "@ember/component/helper";
 
-export default class Foo extends Helper {
-  compute(positional /*, named*/) {
+type Named = {};
+type Positional = [];
+type Return = Positional;
+
+export interface FooSignature {
+  Args: {
+    Named: Named;
+    Positional: Positional;
+  };
+  Return: Return;
+}
+
+export default class Foo extends Helper<FooSignature> {
+  compute(positional: Positional, named: Named): Return {
     return positional;
   }
 }
@@ -23,29 +35,61 @@ export default class Foo extends Helper {
 `;
 
 exports[`generates a function-based \`.js\` helper 1`] = `
-"export default function foo(positional /*, named*/) {
+"import { helper } from "@ember/component/helper";
+
+export default helper(function foo(positional, named) {
   return positional;
-}
+});
 "
 `;
 
 exports[`generates a function-based \`.js\` helper at a custom path 1`] = `
-"export default function foo(positional /*, named*/) {
+"import { helper } from "@ember/component/helper";
+
+export default helper(function foo(positional, named) {
   return positional;
-}
+});
 "
 `;
 
 exports[`generates a function-based \`.ts\` helper 1`] = `
-"export default function foo(positional /*, named*/) {
-  return positional;
+"import { helper } from "@ember/component/helper";
+
+type Named = {};
+type Positional = [];
+type Return = Positional;
+
+export interface FooSignature {
+  Args: {
+    Named: Named;
+    Positional: Positional;
+  };
+  Return: Return;
 }
+
+export default helper<FooSignature>(function foo(positional, named) {
+  return positional;
+});
 "
 `;
 
 exports[`generates a function-based \`.ts\` helper at a custom path 1`] = `
-"export default function foo(positional /*, named*/) {
-  return positional;
+"import { helper } from "@ember/component/helper";
+
+type Named = {};
+type Positional = [];
+type Return = Positional;
+
+export interface FooSignature {
+  Args: {
+    Named: Named;
+    Positional: Positional;
+  };
+  Return: Return;
 }
+
+export default helper<FooSignature>(function foo(positional, named) {
+  return positional;
+});
 "
 `;
