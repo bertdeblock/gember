@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import { camelCase, kebabCase, pascalCase } from "change-case";
 import { ensureDir } from "fs-extra";
 import { writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, parse, relative } from "node:path";
@@ -31,7 +32,16 @@ export async function generateDocument(
 
   const documentPath = getDocumentPath(documentName, cwd, path);
   const files = await scaffdog.generate(document, documentPath, {
-    inputs: { ...inputs, name: entityName },
+    inputs: {
+      ...inputs,
+      name: {
+        camel: camelCase(entityName),
+        kebab: kebabCase(entityName),
+        pascal: pascalCase(entityName),
+        raw: entityName,
+      },
+      signature: pascalCase(entityName) + "Signature",
+    },
   });
 
   for (const file of files) {

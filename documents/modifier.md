@@ -4,39 +4,32 @@ root: "."
 output: "**/*"
 ---
 
-# {{inputs.ts ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name}}.js
+# {{inputs.ts ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name.kebab}}.js
 
 ```js
-{{name := camel(inputs.name)-}}
-
 import { modifier } from "ember-modifier";
 
-export default modifier(function {{name}}(element, positional, named) {});
+export default modifier(function {{inputs.name.camel}}(element, positional, named) {});
 
 ```
 
-# {{inputs.ts ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name}}.js
+# {{inputs.ts ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name.kebab}}.js
 
 ```js
-{{name := pascal(inputs.name)-}}
-
 import Modifier from "ember-modifier";
 
-export default class {{name}} extends Modifier {
+export default class {{inputs.name.pascal}} extends Modifier {
   modify(element, positional, named) {}
 }
 
 ```
 
-# {{inputs.ts ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name}}.ts
+# {{inputs.ts ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name.kebab}}.ts
 
 ```ts
-{{name := camel(inputs.name)-}}
-{{signature := (pascal(inputs.name) + "Signature")-}}
-
 import { modifier } from "ember-modifier";
 
-export interface {{signature}} {
+export interface {{inputs.signature}} {
   Args: {
     Named: {};
     Positional: [];
@@ -44,23 +37,20 @@ export interface {{signature}} {
   Element: null;
 }
 
-export default modifier<{{signature}}>(function {{name}}(element, positional, named) {});
+export default modifier<{{inputs.signature}}>(function {{inputs.name.camel}}(element, positional, named) {});
 
 ```
 
-# {{inputs.ts ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name}}.ts
+# {{inputs.ts ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name.kebab}}.ts
 
 ```ts
-{{name := pascal(inputs.name)-}}
-{{signature := (pascal(inputs.name) + "Signature")-}}
-
 import Modifier from "ember-modifier";
 
 type Named = {};
 type Positional = [];
 type Element = null;
 
-export interface {{signature}} {
+export interface {{inputs.signature}} {
   Args: {
     Named: Named;
     Positional: Positional;
@@ -68,7 +58,7 @@ export interface {{signature}} {
   Element: Element;
 }
 
-export default class {{name}} extends Modifier<{{signature}}> {
+export default class {{inputs.name.pascal}} extends Modifier<{{inputs.signature}}> {
   modify(element: Element, positional: Positional, named: Named) {}
 }
 
