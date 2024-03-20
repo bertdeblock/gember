@@ -4,35 +4,30 @@ root: "."
 output: "**/*"
 ---
 
-# [[inputs.ts ? "!" : (inputs.classBased ? "!" : "")]][[inputs.name]].gjs
+# {{inputs.ts ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name.kebab}}.gjs
 
 ```gjs
-<template>{{yield}}</template>
+<template>{{"{{"}}yield{{"}}"}}</template>
 
 ```
 
-# [[inputs.ts ? "!" : (inputs.classBased ? "" : "!")]][[inputs.name]].gjs
+# {{inputs.ts ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name.kebab}}.gjs
 
 ```gjs
-[[name := pascal(inputs.name)-]]
-
 import Component from "@glimmer/component";
 
-export default class [[name]] extends Component {
-  <template>{{yield}}</template>
+export default class {{inputs.name.pascal}} extends Component {
+  <template>{{"{{"}}yield{{"}}"}}</template>
 }
 
 ```
 
-# [[inputs.ts ? (inputs.classBased ? "!" : "") : "!"]][[inputs.name]].gts
+# {{inputs.ts ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name.kebab}}.gts
 
 ```gts
-[[name := pascal(inputs.name)-]]
-[[signature := (name + "Signature")-]]
-
 import type { TOC } from '@ember/component/template-only';
 
-export interface [[signature]] {
+export interface {{inputs.signature}} {
   Args: {};
   Blocks: {
     default: [];
@@ -40,21 +35,18 @@ export interface [[signature]] {
   Element: null;
 }
 
-const [[name]]: TOC<[[signature]]> = <template>{{yield}}</template>;
+const {{inputs.name.pascal}}: TOC<{{inputs.signature}}> = <template>{{"{{"}}yield{{"}}"}}</template>;
 
-export default [[name]];
+export default {{inputs.name.pascal}};
 
 ```
 
-# [[inputs.ts ? (inputs.classBased ? "" : "!") : "!"]][[inputs.name]].gts
+# {{inputs.ts ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name.kebab}}.gts
 
 ```gts
-[[name := pascal(inputs.name)-]]
-[[signature := (name + "Signature")-]]
-
 import Component from "@glimmer/component";
 
-export interface [[signature]] {
+export interface {{inputs.signature}} {
   Args: {};
   Blocks: {
     default: [];
@@ -62,9 +54,9 @@ export interface [[signature]] {
   Element: null;
 }
 
-export default class [[name]] extends Component<[[signature]]> {
+export default class {{inputs.name.pascal}} extends Component<{{inputs.signature}}> {
   <template>
-    {{yield}}
+    {{"{{"}}yield{{"}}"}}
   </template>
 }
 

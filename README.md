@@ -7,9 +7,9 @@ Generate components, helpers, modifiers and services in v2 addons.
 
 Uses [scaffdog](https://scaff.dog/) underneath.
 
-## Notes
-
-- Only supports `.gjs` (default) and `.gts` files for components
+> [!NOTE]
+>
+> - Only supports `.gjs` (default) and `.gts` files for components
 
 ## Installation
 
