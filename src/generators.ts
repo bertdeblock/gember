@@ -6,17 +6,17 @@ export function generateComponent(
     classBased = false,
     cwd = "",
     path = "",
-    ts = false,
+    typescript = false,
   }: {
     classBased?: boolean;
     cwd?: string;
     path?: string;
-    ts?: boolean;
+    typescript?: boolean;
   } = {},
 ) {
   return generateDocument("component", name, {
     cwd,
-    inputs: { classBased, ts },
+    inputs: { classBased, typescript },
     path,
   });
 }
@@ -27,17 +27,17 @@ export function generateHelper(
     classBased = false,
     cwd = "",
     path = "",
-    ts = false,
+    typescript = false,
   }: {
     classBased?: boolean;
     cwd?: string;
     path?: string;
-    ts?: boolean;
+    typescript?: boolean;
   } = {},
 ) {
   return generateDocument("helper", name, {
     cwd,
-    inputs: { classBased, ts },
+    inputs: { classBased, typescript },
     path,
   });
 }
@@ -48,17 +48,17 @@ export function generateModifier(
     classBased = false,
     cwd = "",
     path = "",
-    ts = false,
+    typescript = false,
   }: {
     classBased?: boolean;
     cwd?: string;
     path?: string;
-    ts?: boolean;
+    typescript?: boolean;
   } = {},
 ) {
   return generateDocument("modifier", name, {
     cwd,
-    inputs: { classBased, ts },
+    inputs: { classBased, typescript },
     path,
   });
 }
@@ -68,16 +68,16 @@ export function generateService(
   {
     cwd = "",
     path = "",
-    ts = false,
+    typescript = false,
   }: {
     cwd?: string;
     path?: string;
-    ts?: boolean;
+    typescript?: boolean;
   } = {},
 ) {
   return generateDocument("service", name, {
     cwd,
-    inputs: { ts },
+    inputs: { typescript },
     path,
   });
 }

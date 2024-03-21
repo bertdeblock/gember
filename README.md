@@ -56,9 +56,9 @@ yarn add -D @bertdeblock/gember
 
 ```shell
 pnpm gember component foo
-pnpm gember component foo --class
+pnpm gember component foo --class-based # or `--class`
 pnpm gember component foo --path="src/-private"
-pnpm gember component foo --ts
+pnpm gember component foo --typescript # or `--ts`
 ```
 
 </details>
@@ -68,9 +68,9 @@ pnpm gember component foo --ts
 
 ```shell
 pnpm gember helper foo
-pnpm gember helper foo --class
+pnpm gember helper foo --class-based # or `--class`
 pnpm gember helper foo --path="src/-private"
-pnpm gember helper foo --ts
+pnpm gember helper foo --typescript # or `--ts`
 ```
 
 </details>
@@ -80,9 +80,9 @@ pnpm gember helper foo --ts
 
 ```shell
 pnpm gember modifier foo
-pnpm gember modifier foo --class
+pnpm gember modifier foo --class-based # or `--class`
 pnpm gember modifier foo --path="src/-private"
-pnpm gember modifier foo --ts
+pnpm gember modifier foo --typescript # or `--ts`
 ```
 
 </details>
@@ -93,7 +93,7 @@ pnpm gember modifier foo --ts
 ```shell
 pnpm gember service foo
 pnpm gember service foo --path="src/-private"
-pnpm gember service foo --ts
+pnpm gember service foo --typescript # or `--ts`
 ```
 
 </details>

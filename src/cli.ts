@@ -30,7 +30,8 @@ yargs(hideBin(process.argv))
           description: "Generate a component at a custom path",
           type: "string",
         })
-        .option("ts", {
+        .option("typescript", {
+          alias: ["ts"],
           default: false,
           description: "Generate a `.gts` component",
           type: "boolean",
@@ -40,7 +41,7 @@ yargs(hideBin(process.argv))
       generateComponent(options.name, {
         classBased: options.classBased,
         path: options.path,
-        ts: options.ts,
+        typescript: options.typescript,
       });
     },
   })
@@ -66,7 +67,8 @@ yargs(hideBin(process.argv))
           description: "Generate a helper at a custom path",
           type: "string",
         })
-        .option("ts", {
+        .option("typescript", {
+          alias: ["ts"],
           default: false,
           description: "Generate a `.ts` helper",
           type: "boolean",
@@ -76,7 +78,7 @@ yargs(hideBin(process.argv))
       generateHelper(options.name, {
         classBased: options.classBased,
         path: options.path,
-        ts: options.ts,
+        typescript: options.typescript,
       });
     },
   })
@@ -102,7 +104,8 @@ yargs(hideBin(process.argv))
           description: "Generate a modifier at a custom path",
           type: "string",
         })
-        .option("ts", {
+        .option("typescript", {
+          alias: ["ts"],
           default: false,
           description: "Generate a `.ts` modifier",
           type: "boolean",
@@ -112,7 +115,7 @@ yargs(hideBin(process.argv))
       generateModifier(options.name, {
         classBased: options.classBased,
         path: options.path,
-        ts: options.ts,
+        typescript: options.typescript,
       });
     },
   })
@@ -132,7 +135,8 @@ yargs(hideBin(process.argv))
           description: "Generate a service at a custom path",
           type: "string",
         })
-        .option("ts", {
+        .option("typescript", {
+          alias: ["ts"],
           default: false,
           description: "Generate a `.ts` service",
           type: "boolean",
@@ -141,7 +145,7 @@ yargs(hideBin(process.argv))
     handler(options) {
       generateService(options.name, {
         path: options.path,
-        ts: options.ts,
+        typescript: options.typescript,
       });
     },
   })
