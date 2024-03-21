@@ -1,5 +1,23 @@
 # Changelog
 
+## Release (2024-03-20)
+
+@bertdeblock/gember 0.3.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#24](https://github.com/bertdeblock/gember/pull/24) Improve modifier documents ([@bertdeblock](https://github.com/bertdeblock))
+  * [#23](https://github.com/bertdeblock/gember/pull/23) Improve helper documents ([@bertdeblock](https://github.com/bertdeblock))
+  * [#22](https://github.com/bertdeblock/gember/pull/22) Improve consistency among CLI options ([@bertdeblock](https://github.com/bertdeblock))
+  * [#20](https://github.com/bertdeblock/gember/pull/20) Support class-based modifiers ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#25](https://github.com/bertdeblock/gember/pull/25) Internal improvements ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2024-03-18)
 
 @bertdeblock/gember 0.2.0 (major)
