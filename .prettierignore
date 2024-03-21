@@ -1,6 +1,6 @@
 /coverage/
 /dist/
-/documents/
+/documents/*.md
 /test/output/
 /CHANGELOG.md
 /pnpm-lock.yaml

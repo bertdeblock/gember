@@ -62,7 +62,11 @@ it("generates a class-based `.gts` component", async (ctx) => {
 it("generates a template-only `.gts` component at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateComponent("foo", { cwd, path: "src/-private", typescript: true });
+  await generateComponent("foo", {
+    cwd,
+    path: "src/-private",
+    typescript: true,
+  });
 
   const content = await readFile(join(cwd, "src/-private/foo.gts"), "utf-8");
 

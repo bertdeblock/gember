@@ -62,7 +62,11 @@ it("generates a class-based `.ts` modifier", async (ctx) => {
 it("generates a function-based `.ts` modifier at a custom path", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");
 
-  await generateModifier("foo", { cwd, path: "src/-private", typescript: true });
+  await generateModifier("foo", {
+    cwd,
+    path: "src/-private",
+    typescript: true,
+  });
 
   const content = await readFile(join(cwd, "src/-private/foo.ts"), "utf-8");
 
