@@ -1,0 +1,10 @@
+{
+  "name": "v2-addon",
+  "keywords": [
+    "ember-addon"
+  ],
+  "ember": {},
+  "ember-addon": {
+    "version": 2
+  }
+}
