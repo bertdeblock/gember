@@ -1,4 +1,4 @@
-import fsExtra from "fs-extra";
+import { remove } from "fs-extra";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { afterEach, it } from "vitest";
@@ -7,7 +7,7 @@ import { copyBlueprint } from "./helpers.ts";
 
 let cwd: string;
 
-afterEach(() => fsExtra.remove(cwd));
+afterEach(() => remove(cwd));
 
 it("generates a template-only `.gjs` component", async (ctx) => {
   cwd = await copyBlueprint("v2-addon");

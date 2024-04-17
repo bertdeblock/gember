@@ -6,6 +6,7 @@ import { dirname, isAbsolute, join, parse, relative } from "node:path";
 import { cwd as processCwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
+import { getConfig } from "./config.js";
 import { type DocumentName } from "./types.js";
 
 export async function generateDocument(
@@ -48,11 +49,9 @@ export async function generateDocument(
     },
   });
 
-  for (const file of files) {
-    if (file.skip) {
-      continue;
-    }
+  const filesToGenerate = files.filter((file) => file.skip === false);
 
+  for (const file of filesToGenerate) {
     await ensureDir(parse(file.path).dir);
     await writeFile(file.path, file.content);
 
@@ -62,6 +61,18 @@ export async function generateDocument(
       ),
     );
   }
+
+  const config = await getConfig(cwd);
+
+  await config.hooks?.postGenerate?.({
+    documentName,
+    entityName,
+    files: filesToGenerate.map((file) => ({
+      content: file.content,
+      name: file.name,
+      path: file.path,
+    })),
+  });
 }
 
 const DOCUMENT_DIRECTORY: Record<DocumentName, string> = {
