@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2024-04-17)
+
+@bertdeblock/gember 0.3.1 (patch)
+
+#### :bug: Bug Fix
+* `@bertdeblock/gember`
+  * [#29](https://github.com/bertdeblock/gember/pull/29) Fix generating nested documents ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2024-03-20)
 
 @bertdeblock/gember 0.3.0 (minor)
