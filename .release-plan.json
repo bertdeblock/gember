@@ -1,21 +1,17 @@
 {
   "solution": {
     "@bertdeblock/gember": {
-      "impact": "minor",
-      "oldVersion": "0.2.0",
-      "newVersion": "0.3.0",
+      "impact": "patch",
+      "oldVersion": "0.3.0",
+      "newVersion": "0.3.1",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
           "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2024-03-20)\n\n@bertdeblock/gember 0.3.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#24](https://github.com/bertdeblock/gember/pull/24) Improve modifier documents ([@bertdeblock](https://github.com/bertdeblock))\n  * [#23](https://github.com/bertdeblock/gember/pull/23) Improve helper documents ([@bertdeblock](https://github.com/bertdeblock))\n  * [#22](https://github.com/bertdeblock/gember/pull/22) Improve consistency among CLI options ([@bertdeblock](https://github.com/bertdeblock))\n  * [#20](https://github.com/bertdeblock/gember/pull/20) Support class-based modifiers ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#25](https://github.com/bertdeblock/gember/pull/25) Internal improvements ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2024-04-17)\n\n@bertdeblock/gember 0.3.1 (patch)\n\n#### :bug: Bug Fix\n* `@bertdeblock/gember`\n  * [#29](https://github.com/bertdeblock/gember/pull/29) Fix generating nested documents ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
