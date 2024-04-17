@@ -1,17 +1,17 @@
 {
   "solution": {
     "@bertdeblock/gember": {
-      "impact": "patch",
-      "oldVersion": "0.3.0",
-      "newVersion": "0.3.1",
+      "impact": "minor",
+      "oldVersion": "0.3.1",
+      "newVersion": "0.4.0",
       "constraints": [
         {
-          "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2024-04-17)\n\n@bertdeblock/gember 0.3.1 (patch)\n\n#### :bug: Bug Fix\n* `@bertdeblock/gember`\n  * [#29](https://github.com/bertdeblock/gember/pull/29) Fix generating nested documents ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2024-04-17)\n\n@bertdeblock/gember 0.4.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#14](https://github.com/bertdeblock/gember/pull/14) Support a `postGenerate` hook via a `gember.config.js` file ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }

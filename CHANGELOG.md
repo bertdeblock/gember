@@ -2,6 +2,17 @@
 
 ## Release (2024-04-17)
 
+@bertdeblock/gember 0.4.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#14](https://github.com/bertdeblock/gember/pull/14) Support a `postGenerate` hook via a `gember.config.js` file ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
+## Release (2024-04-17)
+
 @bertdeblock/gember 0.3.1 (patch)
 
 #### :bug: Bug Fix
