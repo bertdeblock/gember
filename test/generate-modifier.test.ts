@@ -72,3 +72,16 @@ it("generates a function-based `.ts` modifier at a custom path", async (ctx) => 
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a nested function-based `.js` modifier", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateModifier("foo/bar", { cwd });
+
+  const content = await readFile(
+    join(cwd, "src/modifiers/foo/bar.js"),
+    "utf-8",
+  );
+
+  ctx.expect(content).toMatchSnapshot();
+});

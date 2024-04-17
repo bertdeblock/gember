@@ -39,3 +39,10 @@ declare module "@ember/service" {
 }
 "
 `;
+
+exports[`generates a nested \`.js\` service 1`] = `
+"import Service from "@ember/service";
+
+export default class FooBar extends Service {}
+"
+`;

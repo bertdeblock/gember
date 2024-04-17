@@ -72,3 +72,13 @@ it("generates a function-based `.ts` helper at a custom path", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a nested function-based `.js` helper", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateHelper("foo/bar", { cwd });
+
+  const content = await readFile(join(cwd, "src/helpers/foo/bar.js"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});

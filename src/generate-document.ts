@@ -38,6 +38,10 @@ export async function generateDocument(
         camel: camelCase(entityName),
         kebab: kebabCase(entityName),
         pascal: pascalCase(entityName),
+        path: entityName
+          .split("/")
+          .map((part) => kebabCase(part))
+          .join("/"),
         raw: entityName,
       },
       signature: pascalCase(entityName) + "Signature",
