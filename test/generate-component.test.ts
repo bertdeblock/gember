@@ -72,3 +72,16 @@ it("generates a template-only `.gts` component at a custom path", async (ctx) =>
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a nested template-only `.gjs` component", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateComponent("foo/bar", { cwd });
+
+  const content = await readFile(
+    join(cwd, "src/components/foo/bar.gjs"),
+    "utf-8",
+  );
+
+  ctx.expect(content).toMatchSnapshot();
+});

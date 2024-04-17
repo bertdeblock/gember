@@ -93,3 +93,12 @@ export default helper<FooSignature>(function foo(positional, named) {
 });
 "
 `;
+
+exports[`generates a nested function-based \`.js\` helper 1`] = `
+"import { helper } from "@ember/component/helper";
+
+export default helper(function fooBar(positional, named) {
+  return positional;
+});
+"
+`;

@@ -48,3 +48,13 @@ it("generates a `.ts` service at a custom path", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a nested `.js` service", async (ctx) => {
+  cwd = await copyBlueprint("v2-addon");
+
+  await generateService("foo/bar", { cwd });
+
+  const content = await readFile(join(cwd, "src/services/foo/bar.js"), "utf-8");
+
+  ctx.expect(content).toMatchSnapshot();
+});

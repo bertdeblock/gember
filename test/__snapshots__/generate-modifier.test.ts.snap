@@ -73,3 +73,10 @@ export interface FooSignature {
 export default modifier<FooSignature>(function foo(element, positional, named) {});
 "
 `;
+
+exports[`generates a nested function-based \`.js\` modifier 1`] = `
+"import { modifier } from "ember-modifier";
+
+export default modifier(function fooBar(element, positional, named) {});
+"
+`;
