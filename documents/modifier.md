@@ -7,7 +7,7 @@ output: "**/*"
 # {{inputs.typescript ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name.path}}.js
 
 ```js
-import { modifier } from "ember-modifier";
+import { modifier } from "@ember/modifier";
 
 export default modifier(function {{inputs.name.camel}}(element, positional, named) {});
 
@@ -16,7 +16,7 @@ export default modifier(function {{inputs.name.camel}}(element, positional, name
 # {{inputs.typescript ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name.path}}.js
 
 ```js
-import Modifier from "ember-modifier";
+import Modifier from "@ember/modifier";
 
 export default class {{inputs.name.pascal}} extends Modifier {
   modify(element, positional, named) {}
@@ -27,7 +27,7 @@ export default class {{inputs.name.pascal}} extends Modifier {
 # {{inputs.typescript ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name.path}}.ts
 
 ```ts
-import { modifier } from "ember-modifier";
+import { modifier } from "@ember/modifier";
 
 export interface {{inputs.signature}} {
   Args: {
@@ -44,7 +44,7 @@ export default modifier<{{inputs.signature}}>(function {{inputs.name.camel}}(ele
 # {{inputs.typescript ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name.path}}.ts
 
 ```ts
-import Modifier from "ember-modifier";
+import Modifier from "@ember/modifier";
 
 type Named = {};
 type Positional = [];
