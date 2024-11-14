@@ -1,5 +1,6 @@
 import { hideBin } from "yargs/helpers";
 import yargs from "yargs/yargs";
+import { eject } from "./eject.js";
 import {
   generateComponent,
   generateHelper,
@@ -147,6 +148,21 @@ yargs(hideBin(process.argv))
         path: options.path,
         typescript: options.typescript,
       });
+    },
+  })
+  .command({
+    command: "eject",
+    describe: "Eject all documents",
+
+    builder(yargs) {
+      return yargs.option("path", {
+        default: "",
+        description: "Eject all documents at a custom path",
+        type: "string",
+      });
+    },
+    handler(options) {
+      eject({ path: options.path });
     },
   })
   .demandCommand()

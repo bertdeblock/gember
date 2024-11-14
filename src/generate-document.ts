@@ -1,12 +1,12 @@
-import chalk from "chalk";
 import { camelCase, kebabCase, pascalCase } from "change-case";
 import { ensureDir } from "fs-extra";
 import { writeFile } from "node:fs/promises";
-import { dirname, isAbsolute, join, parse, relative } from "node:path";
+import { isAbsolute, join, parse, relative } from "node:path";
 import { cwd as processCwd } from "node:process";
-import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
 import { getConfig } from "./config.js";
+import { getDocumentsPath } from "./helpers.js";
+import { success } from "./logging.js";
 import { type DocumentName } from "./types.js";
 
 export async function generateDocument(
@@ -22,8 +22,7 @@ export async function generateDocument(
     path?: string;
   } = {},
 ) {
-  const directory = dirname(fileURLToPath(import.meta.url));
-  const scaffdog = await loadScaffdog(join(directory, "../documents"));
+  const scaffdog = await loadScaffdog(getDocumentsPath());
   const documents = await scaffdog.list();
   const document = documents.find((document) => document.name === documentName);
 
@@ -55,10 +54,8 @@ export async function generateDocument(
     await ensureDir(parse(file.path).dir);
     await writeFile(file.path, file.content);
 
-    console.log(
-      chalk.green(
-        `🫚 Generated ${documentName} \`${entityName}\` at \`${relative(cwd, file.path)}\`.`,
-      ),
+    success(
+      `Generated ${documentName} \`${entityName}\` at \`${relative(cwd, file.path)}\`.`,
     );
   }
 
