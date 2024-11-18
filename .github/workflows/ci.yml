@@ -11,18 +11,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: ./.github/actions/setup-environment
       - run: pnpm lint
 
   test:
-    needs: [lint]
-    runs-on: ubuntu-latest
+    name: "test (node: ${{matrix.node-version}}, os: ${{matrix.os}})"
+    runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: ./.github/actions/setup-environment
         with:
           node-version: ${{matrix.node-version}}
       - run: pnpm test:coverage
     strategy:
+      fail-fast: false
       matrix:
-        node-version: [18, 20, 21]
+        node-version:
+          - 18
+          - 20
+          - 22
+        os:
+          - macos-latest
+          - ubuntu-latest
+          - windows-latest

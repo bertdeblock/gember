@@ -1,24 +1,34 @@
+import { join } from "node:path";
 import { it } from "vitest";
 import { getDocumentPath } from "../src/generate-document.ts";
 import { blueprintPath } from "./helpers.ts";
 
 it("supports v1 apps", async (ctx) => {
-  const cwd = blueprintPath("v1-app");
+  const name = "v1-app";
+  const cwd = blueprintPath(name);
   const documentPath = await getDocumentPath("component", cwd);
 
-  ctx.expect(documentPath).toEqual("test/blueprints/v1-app/app/components");
+  ctx
+    .expect(documentPath)
+    .toEqual(join("test/blueprints", name, "app/components"));
 });
 
 it("supports v1 addons", async (ctx) => {
-  const cwd = blueprintPath("v1-addon");
+  const name = "v1-addon";
+  const cwd = blueprintPath(name);
   const documentPath = await getDocumentPath("component", cwd);
 
-  ctx.expect(documentPath).toEqual("test/blueprints/v1-addon/addon/components");
+  ctx
+    .expect(documentPath)
+    .toEqual(join("test/blueprints", name, "addon/components"));
 });
 
 it("supports v2 addons", async (ctx) => {
-  const cwd = blueprintPath("v2-addon");
+  const name = "v2-addon";
+  const cwd = blueprintPath(name);
   const documentPath = await getDocumentPath("component", cwd);
 
-  ctx.expect(documentPath).toEqual("test/blueprints/v2-addon/src/components");
+  ctx
+    .expect(documentPath)
+    .toEqual(join("test/blueprints", name, "src/components"));
 });
