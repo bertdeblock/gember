@@ -15,8 +15,7 @@ jobs:
       - run: pnpm lint
 
   test:
-    needs:
-      - lint
+    name: "test (node: ${{matrix.node-version}}, os: ${{matrix.os}})"
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v4
@@ -25,12 +24,12 @@ jobs:
           node-version: ${{matrix.node-version}}
       - run: pnpm test:coverage
     strategy:
+      fail-fast: false
       matrix:
         node-version:
           - 18
           - 20
           - 22
-          - latest
         os:
           - macos-latest
           - ubuntu-latest

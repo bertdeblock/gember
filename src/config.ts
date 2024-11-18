@@ -2,7 +2,7 @@ import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
 import { DocumentName, type File } from "./types.js";
 
-type Config = {
+export type Config = {
   hooks?: {
     postGenerate?: (info: {
       documentName: DocumentName;
@@ -31,8 +31,10 @@ export async function getConfig(cwd: string): Promise<Config> {
 
   try {
     config = (await import(pathToFileURL(path).toString())).default;
-  } catch {
-    throw new Error(`Could not import gember config file at "${path}".`);
+  } catch (cause) {
+    throw new Error(`Could not import gember config file at "${path}".`, {
+      cause,
+    });
   }
 
   if (config === undefined) {
