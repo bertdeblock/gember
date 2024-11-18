@@ -64,6 +64,9 @@ devDependencies:
   release-plan:
     specifier: ^0.8.0
     version: 0.8.0
+  type-fest:
+    specifier: ^4.13.1
+    version: 4.13.1
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
