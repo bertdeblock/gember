@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2024-11-18)
+
+@bertdeblock/gember 0.5.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#26](https://github.com/bertdeblock/gember/pull/26) Support v1 apps and addons ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#34](https://github.com/bertdeblock/gember/pull/34) Update dependencies ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2024-04-17)
 
 @bertdeblock/gember 0.4.0 (minor)
