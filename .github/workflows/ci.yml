@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: ./.github/actions/setup-environment
       - run: pnpm lint
 
   test:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
+      - uses: ./.github/actions/setup-environment
         with:
           node-version: ${{matrix.node-version}}
       - run: pnpm test:coverage
