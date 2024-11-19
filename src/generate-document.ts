@@ -1,5 +1,5 @@
-import chalk from "chalk";
 import { camelCase, kebabCase, pascalCase } from "change-case";
+import { consola } from "consola";
 import { ensureDir, readJson } from "fs-extra/esm";
 import { writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, parse, relative } from "node:path";
@@ -29,7 +29,9 @@ export async function generateDocument(
   const document = documents.find((document) => document.name === documentName);
 
   if (document === undefined) {
-    throw new Error(`[BUG] Document \`${documentName}\` not found.`);
+    return consola.error(
+      new Error(`[BUG] Document \`${documentName}\` not found.`),
+    );
   }
 
   const documentPath = await getDocumentPath(documentName, cwd, path);
@@ -56,10 +58,8 @@ export async function generateDocument(
     await ensureDir(parse(file.path).dir);
     await writeFile(file.path, file.content);
 
-    console.log(
-      chalk.green(
-        `🫚 Generated ${documentName} \`${entityName}\` at \`${relative(cwd, file.path)}\`.`,
-      ),
+    consola.success(
+      `Generated ${documentName} \`${entityName}\` at \`${relative(cwd, file.path)}\`.`,
     );
   }
 
