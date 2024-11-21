@@ -1,11 +1,13 @@
 import { hideBin } from "yargs/helpers";
 import yargs from "yargs/yargs";
+import { getConfig } from "./config.js";
 import {
   generateComponent,
   generateHelper,
   generateModifier,
   generateService,
 } from "./generators.js";
+import { DocumentName } from "./types.js";
 
 yargs(hideBin(process.argv))
   .command({
@@ -37,12 +39,15 @@ yargs(hideBin(process.argv))
           type: "boolean",
         });
     },
-    handler(options) {
-      generateComponent(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+    async handler(options) {
+      generateComponent(
+        options.name,
+        await applyGemberConfig("component", {
+          classBased: options.classBased,
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .command({
@@ -74,12 +79,15 @@ yargs(hideBin(process.argv))
           type: "boolean",
         });
     },
-    handler(options) {
-      generateHelper(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+    async handler(options) {
+      generateHelper(
+        options.name,
+        await applyGemberConfig("helper", {
+          classBased: options.classBased,
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .command({
@@ -111,12 +119,15 @@ yargs(hideBin(process.argv))
           type: "boolean",
         });
     },
-    handler(options) {
-      generateModifier(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+    async handler(options) {
+      generateModifier(
+        options.name,
+        await applyGemberConfig("modifier", {
+          classBased: options.classBased,
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .command({
@@ -142,13 +153,26 @@ yargs(hideBin(process.argv))
           type: "boolean",
         });
     },
-    handler(options) {
-      generateService(options.name, {
-        path: options.path,
-        typescript: options.typescript,
-      });
+    async handler(options) {
+      generateService(
+        options.name,
+        await applyGemberConfig("service", {
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .demandCommand()
   .strict()
   .parse();
+
+async function applyGemberConfig(documentName: DocumentName, options: object) {
+  const config = await getConfig();
+
+  return Object.assign(
+    { typescript: config.typescript },
+    config.generators?.[documentName],
+    options,
+  );
+}
