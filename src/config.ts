@@ -3,6 +3,30 @@ import { pathToFileURL } from "node:url";
 import { DocumentName, type File } from "./types.js";
 
 export type Config = {
+  typescript?: boolean;
+
+  generators?: {
+    component?: {
+      classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    helper?: {
+      classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    modifier?: {
+      classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    service?: {
+      path?: string;
+      typescript?: boolean;
+    };
+  };
+
   hooks?: {
     postGenerate?: (info: {
       documentName: DocumentName;
