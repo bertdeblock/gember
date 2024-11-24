@@ -83,6 +83,12 @@ const DOCUMENT_DIRECTORY: Record<DocumentName, string> = {
   service: "services",
 };
 
+const SRC_DIRECTORY: Record<string, string> = {
+  APP: "app",
+  V1_ADDON: "addon",
+  V2_ADDON: "src",
+};
+
 export async function getDocumentPath(
   documentName: DocumentName,
   cwd: string,
@@ -99,9 +105,9 @@ export async function getDocumentPath(
   const packageJson = await readJson(join(cwd, "package.json"));
   const srcDirectory = isAddon(packageJson)
     ? isV2Addon(packageJson)
-      ? "src" // v2 addon
-      : "addon" // v1 addon
-    : "app"; // v1 app
+      ? SRC_DIRECTORY.V2_ADDON
+      : SRC_DIRECTORY.V1_ADDON
+    : SRC_DIRECTORY.APP;
 
   return join(cwd, srcDirectory, DOCUMENT_DIRECTORY[documentName]);
 }

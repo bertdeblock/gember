@@ -3,13 +3,11 @@
 [![CI](https://github.com/bertdeblock/gember/workflows/CI/badge.svg)](https://github.com/bertdeblock/gember/actions?query=workflow%3ACI)
 [![NPM Version](https://badge.fury.io/js/%40bertdeblock%2Fgember.svg)](https://badge.fury.io/js/%40bertdeblock%2Fgember)
 
-Generate components, helpers, modifiers and services in v2 addons.
+Generate components, helpers, modifiers and services in v1/v2 apps/addons.
 
 Uses [scaffdog](https://scaff.dog/) underneath.
 
-> [!NOTE]
->
-> - Only supports `.gjs` (default) and `.gts` files for components
+> NOTE: Only supports `.gjs` (default) and `.gts` files for components
 
 ## Installation
 
@@ -55,8 +53,12 @@ yarn add -D @bertdeblock/gember
   <summary>Generating components</summary>
 
 ```shell
+pnpm gember component --help # for all available options
+
+# examples:
 pnpm gember component foo
 pnpm gember component foo --class-based # or `--class`
+pnpm gember component foo --cwd="test-app"
 pnpm gember component foo --path="src/-private"
 pnpm gember component foo --typescript # or `--ts`
 ```
@@ -67,8 +69,12 @@ pnpm gember component foo --typescript # or `--ts`
   <summary>Generating helpers</summary>
 
 ```shell
+pnpm gember helper --help # for all available options
+
+# examples:
 pnpm gember helper foo
 pnpm gember helper foo --class-based # or `--class`
+pnpm gember helper foo --cwd="test-app"
 pnpm gember helper foo --path="src/-private"
 pnpm gember helper foo --typescript # or `--ts`
 ```
@@ -79,8 +85,12 @@ pnpm gember helper foo --typescript # or `--ts`
   <summary>Generating modifiers</summary>
 
 ```shell
+pnpm gember modifier --help # for all available options
+
+# examples:
 pnpm gember modifier foo
 pnpm gember modifier foo --class-based # or `--class`
+pnpm gember modifier foo --cwd="test-app"
 pnpm gember modifier foo --path="src/-private"
 pnpm gember modifier foo --typescript # or `--ts`
 ```
@@ -91,7 +101,11 @@ pnpm gember modifier foo --typescript # or `--ts`
   <summary>Generating services</summary>
 
 ```shell
+pnpm gember service --help # for all available options
+
+# examples:
 pnpm gember service foo
+pnpm gember service foo --cwd="test-app"
 pnpm gember service foo --path="src/-private"
 pnpm gember service foo --typescript # or `--ts`
 ```

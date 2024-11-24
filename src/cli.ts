@@ -25,6 +25,12 @@ yargs(hideBin(process.argv))
           description: "Generate a class-based component",
           type: "boolean",
         })
+        .option("cwd", {
+          default: "",
+          description:
+            "Generate a component in a custom current working directory",
+          type: "string",
+        })
         .option("path", {
           default: "",
           description: "Generate a component at a custom path",
@@ -40,6 +46,7 @@ yargs(hideBin(process.argv))
     handler(options) {
       generateComponent(options.name, {
         classBased: options.classBased,
+        cwd: options.cwd,
         path: options.path,
         typescript: options.typescript,
       });
@@ -62,6 +69,12 @@ yargs(hideBin(process.argv))
           description: "Generate a class-based helper",
           type: "boolean",
         })
+        .option("cwd", {
+          default: "",
+          description:
+            "Generate a helper in a custom current working directory",
+          type: "string",
+        })
         .option("path", {
           default: "",
           description: "Generate a helper at a custom path",
@@ -77,6 +90,7 @@ yargs(hideBin(process.argv))
     handler(options) {
       generateHelper(options.name, {
         classBased: options.classBased,
+        cwd: options.cwd,
         path: options.path,
         typescript: options.typescript,
       });
@@ -99,6 +113,12 @@ yargs(hideBin(process.argv))
           description: "Generate a class-based modifier",
           type: "boolean",
         })
+        .option("cwd", {
+          default: "",
+          description:
+            "Generate a modifier in a custom current working directory",
+          type: "string",
+        })
         .option("path", {
           default: "",
           description: "Generate a modifier at a custom path",
@@ -114,6 +134,7 @@ yargs(hideBin(process.argv))
     handler(options) {
       generateModifier(options.name, {
         classBased: options.classBased,
+        cwd: options.cwd,
         path: options.path,
         typescript: options.typescript,
       });
@@ -130,6 +151,12 @@ yargs(hideBin(process.argv))
           description: "The service's name",
           type: "string",
         })
+        .option("cwd", {
+          default: "",
+          description:
+            "Generate a service in a custom current working directory",
+          type: "string",
+        })
         .option("path", {
           default: "",
           description: "Generate a service at a custom path",
@@ -144,11 +171,13 @@ yargs(hideBin(process.argv))
     },
     handler(options) {
       generateService(options.name, {
+        cwd: options.cwd,
         path: options.path,
         typescript: options.typescript,
       });
     },
   })
   .demandCommand()
+  .epilogue("🫚 More info at https://github.com/bertdeblock/gember#usage")
   .strict()
   .parse();
