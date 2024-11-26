@@ -1,11 +1,8 @@
 import { Project } from "fixturify-project";
-import { remove } from "fs-extra";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { it } from "vitest";
 import { getConfig } from "../src/config.js";
 import { generateComponent } from "../src/generators.ts";
-import { copyBlueprint } from "./helpers.js";
+import { Package } from "./helpers.js";
 
 it("supports a `gember.config.js` file", async (ctx) => {
   const project = new Project({
@@ -53,13 +50,13 @@ it("supports a `gember.config.mjs` file", async (ctx) => {
 });
 
 it("runs the `postGenerate` hook", async (ctx) => {
-  const cwd = await copyBlueprint("v2-addon-hooks", "post-generate-info");
+  const pkg = await Package.create("v2-addon-hooks", "post-generate-info");
 
-  await generateComponent("foo", { cwd });
+  await generateComponent("foo", pkg.path);
 
-  const content = await readFile(join(cwd, "post-generate-info.json"), "utf-8");
+  const content = await pkg.readFile("post-generate-info.json");
 
   ctx.expect(content).toMatchSnapshot();
 
-  await remove(cwd);
+  await pkg.cleanUp();
 });

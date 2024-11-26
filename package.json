@@ -1,7 +1,7 @@
 {
   "name": "@bertdeblock/gember",
   "version": "0.4.0",
-  "description": "Generate components, helpers, modifiers and services in v2 addons.",
+  "description": "Generate components, helpers, modifiers and services in v1/v2 apps/addons.",
   "repository": "https://github.com/bertdeblock/gember",
   "license": "MIT",
   "author": "Bert De Block",
@@ -16,7 +16,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig.json",
+    "build": "rm -rf dist && tsc --project tsconfig.json",
     "lint": "concurrently --group --prefix-colors auto \"npm:lint:*(!fix)\"",
     "lint:fix": "concurrently --group --prefix-colors auto \"npm:lint:*:fix\"",
     "lint:format": "prettier . --cache --check",
@@ -29,8 +29,8 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "chalk": "^5.3.0",
     "change-case": "^5.4.4",
+    "consola": "^3.2.3",
     "find-up": "^7.0.0",
     "fs-extra": "^11.2.0",
     "scaffdog": "^4.1.0",

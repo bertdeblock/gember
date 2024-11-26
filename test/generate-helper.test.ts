@@ -1,84 +1,80 @@
-import { remove } from "fs-extra";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { afterEach, it } from "vitest";
 import { generateHelper } from "../src/generators.ts";
-import { copyBlueprint } from "./helpers.ts";
+import { Package } from "./helpers.ts";
 
-let cwd: string;
+let pkg: Package;
 
-afterEach(() => remove(cwd));
+afterEach(() => pkg.cleanUp());
 
 it("generates a function-based `.js` helper", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", { cwd });
+  await generateHelper("foo", pkg.path);
 
-  const content = await readFile(join(cwd, "src/helpers/foo.js"), "utf-8");
+  const content = await pkg.readFile("src/helpers/foo.js");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a class-based `.js` helper", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", { classBased: true, cwd });
+  await generateHelper("foo", pkg.path, { classBased: true });
 
-  const content = await readFile(join(cwd, "src/helpers/foo.js"), "utf-8");
+  const content = await pkg.readFile("src/helpers/foo.js");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a function-based `.js` helper at a custom path", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", { cwd, path: "src/-private" });
+  await generateHelper("foo", pkg.path, { path: "src/-private" });
 
-  const content = await readFile(join(cwd, "src/-private/foo.js"), "utf-8");
+  const content = await pkg.readFile("src/-private/foo.js");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a function-based `.ts` helper", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", { cwd, typescript: true });
+  await generateHelper("foo", pkg.path, { typescript: true });
 
-  const content = await readFile(join(cwd, "src/helpers/foo.ts"), "utf-8");
+  const content = await pkg.readFile("src/helpers/foo.ts");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a class-based `.ts` helper", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", { classBased: true, cwd, typescript: true });
+  await generateHelper("foo", pkg.path, { classBased: true, typescript: true });
 
-  const content = await readFile(join(cwd, "src/helpers/foo.ts"), "utf-8");
+  const content = await pkg.readFile("src/helpers/foo.ts");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a function-based `.ts` helper at a custom path", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", {
-    cwd,
+  await generateHelper("foo", pkg.path, {
     path: "src/-private",
     typescript: true,
   });
 
-  const content = await readFile(join(cwd, "src/-private/foo.ts"), "utf-8");
+  const content = await pkg.readFile("src/-private/foo.ts");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a nested function-based `.js` helper", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo/bar", { cwd });
+  await generateHelper("foo/bar", pkg.path);
 
-  const content = await readFile(join(cwd, "src/helpers/foo/bar.js"), "utf-8");
+  const content = await pkg.readFile("src/helpers/foo/bar.js");
 
   ctx.expect(content).toMatchSnapshot();
 });

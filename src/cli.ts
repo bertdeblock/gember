@@ -1,5 +1,7 @@
+import { cwd } from "node:process";
 import { hideBin } from "yargs/helpers";
 import yargs from "yargs/yargs";
+import { logGemberErrors } from "./errors.js";
 import {
   generateComponent,
   generateHelper,
@@ -21,28 +23,27 @@ yargs(hideBin(process.argv))
         })
         .option("class-based", {
           alias: ["class"],
-          default: false,
           description: "Generate a class-based component",
           type: "boolean",
         })
         .option("path", {
-          default: "",
           description: "Generate a component at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.gts` component",
           type: "boolean",
         });
     },
     handler(options) {
-      generateComponent(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(() =>
+        generateComponent(options.name, cwd(), {
+          classBased: options.classBased,
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .command({
@@ -58,28 +59,27 @@ yargs(hideBin(process.argv))
         })
         .option("class-based", {
           alias: ["class"],
-          default: false,
           description: "Generate a class-based helper",
           type: "boolean",
         })
         .option("path", {
-          default: "",
           description: "Generate a helper at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.ts` helper",
           type: "boolean",
         });
     },
     handler(options) {
-      generateHelper(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(() =>
+        generateHelper(options.name, cwd(), {
+          classBased: options.classBased,
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .command({
@@ -95,28 +95,27 @@ yargs(hideBin(process.argv))
         })
         .option("class-based", {
           alias: ["class"],
-          default: false,
           description: "Generate a class-based modifier",
           type: "boolean",
         })
         .option("path", {
-          default: "",
           description: "Generate a modifier at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.ts` modifier",
           type: "boolean",
         });
     },
     handler(options) {
-      generateModifier(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(() =>
+        generateModifier(options.name, cwd(), {
+          classBased: options.classBased,
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .command({
@@ -131,24 +130,25 @@ yargs(hideBin(process.argv))
           type: "string",
         })
         .option("path", {
-          default: "",
           description: "Generate a service at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.ts` service",
           type: "boolean",
         });
     },
     handler(options) {
-      generateService(options.name, {
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(() =>
+        generateService(options.name, cwd(), {
+          path: options.path,
+          typescript: options.typescript,
+        }),
+      );
     },
   })
   .demandCommand()
+  .epilogue("🫚 More info at https://github.com/bertdeblock/gember#usage")
   .strict()
   .parse();

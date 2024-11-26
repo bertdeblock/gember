@@ -1,21 +1,19 @@
-import { generateDocument } from "./generate-document.js";
+import { generate } from "./generate.js";
 
 export function generateComponent(
   name: string,
+  packagePath: string,
   {
     classBased = false,
-    cwd = "",
-    path = "",
+    path,
     typescript = false,
   }: {
     classBased?: boolean;
-    cwd?: string;
     path?: string;
     typescript?: boolean;
   } = {},
-) {
-  return generateDocument("component", name, {
-    cwd,
+): Promise<void> {
+  return generate("component", name, packagePath, {
     inputs: { classBased, typescript },
     path,
   });
@@ -23,20 +21,18 @@ export function generateComponent(
 
 export function generateHelper(
   name: string,
+  packagePath: string,
   {
     classBased = false,
-    cwd = "",
-    path = "",
+    path,
     typescript = false,
   }: {
     classBased?: boolean;
-    cwd?: string;
     path?: string;
     typescript?: boolean;
   } = {},
-) {
-  return generateDocument("helper", name, {
-    cwd,
+): Promise<void> {
+  return generate("helper", name, packagePath, {
     inputs: { classBased, typescript },
     path,
   });
@@ -44,20 +40,18 @@ export function generateHelper(
 
 export function generateModifier(
   name: string,
+  packagePath: string,
   {
     classBased = false,
-    cwd = "",
-    path = "",
+    path,
     typescript = false,
   }: {
     classBased?: boolean;
-    cwd?: string;
     path?: string;
     typescript?: boolean;
   } = {},
-) {
-  return generateDocument("modifier", name, {
-    cwd,
+): Promise<void> {
+  return generate("modifier", name, packagePath, {
     inputs: { classBased, typescript },
     path,
   });
@@ -65,18 +59,16 @@ export function generateModifier(
 
 export function generateService(
   name: string,
+  packagePath: string,
   {
-    cwd = "",
-    path = "",
+    path,
     typescript = false,
   }: {
-    cwd?: string;
     path?: string;
     typescript?: boolean;
   } = {},
-) {
-  return generateDocument("service", name, {
-    cwd,
+): Promise<void> {
+  return generate("service", name, packagePath, {
     inputs: { typescript },
     path,
   });

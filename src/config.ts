@@ -1,5 +1,6 @@
 import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
+import { GemberError } from "./errors.js";
 import { DocumentName, type File } from "./types.js";
 
 export type Config = {
@@ -32,13 +33,13 @@ export async function getConfig(cwd: string): Promise<Config> {
   try {
     config = (await import(pathToFileURL(path).toString())).default;
   } catch (cause) {
-    throw new Error(`Could not import gember config file at "${path}".`, {
+    throw new GemberError(`Could not import gember config file at "${path}".`, {
       cause,
     });
   }
 
   if (config === undefined) {
-    throw new Error(
+    throw new GemberError(
       `gember config file at "${path}" must have a "default" export.`,
     );
   }

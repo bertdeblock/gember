@@ -1,87 +1,83 @@
-import { remove } from "fs-extra";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { afterEach, it } from "vitest";
 import { generateComponent } from "../src/generators.ts";
-import { copyBlueprint } from "./helpers.ts";
+import { Package } from "./helpers.ts";
 
-let cwd: string;
+let pkg: Package;
 
-afterEach(() => remove(cwd));
+afterEach(() => pkg.cleanUp());
 
 it("generates a template-only `.gjs` component", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateComponent("foo", { cwd });
+  await generateComponent("foo", pkg.path);
 
-  const content = await readFile(join(cwd, "src/components/foo.gjs"), "utf-8");
+  const content = await pkg.readFile("src/components/foo.gjs");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a class-based `.gjs` component", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateComponent("foo", { classBased: true, cwd });
+  await generateComponent("foo", pkg.path, { classBased: true });
 
-  const content = await readFile(join(cwd, "src/components/foo.gjs"), "utf-8");
+  const content = await pkg.readFile("src/components/foo.gjs");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a template-only `.gjs` component at a custom path", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateComponent("foo", { cwd, path: "src/-private" });
+  await generateComponent("foo", pkg.path, { path: "src/-private" });
 
-  const content = await readFile(join(cwd, "src/-private/foo.gjs"), "utf-8");
+  const content = await pkg.readFile("src/-private/foo.gjs");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a template-only `.gts` component", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateComponent("foo", { cwd, typescript: true });
+  await generateComponent("foo", pkg.path, { typescript: true });
 
-  const content = await readFile(join(cwd, "src/components/foo.gts"), "utf-8");
+  const content = await pkg.readFile("src/components/foo.gts");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a class-based `.gts` component", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateComponent("foo", { classBased: true, cwd, typescript: true });
+  await generateComponent("foo", pkg.path, {
+    classBased: true,
+    typescript: true,
+  });
 
-  const content = await readFile(join(cwd, "src/components/foo.gts"), "utf-8");
+  const content = await pkg.readFile("src/components/foo.gts");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a template-only `.gts` component at a custom path", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateComponent("foo", {
-    cwd,
+  await generateComponent("foo", pkg.path, {
     path: "src/-private",
     typescript: true,
   });
 
-  const content = await readFile(join(cwd, "src/-private/foo.gts"), "utf-8");
+  const content = await pkg.readFile("src/-private/foo.gts");
 
   ctx.expect(content).toMatchSnapshot();
 });
 
 it("generates a nested template-only `.gjs` component", async (ctx) => {
-  cwd = await copyBlueprint("v2-addon");
+  pkg = await Package.create("v2-addon");
 
-  await generateComponent("foo/bar", { cwd });
+  await generateComponent("foo/bar", pkg.path);
 
-  const content = await readFile(
-    join(cwd, "src/components/foo/bar.gjs"),
-    "utf-8",
-  );
+  const content = await pkg.readFile("src/components/foo/bar.gjs");
 
   ctx.expect(content).toMatchSnapshot();
 });

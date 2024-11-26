@@ -6,5 +6,11 @@ export default typescriptEslint.config(
   eslint.configs.recommended,
   typescriptEslint.configs.recommended,
   eslintPluginNode.configs["flat/recommended-module"],
-  { ignores: ["coverage", "dist", "test/output"] },
+  { ignores: ["bin", "coverage", "dist", "test/output"] },
+  {
+    files: ["**/*.ts"],
+    rules: {
+      "@typescript-eslint/explicit-function-return-type": "error",
+    },
+  },
 );

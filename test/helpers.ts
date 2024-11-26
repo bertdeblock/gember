@@ -1,20 +1,39 @@
+import { remove } from "fs-extra";
+import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import recursiveCopy from "recursive-copy";
 import { v4 as uuidv4 } from "uuid";
 
-type Blueprint = "v1-app" | "v1-addon" | "v2-addon" | "v2-addon-hooks";
+type PackageName = "v1-app" | "v1-addon" | "v2-addon" | "v2-addon-hooks";
 
-export function blueprintPath(name: Blueprint) {
-  return join("test/blueprints", name);
-}
+export class Package {
+  path: string;
 
-export async function copyBlueprint(
-  name: Blueprint,
-  directory: string = uuidv4(),
-) {
-  const cwd = join("test/output", directory);
+  constructor(path: string) {
+    this.path = path;
+  }
 
-  await recursiveCopy(blueprintPath(name), cwd);
+  cleanUp(): Promise<void> {
+    return remove(this.path);
+  }
 
-  return cwd;
+  readFile(path: string): Promise<string> {
+    return readFile(join(this.path, path), "utf-8");
+  }
+
+  static async create(
+    name: PackageName,
+    path: string = uuidv4(),
+  ): Promise<Package> {
+    const pkg = new this(join("test/output", path));
+
+    await pkg.cleanUp();
+    await recursiveCopy(this.createPath(name), pkg.path);
+
+    return pkg;
+  }
+
+  static createPath(name: PackageName): string {
+    return join("test/packages", name);
+  }
 }
