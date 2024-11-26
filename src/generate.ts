@@ -1,39 +1,46 @@
-import chalk from "chalk";
 import { camelCase, kebabCase, pascalCase } from "change-case";
+import { consola } from "consola";
 import { ensureDir, readJson } from "fs-extra/esm";
 import { writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, parse, relative } from "node:path";
-import { cwd as processCwd } from "node:process";
+import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
-import { getConfig } from "./config.js";
+import { resolveConfig } from "./config.js";
+import { GemberError } from "./errors.js";
 import { isAddon, isV2Addon } from "./helpers.js";
 import { type DocumentName } from "./types.js";
 
-export async function generateDocument(
+export async function generate(
   documentName: DocumentName,
   entityName: string,
+  packagePath: string,
   {
-    cwd = processCwd(),
-    inputs = {},
-    path = "",
+    inputs,
+    path,
   }: {
-    cwd?: string;
     inputs?: GenerateInputs;
     path?: string;
-  } = {},
-) {
-  const directory = dirname(fileURLToPath(import.meta.url));
-  const scaffdog = await loadScaffdog(join(directory, "../documents"));
+  },
+): Promise<void> {
+  const scaffdog = await loadScaffdog(
+    join(dirname(fileURLToPath(import.meta.url)), "../documents"),
+  );
+
   const documents = await scaffdog.list();
   const document = documents.find((document) => document.name === documentName);
 
   if (document === undefined) {
-    throw new Error(`[BUG] Document \`${documentName}\` not found.`);
+    throw new GemberError(`[BUG] Document \`${documentName}\` not found.`);
   }
 
-  const documentPath = await getDocumentPath(documentName, cwd, path);
-  const files = await scaffdog.generate(document, documentPath, {
+  const generatePath = await resolveGeneratePath(
+    documentName,
+    packagePath,
+    path,
+  );
+
+  const files = await scaffdog.generate(document, generatePath, {
     inputs: {
       ...inputs,
       name: {
@@ -56,14 +63,12 @@ export async function generateDocument(
     await ensureDir(parse(file.path).dir);
     await writeFile(file.path, file.content);
 
-    console.log(
-      chalk.green(
-        `🫚 Generated ${documentName} \`${entityName}\` at \`${relative(cwd, file.path)}\`.`,
-      ),
+    consola.success(
+      `🫚 Generated ${documentName} \`${entityName}\` at \`${relative(cwd(), file.path)}\`.`,
     );
   }
 
-  const config = await getConfig(cwd);
+  const config = await resolveConfig(packagePath);
 
   await config.hooks?.postGenerate?.({
     documentName,
@@ -83,25 +88,31 @@ const DOCUMENT_DIRECTORY: Record<DocumentName, string> = {
   service: "services",
 };
 
-export async function getDocumentPath(
+const SRC_DIRECTORY: Record<string, string> = {
+  APP: "app",
+  V1_ADDON: "addon",
+  V2_ADDON: "src",
+};
+
+export async function resolveGeneratePath(
   documentName: DocumentName,
-  cwd: string,
+  packagePath: string,
   path?: string,
 ): Promise<string> {
   if (path) {
     if (isAbsolute(path)) {
       return path;
     } else {
-      return join(cwd, path);
+      return join(packagePath, path);
     }
   }
 
-  const packageJson = await readJson(join(cwd, "package.json"));
+  const packageJson = await readJson(join(packagePath, "package.json"));
   const srcDirectory = isAddon(packageJson)
     ? isV2Addon(packageJson)
-      ? "src" // v2 addon
-      : "addon" // v1 addon
-    : "app"; // v1 app
+      ? SRC_DIRECTORY.V2_ADDON
+      : SRC_DIRECTORY.V1_ADDON
+    : SRC_DIRECTORY.APP;
 
-  return join(cwd, srcDirectory, DOCUMENT_DIRECTORY[documentName]);
+  return join(packagePath, srcDirectory, DOCUMENT_DIRECTORY[documentName]);
 }

@@ -5,10 +5,18 @@ import { fileURLToPath } from "node:url";
 
 /** @type {import('../../../src/config.ts').Config} */
 export default {
+  generators: {
+    component: {
+      classBased: true,
+    },
+  },
+
   hooks: {
     postGenerate: async (info) => {
-      const directory = dirname(fileURLToPath(import.meta.url));
-      const file = join(directory, "post-generate-info.json");
+      const file = join(
+        dirname(fileURLToPath(import.meta.url)),
+        "post-generate-info.json",
+      );
 
       for (const file of info.files) {
         // Support Windows:
@@ -21,4 +29,6 @@ export default {
       await writeFile(file, JSON.stringify(info, null, 2));
     },
   },
+
+  typescript: true,
 };

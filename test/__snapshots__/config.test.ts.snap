@@ -1,5 +1,24 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`applies specific generator options 1`] = `
+"import Component from "@glimmer/component";
+
+export interface FooSignature {
+  Args: {};
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class Foo extends Component<FooSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
 exports[`runs the \`postGenerate\` hook 1`] = `
 "{
   "documentName": "component",

@@ -1,11 +1,15 @@
+import { cwd } from "node:process";
 import { hideBin } from "yargs/helpers";
 import yargs from "yargs/yargs";
+import { resolveConfig } from "./config.js";
+import { logGemberErrors } from "./errors.js";
 import {
   generateComponent,
   generateHelper,
   generateModifier,
   generateService,
 } from "./generators.js";
+import { DocumentName } from "./types.js";
 
 yargs(hideBin(process.argv))
   .command({
@@ -21,28 +25,31 @@ yargs(hideBin(process.argv))
         })
         .option("class-based", {
           alias: ["class"],
-          default: false,
           description: "Generate a class-based component",
           type: "boolean",
         })
         .option("path", {
-          default: "",
           description: "Generate a component at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.gts` component",
           type: "boolean",
         });
     },
     handler(options) {
-      generateComponent(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(async () =>
+        generateComponent(
+          options.name,
+          cwd(),
+          await applyGemberConfig("component", {
+            classBased: options.classBased,
+            path: options.path,
+            typescript: options.typescript,
+          }),
+        ),
+      );
     },
   })
   .command({
@@ -58,28 +65,31 @@ yargs(hideBin(process.argv))
         })
         .option("class-based", {
           alias: ["class"],
-          default: false,
           description: "Generate a class-based helper",
           type: "boolean",
         })
         .option("path", {
-          default: "",
           description: "Generate a helper at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.ts` helper",
           type: "boolean",
         });
     },
     handler(options) {
-      generateHelper(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(async () =>
+        generateHelper(
+          options.name,
+          cwd(),
+          await applyGemberConfig("helper", {
+            classBased: options.classBased,
+            path: options.path,
+            typescript: options.typescript,
+          }),
+        ),
+      );
     },
   })
   .command({
@@ -95,28 +105,31 @@ yargs(hideBin(process.argv))
         })
         .option("class-based", {
           alias: ["class"],
-          default: false,
           description: "Generate a class-based modifier",
           type: "boolean",
         })
         .option("path", {
-          default: "",
           description: "Generate a modifier at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.ts` modifier",
           type: "boolean",
         });
     },
     handler(options) {
-      generateModifier(options.name, {
-        classBased: options.classBased,
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(async () =>
+        generateModifier(
+          options.name,
+          cwd(),
+          await applyGemberConfig("modifier", {
+            classBased: options.classBased,
+            path: options.path,
+            typescript: options.typescript,
+          }),
+        ),
+      );
     },
   })
   .command({
@@ -131,24 +144,50 @@ yargs(hideBin(process.argv))
           type: "string",
         })
         .option("path", {
-          default: "",
           description: "Generate a service at a custom path",
           type: "string",
         })
         .option("typescript", {
           alias: ["ts"],
-          default: false,
           description: "Generate a `.ts` service",
           type: "boolean",
         });
     },
     handler(options) {
-      generateService(options.name, {
-        path: options.path,
-        typescript: options.typescript,
-      });
+      logGemberErrors(async () =>
+        generateService(
+          options.name,
+          cwd(),
+          await applyGemberConfig("service", {
+            path: options.path,
+            typescript: options.typescript,
+          }),
+        ),
+      );
     },
   })
   .demandCommand()
+  .epilogue("🫚 More info at https://github.com/bertdeblock/gember#usage")
   .strict()
   .parse();
+
+type Options = Record<string, unknown>;
+
+async function applyGemberConfig(
+  documentName: DocumentName,
+  options: Options,
+): Promise<Options> {
+  const config = await resolveConfig(cwd());
+  const generatorConfig: Options = config.generators?.[documentName] ?? {};
+  const result: Options = { typescript: config.typescript };
+
+  for (const key in options) {
+    if (options[key] !== undefined) {
+      result[key] = options[key];
+    } else if (generatorConfig[key] !== undefined) {
+      result[key] = generatorConfig[key];
+    }
+  }
+
+  return result;
+}
