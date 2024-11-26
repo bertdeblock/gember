@@ -64,8 +64,8 @@ importers:
         specifier: ^2.0.14
         version: 2.0.14
       release-plan:
-        specifier: ^0.10.0
-        version: 0.10.0(encoding@0.1.13)
+        specifier: ^0.11.0
+        version: 0.11.0(encoding@0.1.13)
       type-fest:
         specifier: ^4.27.0
         version: 4.27.0
@@ -2564,8 +2564,8 @@ packages:
     resolution: {integrity: sha512-+crtS5QjFRqFCoQmvGduwYWEBng99ZvmFvF+cUJkGYF1L1BfU8C6Zp9T7f5vPAwyLkUExpvK+ANVZmGU49qi4Q==}
     engines: {node: '>=12'}
 
-  release-plan@0.10.0:
-    resolution: {integrity: sha512-q5aZ/ED/VB2udzIFVaj9Kfsj/wLZluw7kZV7eiYp5zHX/LJrofFl7bOX7u6nQV14O9UjHDYcdQEE/NRXVK68ZA==}
+  release-plan@0.11.0:
+    resolution: {integrity: sha512-241SKOFD87J4mAE8mbXR6xDaqTYIvB8O1itH1bTWvY6q5X/xP4wNlhmx7NGXrzq3z9tCP3OcjzoOi19RC9yTsA==}
     hasBin: true
 
   remark-parse@10.0.2:
@@ -5909,7 +5909,7 @@ snapshots:
     dependencies:
       rc: 1.2.8
 
-  release-plan@0.10.0(encoding@0.1.13):
+  release-plan@0.11.0(encoding@0.1.13):
     dependencies:
       '@manypkg/get-packages': 2.2.2
       '@npmcli/package-json': 5.2.1
