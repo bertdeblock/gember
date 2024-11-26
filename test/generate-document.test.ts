@@ -1,11 +1,11 @@
 import { join } from "node:path";
 import { it } from "vitest";
-import { getGeneratePath } from "../src/generate.ts";
+import { resolveGeneratePath } from "../src/generate.ts";
 import { Package } from "./helpers.ts";
 
 it("supports v1 apps", async (ctx) => {
   const name = "v1-app";
-  const generatePath = await getGeneratePath(
+  const generatePath = await resolveGeneratePath(
     "component",
     Package.createPath(name),
   );
@@ -17,7 +17,7 @@ it("supports v1 apps", async (ctx) => {
 
 it("supports v1 addons", async (ctx) => {
   const name = "v1-addon";
-  const generatePath = await getGeneratePath(
+  const generatePath = await resolveGeneratePath(
     "component",
     Package.createPath(name),
   );
@@ -29,7 +29,7 @@ it("supports v1 addons", async (ctx) => {
 
 it("supports v2 addons", async (ctx) => {
   const name = "v2-addon";
-  const generatePath = await getGeneratePath(
+  const generatePath = await resolveGeneratePath(
     "component",
     Package.createPath(name),
   );

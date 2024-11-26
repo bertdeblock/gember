@@ -6,7 +6,7 @@ import { dirname, isAbsolute, join, parse, relative } from "node:path";
 import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
-import { getConfig } from "./config.js";
+import { resolveConfig } from "./config.js";
 import { GemberError } from "./errors.js";
 import { isAddon, isV2Addon } from "./helpers.js";
 import { type DocumentName } from "./types.js";
@@ -34,7 +34,12 @@ export async function generate(
     throw new GemberError(`[BUG] Document \`${documentName}\` not found.`);
   }
 
-  const generatePath = await getGeneratePath(documentName, packagePath, path);
+  const generatePath = await resolveGeneratePath(
+    documentName,
+    packagePath,
+    path,
+  );
+
   const files = await scaffdog.generate(document, generatePath, {
     inputs: {
       ...inputs,
@@ -63,7 +68,7 @@ export async function generate(
     );
   }
 
-  const config = await getConfig(packagePath);
+  const config = await resolveConfig(packagePath);
 
   await config.hooks?.postGenerate?.({
     documentName,
@@ -89,7 +94,7 @@ const SRC_DIRECTORY: Record<string, string> = {
   V2_ADDON: "src",
 };
 
-export async function getGeneratePath(
+export async function resolveGeneratePath(
   documentName: DocumentName,
   packagePath: string,
   path?: string,

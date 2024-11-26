@@ -1,10 +1,12 @@
+import { execa } from "execa";
 import { remove } from "fs-extra";
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import recursiveCopy from "recursive-copy";
 import { v4 as uuidv4 } from "uuid";
 
-type PackageName = "v1-app" | "v1-addon" | "v2-addon" | "v2-addon-hooks";
+type PackageName = "v1-app" | "v1-addon" | "v2-addon" | "v2-addon-config";
 
 export class Package {
   path: string;
@@ -36,4 +38,15 @@ export class Package {
   static createPath(name: PackageName): string {
     return join("test/packages", name);
   }
+}
+
+export async function gember(
+  args: string[],
+  { cwd }: { cwd: string },
+): Promise<void> {
+  await execa(
+    join(dirname(fileURLToPath(import.meta.url)), "../bin/gember.js"),
+    args,
+    { cwd },
+  );
 }

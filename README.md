@@ -116,28 +116,56 @@ gember supports the following config files:
 - `gember.config.cjs`
 - `gember.config.mjs`
 
-A gember config file must export a gember config object, or a sync/async function that returns a gember config object.
-
-### Configuration Options
-
-#### `hooks.postGenerate`
-
-A hook that will be executed post running a generator.
+A gember config file must export a gember config object, or a sync/async function that returns a gember config object:
 
 ```js
 // gember.config.js
 
-import { execa } from "execa";
+export default {};
 
-export default {
-  hooks: {
-    postGenerate: async ({ files }) => {
-      await execa("npx", [
-        "prettier",
-        "--write",
-        ...files.map((file) => file.path),
-      ]);
-    },
-  },
+// or:
+export default () => ({});
+
+// or:
+export default async () => ({});
+```
+
+### Configuration Signature
+
+```ts
+export type Config = {
+  generators?: {
+    component?: {
+      classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    helper?: {
+      classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    modifier?: {
+      classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    service?: {
+      path?: string;
+      typescript?: boolean;
+    };
+  };
+
+  hooks?: {
+    // A hook that will be executed post running a generator:
+    postGenerate?: (info: {
+      documentName: DocumentName;
+      entityName: string;
+      files: File[];
+    }) => Promise<void> | void;
+  };
+
+  // Use TypeScript by default for all generators:
+  typescript?: boolean;
 };
 ```

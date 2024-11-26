@@ -5,6 +5,12 @@ import { fileURLToPath } from "node:url";
 
 /** @type {import('../../../src/config.ts').Config} */
 export default {
+  generators: {
+    component: {
+      classBased: true,
+    },
+  },
+
   hooks: {
     postGenerate: async (info) => {
       const file = join(
@@ -23,4 +29,6 @@ export default {
       await writeFile(file, JSON.stringify(info, null, 2));
     },
   },
+
+  typescript: true,
 };
