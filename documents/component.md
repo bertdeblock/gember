@@ -4,14 +4,14 @@ root: "."
 output: "**/*"
 ---
 
-# {{inputs.typescript ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name.path}}.gjs
+# {{hasOpts "!typescript" "!classBased"}}{{inputs.name.path}}.gjs
 
 ```gjs
 <template>{{"{{"}}yield{{"}}"}}</template>
 
 ```
 
-# {{inputs.typescript ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name.path}}.gjs
+# {{hasOpts "!typescript" "classBased"}}{{inputs.name.path}}.gjs
 
 ```gjs
 import Component from "@glimmer/component";
@@ -22,7 +22,7 @@ export default class {{inputs.name.pascal}} extends Component {
 
 ```
 
-# {{inputs.typescript ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name.path}}.gts
+# {{hasOpts "typescript" "!classBased"}}{{inputs.name.path}}.gts
 
 ```gts
 import type { TOC } from '@ember/component/template-only';
@@ -41,7 +41,7 @@ export default {{inputs.name.pascal}};
 
 ```
 
-# {{inputs.typescript ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name.path}}.gts
+# {{hasOpts "typescript" "classBased"}}{{inputs.name.path}}.gts
 
 ```gts
 import Component from "@glimmer/component";
