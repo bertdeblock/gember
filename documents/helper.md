@@ -4,7 +4,7 @@ root: "."
 output: "**/*"
 ---
 
-# {{inputs.typescript ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name.path}}.js
+# {{!inputs.typescript && !inputs.classBased ? "" : "!"}}{{inputs.name.path}}.js
 
 ```js
 import { helper } from "@ember/component/helper";
@@ -15,7 +15,7 @@ export default helper(function {{inputs.name.camel}}(positional, named) {
 
 ```
 
-# {{inputs.typescript ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name.path}}.js
+# {{!inputs.typescript && inputs.classBased ? "" : "!"}}{{inputs.name.path}}.js
 
 ```js
 import Helper from "@ember/component/helper";
@@ -28,7 +28,7 @@ export default class {{inputs.name.pascal}} extends Helper {
 
 ```
 
-# {{inputs.typescript ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name.path}}.ts
+# {{inputs.typescript && !inputs.classBased ? "" : "!"}}{{inputs.name.path}}.ts
 
 ```ts
 import { helper } from "@ember/component/helper";
@@ -51,7 +51,7 @@ export default helper<{{inputs.signature}}>(function {{inputs.name.camel}}(posit
 
 ```
 
-# {{inputs.typescript ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name.path}}.ts
+# {{inputs.typescript && inputs.classBased ? "" : "!"}}{{inputs.name.path}}.ts
 
 ```ts
 import Helper from "@ember/component/helper";
