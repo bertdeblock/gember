@@ -6,4 +6,7 @@ export default defineConfig({
       ignored: ["**/test/output/**"],
     },
   },
+  test: {
+    forceRerunTriggers: ["**/documents/**"],
+  },
 });

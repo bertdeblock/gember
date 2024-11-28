@@ -4,7 +4,7 @@ root: "."
 output: "**/*"
 ---
 
-# {{inputs.typescript ? "!" : (inputs.classBased ? "!" : "")}}{{inputs.name.path}}.js
+# {{!inputs.typescript && !inputs.classBased ? "" : "!"}}{{inputs.name.path}}.js
 
 ```js
 import { modifier } from "ember-modifier";
@@ -13,7 +13,7 @@ export default modifier(function {{inputs.name.camel}}(element, positional, name
 
 ```
 
-# {{inputs.typescript ? "!" : (inputs.classBased ? "" : "!")}}{{inputs.name.path}}.js
+# {{!inputs.typescript && inputs.classBased ? "" : "!"}}{{inputs.name.path}}.js
 
 ```js
 import Modifier from "ember-modifier";
@@ -24,7 +24,7 @@ export default class {{inputs.name.pascal}} extends Modifier {
 
 ```
 
-# {{inputs.typescript ? (inputs.classBased ? "!" : "") : "!"}}{{inputs.name.path}}.ts
+# {{inputs.typescript && !inputs.classBased ? "" : "!"}}{{inputs.name.path}}.ts
 
 ```ts
 import { modifier } from "ember-modifier";
@@ -41,7 +41,7 @@ export default modifier<{{inputs.signature}}>(function {{inputs.name.camel}}(ele
 
 ```
 
-# {{inputs.typescript ? (inputs.classBased ? "" : "!") : "!"}}{{inputs.name.path}}.ts
+# {{inputs.typescript && inputs.classBased ? "" : "!"}}{{inputs.name.path}}.ts
 
 ```ts
 import Modifier from "ember-modifier";
