@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2024-11-28)
+
+@bertdeblock/gember 0.5.1 (patch)
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#43](https://github.com/bertdeblock/gember/pull/43) Remove nested ternary operators in generator documents ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2024-11-26)
 
 @bertdeblock/gember 0.5.0 (minor)
