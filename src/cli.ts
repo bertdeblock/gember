@@ -9,7 +9,7 @@ import {
   generateModifier,
   generateService,
 } from "./generators.js";
-import { DocumentName } from "./types.js";
+import type { GeneratorName } from "./types.js";
 
 yargs(hideBin(process.argv))
   .command({
@@ -174,11 +174,11 @@ yargs(hideBin(process.argv))
 type Options = Record<string, unknown>;
 
 async function applyGemberConfig(
-  documentName: DocumentName,
+  generatorName: GeneratorName,
   options: Options,
 ): Promise<Options> {
   const config = await resolveConfig(cwd());
-  const generatorConfig: Options = config.generators?.[documentName] ?? {};
+  const generatorConfig: Options = config.generators?.[generatorName] ?? {};
   const result: Options = { typescript: config.typescript };
 
   for (const key in options) {

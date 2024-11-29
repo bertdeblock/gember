@@ -12,11 +12,12 @@
   "files": [
     "bin/",
     "dist/",
-    "documents/",
+    "templates/",
     "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "gember": "bin/gember.js --path=test/output",
     "lint": "concurrently --group --prefix-colors auto \"npm:lint:*(!fix)\"",
     "lint:fix": "concurrently --group --prefix-colors auto \"npm:lint:*:fix\"",
     "lint:format": "prettier . --cache --check",
@@ -33,7 +34,7 @@
     "consola": "^3.2.3",
     "find-up": "^7.0.0",
     "fs-extra": "^11.2.0",
-    "scaffdog": "^4.1.0",
+    "handlebars": "^4.7.8",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`supports v1 addons 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`supports v1 apps 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`supports v1 apps 2`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`supports v2 addons 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`supports v2 apps 1`] = `
+"<template>{{yield}}</template>
+"
+`;

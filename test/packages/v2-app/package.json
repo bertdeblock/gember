@@ -1,0 +1,8 @@
+{
+  "name": "v2-app",
+  "ember": {},
+  "ember-addon": {
+    "type": "app",
+    "version": 2
+  }
+}
