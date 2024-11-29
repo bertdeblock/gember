@@ -23,6 +23,7 @@ export default {
         file.content = file.content.replace(EOL, "\n");
 
         // Because the absolute path is different on each machine:
+        file.dir = file.dir.split(sep).join("/");
         file.path = relative("test/output", file.path).split(sep).join("/");
       }
 

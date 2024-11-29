@@ -6,7 +6,12 @@ import { fileURLToPath } from "node:url";
 import recursiveCopy from "recursive-copy";
 import { v4 as uuidv4 } from "uuid";
 
-type PackageName = "v1-app" | "v1-addon" | "v2-addon" | "v2-addon-config";
+type PackageName =
+  | "v1-app"
+  | "v2-app"
+  | "v1-addon"
+  | "v2-addon"
+  | "v2-addon-config";
 
 export class Package {
   path: string;
