@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.json",
+    "gember": "bin/gember.js --path=test/output",
     "lint": "concurrently --group --prefix-colors auto \"npm:lint:*(!fix)\"",
     "lint:fix": "concurrently --group --prefix-colors auto \"npm:lint:*:fix\"",
     "lint:format": "prettier . --cache --check",

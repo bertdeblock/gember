@@ -8,8 +8,8 @@ import { fileURLToPath } from "node:url";
 import { type GenerateInputs, loadScaffdog } from "scaffdog";
 import { resolveConfig } from "./config.js";
 import { GemberError } from "./errors.js";
-import { isAddon, isV2Addon } from "./helpers.js";
-import { type DocumentName } from "./types.js";
+import { isV1Addon, isV2Addon, pathCase } from "./helpers.js";
+import type { DocumentName } from "./types.js";
 
 export async function generate(
   documentName: DocumentName,
@@ -81,14 +81,14 @@ export async function generate(
   });
 }
 
-const DOCUMENT_DIRECTORY: Record<DocumentName, string> = {
+const DOCUMENT_DIR: Record<DocumentName, string> = {
   component: "components",
   helper: "helpers",
   modifier: "modifiers",
   service: "services",
 };
 
-const SRC_DIRECTORY: Record<string, string> = {
+const SRC_DIR: Record<string, string> = {
   APP: "app",
   V1_ADDON: "addon",
   V2_ADDON: "src",
@@ -108,18 +108,11 @@ export async function resolveGeneratePath(
   }
 
   const packageJson = await readJson(join(packagePath, "package.json"));
-  const srcDirectory = isAddon(packageJson)
-    ? isV2Addon(packageJson)
-      ? SRC_DIRECTORY.V2_ADDON
-      : SRC_DIRECTORY.V1_ADDON
-    : SRC_DIRECTORY.APP;
+  const srcDir = isV2Addon(packageJson)
+    ? SRC_DIR.V2_ADDON
+    : isV1Addon(packageJson)
+      ? SRC_DIR.V1_ADDON
+      : SRC_DIR.APP;
 
-  return join(packagePath, srcDirectory, DOCUMENT_DIRECTORY[documentName]);
-}
-
-function pathCase(entityName: string): string {
-  return entityName
-    .split("/")
-    .map((part) => kebabCase(part))
-    .join("/");
+  return join(packagePath, srcDir, DOCUMENT_DIR[documentName]);
 }

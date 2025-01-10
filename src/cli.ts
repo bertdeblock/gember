@@ -9,7 +9,7 @@ import {
   generateModifier,
   generateService,
 } from "./generators.js";
-import { DocumentName } from "./types.js";
+import type { DocumentName } from "./types.js";
 
 yargs(hideBin(process.argv))
   .command({

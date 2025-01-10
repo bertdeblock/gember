@@ -15,6 +15,18 @@ it("supports v1 apps", async (ctx) => {
     .toEqual(join("test/packages", name, "app/components"));
 });
 
+it("supports v2 apps", async (ctx) => {
+  const name = "v2-app";
+  const generatePath = await resolveGeneratePath(
+    "component",
+    Package.createPath(name),
+  );
+
+  ctx
+    .expect(generatePath)
+    .toEqual(join("test/packages", name, "app/components"));
+});
+
 it("supports v1 addons", async (ctx) => {
   const name = "v1-addon";
   const generatePath = await resolveGeneratePath(
