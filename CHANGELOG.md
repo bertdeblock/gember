@@ -2,6 +2,17 @@
 
 ## Release (2025-01-10)
 
+@bertdeblock/gember 0.6.1 (patch)
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#49](https://github.com/bertdeblock/gember/pull/49) Add test for v2 apps ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
+## Release (2025-01-10)
+
 @bertdeblock/gember 0.6.0 (minor)
 
 #### :rocket: Enhancement
