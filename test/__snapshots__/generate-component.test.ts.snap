@@ -28,6 +28,11 @@ export default class Foo extends Component<FooSignature> {
 "
 `;
 
+exports[`generates a nested colocated template-only \`.gjs\` component 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
 exports[`generates a nested template-only \`.gjs\` component 1`] = `
 "<template>{{yield}}</template>
 "

@@ -17,9 +17,11 @@ export async function generate(
   packagePath: string,
   {
     inputs,
+    nested = false,
     path,
   }: {
     inputs?: GenerateInputs;
+    nested?: boolean;
     path?: string;
   },
 ): Promise<void> {
@@ -47,11 +49,9 @@ export async function generate(
         camel: camelCase(entityName),
         kebab: kebabCase(entityName),
         pascal: pascalCase(entityName),
-        path: entityName
-          .split("/")
-          .map((part) => kebabCase(part))
-          .join("/"),
+        path: pathCase(entityName) + (nested ? "/index" : ""),
         raw: entityName,
+        registryPath: pathCase(entityName),
       },
       signature: pascalCase(entityName) + "Signature",
     },
@@ -115,4 +115,11 @@ export async function resolveGeneratePath(
     : SRC_DIRECTORY.APP;
 
   return join(packagePath, srcDirectory, DOCUMENT_DIRECTORY[documentName]);
+}
+
+function pathCase(entityName: string): string {
+  return entityName
+    .split("/")
+    .map((part) => kebabCase(part))
+    .join("/");
 }

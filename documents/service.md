@@ -13,7 +13,7 @@ export default class {{inputs.name.pascal}} extends Service {}
 {{if inputs.typescript}}
 declare module "@ember/service" {
   interface Registry {
-    "{{inputs.name.path}}": {{inputs.name.pascal}};
+    "{{inputs.name.registryPath}}": {{inputs.name.pascal}};
   }
 }
 {{end}}

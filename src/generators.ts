@@ -5,16 +5,19 @@ export function generateComponent(
   packagePath: string,
   {
     classBased = false,
+    nested,
     path,
     typescript = false,
   }: {
     classBased?: boolean;
+    nested?: boolean;
     path?: string;
     typescript?: boolean;
   } = {},
 ): Promise<void> {
   return generate("component", name, packagePath, {
     inputs: { classBased, typescript },
+    nested,
     path,
   });
 }

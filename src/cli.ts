@@ -28,6 +28,11 @@ yargs(hideBin(process.argv))
           description: "Generate a class-based component",
           type: "boolean",
         })
+        .option("nested", {
+          description:
+            "Generate a nested colocated component, e.g. `foo/bar/index.gjs`",
+          type: "boolean",
+        })
         .option("path", {
           description: "Generate a component at a custom path",
           type: "string",
@@ -45,6 +50,7 @@ yargs(hideBin(process.argv))
           cwd(),
           await applyGemberConfig("component", {
             classBased: options.classBased,
+            nested: options.nested,
             path: options.path,
             typescript: options.typescript,
           }),
