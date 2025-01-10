@@ -1,0 +1,14 @@
+{
+  "name": "v2-addon-config-js",
+  "private": true,
+  "volta": {
+    "extends": "../../../package.json"
+  },
+  "keywords": [
+    "ember-addon"
+  ],
+  "ember": {},
+  "ember-addon": {
+    "version": 2
+  }
+}

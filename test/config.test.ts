@@ -1,50 +1,28 @@
-import { Project } from "fixturify-project";
 import { it } from "vitest";
 import { resolveConfig } from "../src/config.js";
 import { generateComponent } from "../src/generators.ts";
 import { gember, Package } from "./helpers.js";
 
 it("supports a `gember.config.js` file", async (ctx) => {
-  const project = new Project({
-    files: {
-      "gember.config.js": "export default () => ({ hooks: {} });",
-      "package.json": '{ "type": "module" }',
-    },
-  });
+  const pkg = await Package.create("v2-addon-config-js");
 
-  await project.write();
-
-  const config = await resolveConfig(project.baseDir);
+  const config = await resolveConfig(pkg.path);
 
   ctx.expect(config).to.deep.equal({ hooks: {} });
 });
 
 it("supports a `gember.config.cjs` file", async (ctx) => {
-  const project = new Project({
-    files: {
-      "gember.config.cjs": "module.exports = { hooks: {} };",
-      "package.json": '{ "type": "module" }',
-    },
-  });
+  const pkg = await Package.create("v2-addon-config-cjs");
 
-  await project.write();
-
-  const config = await resolveConfig(project.baseDir);
+  const config = await resolveConfig(pkg.path);
 
   ctx.expect(config).to.deep.equal({ hooks: {} });
 });
 
 it("supports a `gember.config.mjs` file", async (ctx) => {
-  const project = new Project({
-    files: {
-      "gember.config.mjs": "export default async () => ({ hooks: {} });",
-      "package.json": '{ "type": "module" }',
-    },
-  });
+  const pkg = await Package.create("v2-addon-config-mjs");
 
-  await project.write();
-
-  const config = await resolveConfig(project.baseDir);
+  const config = await resolveConfig(pkg.path);
 
   ctx.expect(config).to.deep.equal({ hooks: {} });
 });

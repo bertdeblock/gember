@@ -6,8 +6,6 @@ import { fileURLToPath } from "node:url";
 import recursiveCopy from "recursive-copy";
 import { v4 as uuidv4 } from "uuid";
 
-type PackageName = "v1-app" | "v1-addon" | "v2-addon" | "v2-addon-config";
-
 export class Package {
   path: string;
 
@@ -23,10 +21,7 @@ export class Package {
     return readFile(join(this.path, path), "utf-8");
   }
 
-  static async create(
-    name: PackageName,
-    path: string = uuidv4(),
-  ): Promise<Package> {
+  static async create(name: string, path: string = uuidv4()): Promise<Package> {
     const pkg = new this(join("test/output", path));
 
     await pkg.cleanUp();
@@ -35,7 +30,7 @@ export class Package {
     return pkg;
   }
 
-  static createPath(name: PackageName): string {
+  static createPath(name: string): string {
     return join("test/packages", name);
   }
 }
