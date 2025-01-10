@@ -1,5 +1,5 @@
 // eslint-disable-next-line n/no-missing-import
-import { type PackageJson } from "type-fest";
+import type { PackageJson } from "type-fest";
 
 export type DocumentName = "component" | "helper" | "modifier" | "service";
 

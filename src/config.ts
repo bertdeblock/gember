@@ -1,7 +1,7 @@
 import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
 import { GemberError } from "./errors.js";
-import { DocumentName, type File } from "./types.js";
+import type { DocumentName, File } from "./types.js";
 
 export type Config = {
   generators?: {
