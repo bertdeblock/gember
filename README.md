@@ -58,6 +58,7 @@ pnpm gember component --help # for all available options
 # examples:
 pnpm gember component foo
 pnpm gember component foo --class-based # or `--class`
+pnpm gember component foo --nested
 pnpm gember component foo --path="src/-private"
 pnpm gember component foo --typescript # or `--ts`
 ```
@@ -137,6 +138,7 @@ export type Config = {
   generators?: {
     component?: {
       classBased?: boolean;
+      nested?: boolean;
       path?: string;
       typescript?: boolean;
     };

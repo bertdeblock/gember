@@ -81,3 +81,13 @@ it("generates a nested template-only `.gjs` component", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a nested colocated template-only `.gjs` component", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await generateComponent("foo/bar", pkg.path, { nested: true });
+
+  const content = await pkg.readFile("src/components/foo/bar/index.gjs");
+
+  ctx.expect(content).toMatchSnapshot();
+});
