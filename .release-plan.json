@@ -2,8 +2,8 @@
   "solution": {
     "@bertdeblock/gember": {
       "impact": "minor",
-      "oldVersion": "0.4.0",
-      "newVersion": "0.5.0",
+      "oldVersion": "0.5.0",
+      "newVersion": "0.6.0",
       "constraints": [
         {
           "impact": "minor",
@@ -17,5 +17,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2024-11-26)\n\n@bertdeblock/gember 0.5.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#38](https://github.com/bertdeblock/gember/pull/38) Support all CLI options in the gember config file ([@bertdeblock](https://github.com/bertdeblock))\n  * [#26](https://github.com/bertdeblock/gember/pull/26) Support v1 apps and addons ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#41](https://github.com/bertdeblock/gember/pull/41) Fix Release Plan ([@bertdeblock](https://github.com/bertdeblock))\n  * [#35](https://github.com/bertdeblock/gember/pull/35) Update ESLint setup ([@bertdeblock](https://github.com/bertdeblock))\n  * [#34](https://github.com/bertdeblock/gember/pull/34) Update dependencies ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-01-10)\n\n@bertdeblock/gember 0.6.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#48](https://github.com/bertdeblock/gember/pull/48) Support generating nested colocated components ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#43](https://github.com/bertdeblock/gember/pull/43) Remove nested ternary operators in generator documents ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
