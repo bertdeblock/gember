@@ -161,9 +161,9 @@ export type Config = {
   hooks?: {
     // A hook that will be executed post running a generator:
     postGenerate?: (info: {
-      documentName: DocumentName;
       entityName: string;
       files: File[];
+      generatorName: GeneratorName;
     }) => Promise<void> | void;
   };
 

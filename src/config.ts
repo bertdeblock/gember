@@ -1,7 +1,7 @@
 import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
 import { GemberError } from "./errors.js";
-import type { DocumentName, File } from "./types.js";
+import type { GeneratorName, File } from "./types.js";
 
 export type Config = {
   generators?: {
@@ -28,9 +28,13 @@ export type Config = {
 
   hooks?: {
     postGenerate?: (info: {
-      documentName: DocumentName;
+      /**
+       * @deprecated Please use `generatorName` instead.
+       */
+      documentName: GeneratorName;
       entityName: string;
       files: File[];
+      generatorName: GeneratorName;
     }) => Promise<void> | void;
   };
 

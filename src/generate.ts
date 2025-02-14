@@ -9,10 +9,10 @@ import { type GenerateInputs, loadScaffdog } from "scaffdog";
 import { resolveConfig } from "./config.js";
 import { GemberError } from "./errors.js";
 import { isV1Addon, isV2Addon, pathCase } from "./helpers.js";
-import type { DocumentName } from "./types.js";
+import type { GeneratorName } from "./types.js";
 
 export async function generate(
-  documentName: DocumentName,
+  generatorName: GeneratorName,
   entityName: string,
   packagePath: string,
   {
@@ -26,23 +26,23 @@ export async function generate(
   },
 ): Promise<void> {
   const scaffdog = await loadScaffdog(
-    join(dirname(fileURLToPath(import.meta.url)), "../documents"),
+    join(dirname(fileURLToPath(import.meta.url)), "../templates"),
   );
 
-  const documents = await scaffdog.list();
-  const document = documents.find((document) => document.name === documentName);
+  const templates = await scaffdog.list();
+  const template = templates.find((t) => t.name === generatorName);
 
-  if (document === undefined) {
-    throw new GemberError(`[BUG] Document \`${documentName}\` not found.`);
+  if (template === undefined) {
+    throw new GemberError(`[BUG] Template \`${generatorName}\` not found.`);
   }
 
   const generatePath = await resolveGeneratePath(
-    documentName,
+    generatorName,
     packagePath,
     path,
   );
 
-  const files = await scaffdog.generate(document, generatePath, {
+  const files = await scaffdog.generate(template, generatePath, {
     inputs: {
       ...inputs,
       name: {
@@ -64,24 +64,32 @@ export async function generate(
     await writeFile(file.path, file.content);
 
     consola.success(
-      `🫚 Generated ${documentName} \`${entityName}\` at \`${relative(cwd(), file.path)}\`.`,
+      `🫚 Generated ${generatorName} \`${entityName}\` at \`${relative(cwd(), file.path)}\`.`,
     );
   }
 
   const config = await resolveConfig(packagePath);
 
   await config.hooks?.postGenerate?.({
-    documentName,
+    get documentName() {
+      consola.warn(
+        "🫚 `documentName` is deprecated. Please use `generatorName` instead.",
+      );
+
+      return generatorName;
+    },
+
     entityName,
     files: filesToGenerate.map((file) => ({
       content: file.content,
       name: file.name,
       path: file.path,
     })),
+    generatorName,
   });
 }
 
-const DOCUMENT_DIR: Record<DocumentName, string> = {
+const TARGET_DIR: Record<GeneratorName, string> = {
   component: "components",
   helper: "helpers",
   modifier: "modifiers",
@@ -95,7 +103,7 @@ const SRC_DIR: Record<string, string> = {
 };
 
 export async function resolveGeneratePath(
-  documentName: DocumentName,
+  generatorName: GeneratorName,
   packagePath: string,
   path?: string,
 ): Promise<string> {
@@ -114,5 +122,5 @@ export async function resolveGeneratePath(
       ? SRC_DIR.V1_ADDON
       : SRC_DIR.APP;
 
-  return join(packagePath, srcDir, DOCUMENT_DIR[documentName]);
+  return join(packagePath, srcDir, TARGET_DIR[generatorName]);
 }
