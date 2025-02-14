@@ -1,4 +1,3 @@
-import { kebabCase } from "change-case";
 import type { EmberPackageJson } from "./types.js";
 
 export function isV1Addon(packageJson: EmberPackageJson): boolean {
@@ -19,13 +18,6 @@ export function isV2Addon(packageJson: EmberPackageJson): boolean {
   }
 
   return false;
-}
-
-export function pathCase(entityName: string): string {
-  return entityName
-    .split("/")
-    .map((part) => kebabCase(part))
-    .join("/");
 }
 
 function isAddon(packageJson: EmberPackageJson): boolean {
