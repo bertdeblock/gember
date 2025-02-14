@@ -1,4 +1,4 @@
-import { camelCase, pascalCase } from "change-case";
+import { camelCase, pascalCase, pathCase } from "change-case";
 import { consola } from "consola";
 import { ensureDir, readJson } from "fs-extra/esm";
 import Handlebars from "handlebars";
@@ -7,7 +7,7 @@ import { dirname, isAbsolute, join, parse, relative } from "node:path";
 import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { resolveConfig } from "./config.js";
-import { isV1Addon, isV2Addon, pathCase } from "./helpers.js";
+import { isV1Addon, isV2Addon } from "./helpers.js";
 import type {
   EmberPackageJson,
   GeneratorFile,
@@ -57,8 +57,7 @@ export async function generate({
       name: {
         camel: camelCase(entityName),
         pascal: pascalCase(entityName),
-        path: entityName,
-        registryPath: pathCase(entityName),
+        path: pathCase(entityName),
         signature: pascalCase(entityName) + "Signature",
       },
       package: packageJson,
