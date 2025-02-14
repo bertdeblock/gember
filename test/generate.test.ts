@@ -1,52 +1,47 @@
-import { join } from "node:path";
-import { it } from "vitest";
-import { resolveGeneratePath } from "../src/generate.ts";
+import { afterEach, it } from "vitest";
+import { generateComponent } from "../src/generators.ts";
 import { Package } from "./helpers.ts";
 
-it("supports v1 apps", async (ctx) => {
-  const name = "v1-app";
-  const generatePath = await resolveGeneratePath(
-    "component",
-    Package.createPath(name),
-  );
+let pkg: Package;
 
-  ctx
-    .expect(generatePath)
-    .toEqual(join("test/packages", name, "app/components"));
+afterEach(() => pkg.cleanUp());
+
+it("supports v1 apps", async (ctx) => {
+  pkg = await Package.create("v1-app");
+
+  await generateComponent("foo", pkg.path);
+
+  const content = await pkg.readFile("app/components/foo.gjs");
+
+  ctx.expect(content).toMatchSnapshot();
 });
 
 it("supports v2 apps", async (ctx) => {
-  const name = "v2-app";
-  const generatePath = await resolveGeneratePath(
-    "component",
-    Package.createPath(name),
-  );
+  pkg = await Package.create("v2-app");
 
-  ctx
-    .expect(generatePath)
-    .toEqual(join("test/packages", name, "app/components"));
+  await generateComponent("foo", pkg.path);
+
+  const content = await pkg.readFile("app/components/foo.gjs");
+
+  ctx.expect(content).toMatchSnapshot();
 });
 
 it("supports v1 addons", async (ctx) => {
-  const name = "v1-addon";
-  const generatePath = await resolveGeneratePath(
-    "component",
-    Package.createPath(name),
-  );
+  pkg = await Package.create("v1-addon");
 
-  ctx
-    .expect(generatePath)
-    .toEqual(join("test/packages", name, "addon/components"));
+  await generateComponent("foo", pkg.path);
+
+  const content = await pkg.readFile("addon/components/foo.gjs");
+
+  ctx.expect(content).toMatchSnapshot();
 });
 
 it("supports v2 addons", async (ctx) => {
-  const name = "v2-addon";
-  const generatePath = await resolveGeneratePath(
-    "component",
-    Package.createPath(name),
-  );
+  pkg = await Package.create("v2-addon");
 
-  ctx
-    .expect(generatePath)
-    .toEqual(join("test/packages", name, "src/components"));
+  await generateComponent("foo", pkg.path);
+
+  const content = await pkg.readFile("src/components/foo.gjs");
+
+  ctx.expect(content).toMatchSnapshot();
 });

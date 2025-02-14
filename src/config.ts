@@ -1,7 +1,7 @@
 import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
 import { GemberError } from "./errors.js";
-import type { GeneratorName, File } from "./types.js";
+import type { GeneratorFile, GeneratorName } from "./types.js";
 
 export type Config = {
   generators?: {
@@ -33,7 +33,7 @@ export type Config = {
        */
       documentName: GeneratorName;
       entityName: string;
-      files: File[];
+      files: GeneratorFile[];
       generatorName: GeneratorName;
     }) => Promise<void> | void;
   };
