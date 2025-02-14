@@ -15,10 +15,16 @@ export function generateComponent(
     typescript?: boolean;
   } = {},
 ): Promise<void> {
-  return generate("component", name, packagePath, {
-    inputs: { classBased, typescript },
+  return generate({
+    customTargetPath: path,
+    entityName: name,
+    generatorName: "component",
     nested,
-    path,
+    packagePath,
+    targetDir: "components",
+    templateFilename:
+      (classBased ? "class-based" : "template-only") +
+      (typescript ? ".gts" : ".gjs"),
   });
 }
 
@@ -35,9 +41,15 @@ export function generateHelper(
     typescript?: boolean;
   } = {},
 ): Promise<void> {
-  return generate("helper", name, packagePath, {
-    inputs: { classBased, typescript },
-    path,
+  return generate({
+    customTargetPath: path,
+    entityName: name,
+    generatorName: "helper",
+    packagePath,
+    targetDir: "helpers",
+    templateFilename:
+      (classBased ? "class-based" : "function-based") +
+      (typescript ? ".ts" : ".js"),
   });
 }
 
@@ -54,9 +66,15 @@ export function generateModifier(
     typescript?: boolean;
   } = {},
 ): Promise<void> {
-  return generate("modifier", name, packagePath, {
-    inputs: { classBased, typescript },
-    path,
+  return generate({
+    customTargetPath: path,
+    entityName: name,
+    generatorName: "modifier",
+    packagePath,
+    targetDir: "modifiers",
+    templateFilename:
+      (classBased ? "class-based" : "function-based") +
+      (typescript ? ".ts" : ".js"),
   });
 }
 
@@ -71,8 +89,12 @@ export function generateService(
     typescript?: boolean;
   } = {},
 ): Promise<void> {
-  return generate("service", name, packagePath, {
-    inputs: { typescript },
-    path,
+  return generate({
+    customTargetPath: path,
+    entityName: name,
+    generatorName: "service",
+    packagePath,
+    targetDir: "services",
+    templateFilename: typescript ? "service.ts" : "service.js",
   });
 }

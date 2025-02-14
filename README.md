@@ -5,8 +5,6 @@
 
 Generate components, helpers, modifiers and services in v1/v2 apps/addons.
 
-Uses [scaffdog](https://scaff.dog/) underneath.
-
 > NOTE: Only supports `.gjs` (default) and `.gts` files for components.
 
 ## Installation
@@ -162,7 +160,7 @@ export type Config = {
     // A hook that will be executed post running a generator:
     postGenerate?: (info: {
       entityName: string;
-      files: File[];
+      files: GeneratorFile[];
       generatorName: GeneratorName;
     }) => Promise<void> | void;
   };

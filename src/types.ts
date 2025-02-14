@@ -1,8 +1,6 @@
 // eslint-disable-next-line n/no-missing-import
 import type { PackageJson } from "type-fest";
 
-export type GeneratorName = "component" | "helper" | "modifier" | "service";
-
 export type EmberPackageJson = PackageJson & {
   ember?: {
     edition?: string;
@@ -12,8 +10,14 @@ export type EmberPackageJson = PackageJson & {
   };
 };
 
-export type File = {
+export type GeneratorFile = {
+  base: string;
   content: string;
+  dir: string;
+  ext: string;
   name: string;
   path: string;
+  root: string;
 };
+
+export type GeneratorName = "component" | "helper" | "modifier" | "service";

@@ -25,9 +25,13 @@ exports[`runs the \`postGenerate\` hook 1`] = `
   "entityName": "foo",
   "files": [
     {
+      "base": "foo.gjs",
       "content": "<template>{{yield}}</template>\\n",
-      "name": "foo.gjs",
-      "path": "post-generate-info/src/components/foo.gjs"
+      "dir": "test/output/post-generate-info/src/components",
+      "ext": ".gjs",
+      "name": "foo",
+      "path": "post-generate-info/src/components/foo.gjs",
+      "root": ""
     }
   ],
   "generatorName": "component"

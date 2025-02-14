@@ -1,100 +1,104 @@
-import { camelCase, kebabCase, pascalCase } from "change-case";
+import { camelCase, pascalCase } from "change-case";
 import { consola } from "consola";
 import { ensureDir, readJson } from "fs-extra/esm";
-import { writeFile } from "node:fs/promises";
+import Handlebars from "handlebars";
+import { readFile, writeFile } from "node:fs/promises";
 import { dirname, isAbsolute, join, parse, relative } from "node:path";
 import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
-import { type GenerateInputs, loadScaffdog } from "scaffdog";
 import { resolveConfig } from "./config.js";
-import { GemberError } from "./errors.js";
 import { isV1Addon, isV2Addon, pathCase } from "./helpers.js";
-import type { GeneratorName } from "./types.js";
+import type {
+  EmberPackageJson,
+  GeneratorFile,
+  GeneratorName,
+} from "./types.js";
 
-export async function generate(
-  generatorName: GeneratorName,
-  entityName: string,
-  packagePath: string,
-  {
-    inputs,
-    nested = false,
-    path,
-  }: {
-    inputs?: GenerateInputs;
-    nested?: boolean;
-    path?: string;
-  },
-): Promise<void> {
-  const scaffdog = await loadScaffdog(
-    join(dirname(fileURLToPath(import.meta.url)), "../templates"),
-  );
-
-  const templates = await scaffdog.list();
-  const template = templates.find((t) => t.name === generatorName);
-
-  if (template === undefined) {
-    throw new GemberError(`[BUG] Template \`${generatorName}\` not found.`);
-  }
-
-  const generatePath = await resolveGeneratePath(
+export async function generate({
+  customTargetPath,
+  entityName,
+  generatorName,
+  nested = false,
+  packagePath,
+  targetDir,
+  templateFilename,
+}: {
+  customTargetPath?: string;
+  entityName: string;
+  generatorName: GeneratorName;
+  nested?: boolean;
+  packagePath: string;
+  targetDir: string;
+  templateFilename: string;
+}): Promise<void> {
+  const templatePath = join(
+    dirname(fileURLToPath(import.meta.url)),
+    "../templates",
     generatorName,
-    packagePath,
-    path,
+    templateFilename,
   );
 
-  const files = await scaffdog.generate(template, generatePath, {
-    inputs: {
-      ...inputs,
+  const templateContent = await readFile(templatePath, "utf-8");
+  const template = Handlebars.compile(templateContent);
+
+  const packageJson = await readJson(join(packagePath, "package.json"));
+  const filePath = await generateFilePath(
+    packageJson,
+    packagePath,
+    targetDir,
+    entityName + (nested ? "/index" : "") + parse(templateFilename).ext,
+    customTargetPath,
+  );
+
+  const fileParsed = parse(filePath);
+  const file: GeneratorFile = {
+    base: fileParsed.base,
+    content: template({
       name: {
         camel: camelCase(entityName),
-        kebab: kebabCase(entityName),
         pascal: pascalCase(entityName),
-        path: pathCase(entityName) + (nested ? "/index" : ""),
-        raw: entityName,
+        path: entityName,
         registryPath: pathCase(entityName),
+        signature: pascalCase(entityName) + "Signature",
       },
-      signature: pascalCase(entityName) + "Signature",
-    },
-  });
+      package: packageJson,
+    }),
+    dir: fileParsed.dir,
+    ext: fileParsed.ext,
+    name: fileParsed.name,
+    path: filePath,
+    root: fileParsed.root,
+  };
 
-  const filesToGenerate = files.filter((file) => file.skip === false);
+  await ensureDir(file.dir);
+  await writeFile(file.path, file.content);
 
-  for (const file of filesToGenerate) {
-    await ensureDir(parse(file.path).dir);
-    await writeFile(file.path, file.content);
-
-    consola.success(
-      `🫚 Generated ${generatorName} \`${entityName}\` at \`${relative(cwd(), file.path)}\`.`,
-    );
-  }
+  consola.success(
+    `🫚 Generated ${generatorName} \`${entityName}\` at \`${relative(cwd(), file.path)}\`.`,
+  );
 
   const config = await resolveConfig(packagePath);
+  const postGenerate = config.hooks?.postGenerate;
 
-  await config.hooks?.postGenerate?.({
-    get documentName() {
-      consola.warn(
-        "🫚 `documentName` is deprecated. Please use `generatorName` instead.",
-      );
+  if (postGenerate) {
+    consola.success("🫚 `hooks.postGenerate`: Running...");
 
-      return generatorName;
-    },
+    await postGenerate({
+      get documentName() {
+        consola.warn(
+          "🫚 `documentName` is deprecated. Please use `generatorName` instead.",
+        );
 
-    entityName,
-    files: filesToGenerate.map((file) => ({
-      content: file.content,
-      name: file.name,
-      path: file.path,
-    })),
-    generatorName,
-  });
+        return generatorName;
+      },
+      entityName,
+      files: [file],
+      generatorName,
+    });
+
+    consola.success("🫚 `hooks.postGenerate`: Done!");
+  }
 }
-
-const TARGET_DIR: Record<GeneratorName, string> = {
-  component: "components",
-  helper: "helpers",
-  modifier: "modifiers",
-  service: "services",
-};
 
 const SRC_DIR: Record<string, string> = {
   APP: "app",
@@ -102,25 +106,26 @@ const SRC_DIR: Record<string, string> = {
   V2_ADDON: "src",
 };
 
-export async function resolveGeneratePath(
-  generatorName: GeneratorName,
+export async function generateFilePath(
+  packageJson: EmberPackageJson,
   packagePath: string,
-  path?: string,
+  targetDir: string,
+  fileBase: string,
+  customTargetPath?: string,
 ): Promise<string> {
-  if (path) {
-    if (isAbsolute(path)) {
-      return path;
+  if (customTargetPath) {
+    if (isAbsolute(customTargetPath)) {
+      return join(customTargetPath, fileBase);
     } else {
-      return join(packagePath, path);
+      return join(packagePath, customTargetPath, fileBase);
     }
   }
 
-  const packageJson = await readJson(join(packagePath, "package.json"));
   const srcDir = isV2Addon(packageJson)
     ? SRC_DIR.V2_ADDON
     : isV1Addon(packageJson)
       ? SRC_DIR.V1_ADDON
       : SRC_DIR.APP;
 
-  return join(packagePath, srcDir, TARGET_DIR[generatorName]);
+  return join(packagePath, srcDir, targetDir, fileBase);
 }
