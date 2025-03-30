@@ -1,5 +1,23 @@
 # Changelog
 
+## Release (2025-02-14)
+
+@bertdeblock/gember 0.7.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#53](https://github.com/bertdeblock/gember/pull/53) Remove use of scaffdog ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#54](https://github.com/bertdeblock/gember/pull/54) Remove custom `pathCase` helper ([@bertdeblock](https://github.com/bertdeblock))
+  * [#53](https://github.com/bertdeblock/gember/pull/53) Remove use of scaffdog ([@bertdeblock](https://github.com/bertdeblock))
+  * [#52](https://github.com/bertdeblock/gember/pull/52) Remove use of the words document, documents, ... ([@bertdeblock](https://github.com/bertdeblock))
+  * [#49](https://github.com/bertdeblock/gember/pull/49) Add test for v2 apps ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-01-10)
 
 @bertdeblock/gember 0.6.0 (minor)

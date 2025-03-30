@@ -2,8 +2,8 @@
   "solution": {
     "@bertdeblock/gember": {
       "impact": "minor",
-      "oldVersion": "0.5.0",
-      "newVersion": "0.6.0",
+      "oldVersion": "0.6.0",
+      "newVersion": "0.7.0",
       "constraints": [
         {
           "impact": "minor",
@@ -17,5 +17,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-01-10)\n\n@bertdeblock/gember 0.6.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#48](https://github.com/bertdeblock/gember/pull/48) Support generating nested colocated components ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#43](https://github.com/bertdeblock/gember/pull/43) Remove nested ternary operators in generator documents ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-02-14)\n\n@bertdeblock/gember 0.7.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#53](https://github.com/bertdeblock/gember/pull/53) Remove use of scaffdog ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#54](https://github.com/bertdeblock/gember/pull/54) Remove custom `pathCase` helper ([@bertdeblock](https://github.com/bertdeblock))\n  * [#53](https://github.com/bertdeblock/gember/pull/53) Remove use of scaffdog ([@bertdeblock](https://github.com/bertdeblock))\n  * [#52](https://github.com/bertdeblock/gember/pull/52) Remove use of the words document, documents, ... ([@bertdeblock](https://github.com/bertdeblock))\n  * [#49](https://github.com/bertdeblock/gember/pull/49) Add test for v2 apps ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
