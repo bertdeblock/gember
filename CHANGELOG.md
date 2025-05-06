@@ -1,5 +1,28 @@
 # Changelog
 
+## Release (2025-05-06)
+
+* @bertdeblock/gember 1.0.0 (major)
+
+#### :boom: Breaking Change
+* `@bertdeblock/gember`
+  * [#60](https://github.com/bertdeblock/gember/pull/60) Remove deprecated `documentName` property ([@bertdeblock](https://github.com/bertdeblock))
+  * [#57](https://github.com/bertdeblock/gember/pull/57) Update generated helper, modifier and service names ([@bertdeblock](https://github.com/bertdeblock))
+  * [#55](https://github.com/bertdeblock/gember/pull/55) Remove `helper` wrapper from `helper` generator ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#58](https://github.com/bertdeblock/gember/pull/58) Only generate quotes for the service registry when needed ([@bertdeblock](https://github.com/bertdeblock))
+  * [#57](https://github.com/bertdeblock/gember/pull/57) Update generated helper, modifier and service names ([@bertdeblock](https://github.com/bertdeblock))
+  * [#55](https://github.com/bertdeblock/gember/pull/55) Remove `helper` wrapper from `helper` generator ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#59](https://github.com/bertdeblock/gember/pull/59) Update all dependencies ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-02-14)
 
 @bertdeblock/gember 0.7.0 (minor)
