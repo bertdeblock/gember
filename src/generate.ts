@@ -90,13 +90,6 @@ export async function generate({
     consola.success("🫚 `hooks.postGenerate`: Running...");
 
     await postGenerate({
-      get documentName() {
-        consola.warn(
-          "🫚 `documentName` is deprecated. Please use `generatorName` instead.",
-        );
-
-        return generatorName;
-      },
       entityName,
       files: [file],
       generatorName,

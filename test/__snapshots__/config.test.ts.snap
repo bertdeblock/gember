@@ -21,7 +21,6 @@ export default class Foo extends Component<FooSignature> {
 
 exports[`runs the \`postGenerate\` hook 1`] = `
 "{
-  "documentName": "component",
   "entityName": "foo",
   "files": [
     {
