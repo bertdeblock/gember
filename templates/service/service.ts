@@ -4,6 +4,6 @@ export default class {{name.pascal}}Service extends Service {}
 
 declare module "@ember/service" {
   interface Registry {
-    "{{name.path}}": {{name.pascal}}Service;
+    {{{name.pathMaybeQuoted}}}: {{name.pascal}}Service;
   }
 }

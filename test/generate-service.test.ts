@@ -58,3 +58,13 @@ it("generates a nested `.js` service", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a nested `.ts` service", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await generateService("foo/bar", pkg.path, { typescript: true });
+
+  const content = await pkg.readFile("src/services/foo/bar.ts");
+
+  ctx.expect(content).toMatchSnapshot();
+});

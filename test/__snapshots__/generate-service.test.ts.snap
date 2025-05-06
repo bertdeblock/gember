@@ -21,7 +21,7 @@ export default class FooService extends Service {}
 
 declare module "@ember/service" {
   interface Registry {
-    "foo": FooService;
+    foo: FooService;
   }
 }
 "
@@ -34,7 +34,7 @@ export default class FooService extends Service {}
 
 declare module "@ember/service" {
   interface Registry {
-    "foo": FooService;
+    foo: FooService;
   }
 }
 "
@@ -44,5 +44,18 @@ exports[`generates a nested \`.js\` service 1`] = `
 "import Service from "@ember/service";
 
 export default class FooBarService extends Service {}
+"
+`;
+
+exports[`generates a nested \`.ts\` service 1`] = `
+"import Service from "@ember/service";
+
+export default class FooBarService extends Service {}
+
+declare module "@ember/service" {
+  interface Registry {
+    "foo/bar": FooBarService;
+  }
+}
 "
 `;

@@ -51,14 +51,21 @@ export async function generate({
   );
 
   const fileParsed = parse(filePath);
+  const name = {
+    camel: camelCase(entityName),
+    pascal: pascalCase(entityName),
+    path: pathCase(entityName),
+  };
+
   const file: GeneratorFile = {
     base: fileParsed.base,
     content: template({
       name: {
-        camel: camelCase(entityName),
-        pascal: pascalCase(entityName),
-        path: pathCase(entityName),
-        signature: pascalCase(entityName) + "Signature",
+        ...name,
+        pathMaybeQuoted: /(-|\/)/.test(name.path)
+          ? `"${name.path}"`
+          : name.path,
+        signature: name.pascal + "Signature",
       },
       package: packageJson,
     }),
