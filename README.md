@@ -161,7 +161,7 @@ export type Config = {
     postGenerate?: (info: {
       entityName: string;
       files: GeneratorFile[];
-      generatorName: GeneratorName;
+      generatorName: string;
     }) => Promise<void> | void;
   };
 

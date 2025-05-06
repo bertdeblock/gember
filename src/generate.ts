@@ -8,11 +8,7 @@ import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { resolveConfig } from "./config.js";
 import { isV1Addon, isV2Addon } from "./helpers.js";
-import type {
-  EmberPackageJson,
-  GeneratorFile,
-  GeneratorName,
-} from "./types.js";
+import type { EmberPackageJson, GeneratorFile } from "./types.js";
 
 export async function generate({
   customTargetPath,
@@ -25,7 +21,7 @@ export async function generate({
 }: {
   customTargetPath?: string;
   entityName: string;
-  generatorName: GeneratorName;
+  generatorName: string;
   nested?: boolean;
   packagePath: string;
   targetDir: string;

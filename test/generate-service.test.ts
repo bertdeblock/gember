@@ -1,5 +1,4 @@
 import { afterEach, it } from "vitest";
-import { generateService } from "../src/generators.ts";
 import { Package } from "./helpers.ts";
 
 let pkg: Package;
@@ -9,7 +8,7 @@ afterEach(() => pkg.cleanUp());
 it("generates a `.js` service", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateService("foo", pkg.path);
+  await pkg.gember("service", "foo");
 
   const content = await pkg.readFile("src/services/foo.js");
 
@@ -19,7 +18,7 @@ it("generates a `.js` service", async (ctx) => {
 it("generates a `.ts` service", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateService("foo", pkg.path, { typescript: true });
+  await pkg.gember("service", "foo", "--ts");
 
   const content = await pkg.readFile("src/services/foo.ts");
 
@@ -29,7 +28,7 @@ it("generates a `.ts` service", async (ctx) => {
 it("generates a `.js` service at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateService("foo", pkg.path, { path: "src/-private" });
+  await pkg.gember("service", "foo", "--path=src/-private");
 
   const content = await pkg.readFile("src/-private/foo.js");
 
@@ -39,10 +38,7 @@ it("generates a `.js` service at a custom path", async (ctx) => {
 it("generates a `.ts` service at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateService("foo", pkg.path, {
-    path: "src/-private",
-    typescript: true,
-  });
+  await pkg.gember("service", "foo", "--path=src/-private", "--ts");
 
   const content = await pkg.readFile("src/-private/foo.ts");
 
@@ -52,7 +48,7 @@ it("generates a `.ts` service at a custom path", async (ctx) => {
 it("generates a nested `.js` service", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateService("foo/bar", pkg.path);
+  await pkg.gember("service", "foo/bar");
 
   const content = await pkg.readFile("src/services/foo/bar.js");
 
@@ -62,7 +58,7 @@ it("generates a nested `.js` service", async (ctx) => {
 it("generates a nested `.ts` service", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateService("foo/bar", pkg.path, { typescript: true });
+  await pkg.gember("service", "foo/bar", "--ts");
 
   const content = await pkg.readFile("src/services/foo/bar.ts");
 

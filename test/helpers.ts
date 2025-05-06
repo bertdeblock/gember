@@ -17,6 +17,10 @@ export class Package {
     return remove(this.path);
   }
 
+  gember(...args: string[]): Promise<void> {
+    return gember(args, { cwd: this.path });
+  }
+
   readFile(path: string): Promise<string> {
     return readFile(join(this.path, path), "utf-8");
   }

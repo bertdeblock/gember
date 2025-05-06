@@ -1,12 +1,13 @@
 import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
 import { GemberError } from "./errors.js";
-import type { GeneratorFile, GeneratorName } from "./types.js";
+import type { GeneratorFile } from "./types.js";
 
 export type Config = {
   generators?: {
     component?: {
       classBased?: boolean;
+      nested?: boolean;
       path?: string;
       typescript?: boolean;
     };
@@ -27,13 +28,15 @@ export type Config = {
   };
 
   hooks?: {
+    // A hook that will be executed post running a generator:
     postGenerate?: (info: {
       entityName: string;
       files: GeneratorFile[];
-      generatorName: GeneratorName;
+      generatorName: string;
     }) => Promise<void> | void;
   };
 
+  // Use TypeScript by default for all generators:
   typescript?: boolean;
 };
 

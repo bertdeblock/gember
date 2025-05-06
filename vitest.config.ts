@@ -7,6 +7,6 @@ export default defineConfig({
     },
   },
   test: {
-    forceRerunTriggers: ["**/templates/**"],
+    forceRerunTriggers: ["**/dist/**", "**/templates/**"],
   },
 });

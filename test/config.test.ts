@@ -1,7 +1,6 @@
 import { it } from "vitest";
 import { resolveConfig } from "../src/config.js";
-import { generateComponent } from "../src/generators.ts";
-import { gember, Package } from "./helpers.js";
+import { Package } from "./helpers.js";
 
 it("supports a `gember.config.js` file", async (ctx) => {
   const pkg = await Package.create("v2-addon-config-js");
@@ -30,7 +29,7 @@ it("supports a `gember.config.mjs` file", async (ctx) => {
 it("runs the `postGenerate` hook", async (ctx) => {
   const pkg = await Package.create("v2-addon-config", "post-generate-info");
 
-  await generateComponent("foo", pkg.path);
+  await pkg.gember("component", "foo");
 
   const content = await pkg.readFile("post-generate-info.json");
 
@@ -42,7 +41,7 @@ it("runs the `postGenerate` hook", async (ctx) => {
 it("applies specific generator options", async (ctx) => {
   const pkg = await Package.create("v2-addon-config");
 
-  await gember(["component", "foo"], { cwd: pkg.path });
+  await pkg.gember("component", "foo");
 
   const content = await pkg.readFile("src/components/foo.gts");
 
