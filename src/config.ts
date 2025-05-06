@@ -28,10 +28,6 @@ export type Config = {
 
   hooks?: {
     postGenerate?: (info: {
-      /**
-       * @deprecated Please use `generatorName` instead.
-       */
-      documentName: GeneratorName;
       entityName: string;
       files: GeneratorFile[];
       generatorName: GeneratorName;
