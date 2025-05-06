@@ -3,7 +3,7 @@
 exports[`generates a class-based \`.js\` helper 1`] = `
 "import Helper from "@ember/component/helper";
 
-export default class Foo extends Helper {
+export default class foo extends Helper {
   compute(positional, named) {
     return positional;
   }
@@ -26,7 +26,7 @@ export interface FooSignature {
   Return: Return;
 }
 
-export default class Foo extends Helper<FooSignature> {
+export default class foo extends Helper<FooSignature> {
   compute(positional: Positional, named: Named): Return {
     return positional;
   }

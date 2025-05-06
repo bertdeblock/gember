@@ -3,7 +3,7 @@
 exports[`generates a class-based \`.js\` modifier 1`] = `
 "import Modifier from "ember-modifier";
 
-export default class Foo extends Modifier {
+export default class foo extends Modifier {
   modify(element, positional, named) {}
 }
 "
@@ -24,7 +24,7 @@ export interface FooSignature {
   Element: Element;
 }
 
-export default class Foo extends Modifier<FooSignature> {
+export default class foo extends Modifier<FooSignature> {
   modify(element: Element, positional: Positional, named: Named) {}
 }
 "

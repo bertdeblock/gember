@@ -12,6 +12,6 @@ export interface {{name.signature}} {
   Element: Element;
 }
 
-export default class {{name.pascal}} extends Modifier<{{name.signature}}> {
+export default class {{name.camel}} extends Modifier<{{name.signature}}> {
   modify(element: Element, positional: Positional, named: Named) {}
 }
