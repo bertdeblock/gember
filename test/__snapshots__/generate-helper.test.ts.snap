@@ -35,70 +35,36 @@ export default class Foo extends Helper<FooSignature> {
 `;
 
 exports[`generates a function-based \`.js\` helper 1`] = `
-"import { helper } from "@ember/component/helper";
-
-export default helper(function foo(positional, named) {
+"export default function foo(positional, named) {
   return positional;
-});
+}
 "
 `;
 
 exports[`generates a function-based \`.js\` helper at a custom path 1`] = `
-"import { helper } from "@ember/component/helper";
-
-export default helper(function foo(positional, named) {
+"export default function foo(positional, named) {
   return positional;
-});
+}
 "
 `;
 
 exports[`generates a function-based \`.ts\` helper 1`] = `
-"import { helper } from "@ember/component/helper";
-
-type Named = {};
-type Positional = [];
-type Return = Positional;
-
-export interface FooSignature {
-  Args: {
-    Named: Named;
-    Positional: Positional;
-  };
-  Return: Return;
-}
-
-export default helper<FooSignature>(function foo(positional, named) {
+"export default function foo(positional, named) {
   return positional;
-});
+}
 "
 `;
 
 exports[`generates a function-based \`.ts\` helper at a custom path 1`] = `
-"import { helper } from "@ember/component/helper";
-
-type Named = {};
-type Positional = [];
-type Return = Positional;
-
-export interface FooSignature {
-  Args: {
-    Named: Named;
-    Positional: Positional;
-  };
-  Return: Return;
-}
-
-export default helper<FooSignature>(function foo(positional, named) {
+"export default function foo(positional, named) {
   return positional;
-});
+}
 "
 `;
 
 exports[`generates a nested function-based \`.js\` helper 1`] = `
-"import { helper } from "@ember/component/helper";
-
-export default helper(function fooBar(positional, named) {
+"export default function fooBar(positional, named) {
   return positional;
-});
+}
 "
 `;
