@@ -5,7 +5,7 @@
 
 Generate components, helpers, modifiers and services in v1/v2 apps/addons.
 
-> NOTE: Only supports `.gjs` (default) and `.gts` files for components.
+> ℹ️ Only supports `.gjs` (default) and `.gts` files for components.
 
 ## Installation
 
@@ -46,6 +46,10 @@ yarn add -D @bertdeblock/gember
 </details>
 
 ## Usage
+
+> 💡 Run `pnpm gember --help` for all available generators.
+
+> 💡 Run `pnpm gember <generator-name> --help` for all available generator options.
 
 <details open>
   <summary>Generating components</summary>
@@ -140,8 +144,16 @@ export type Config = {
       path?: string;
       typescript?: boolean;
     };
+    "component-test"?: {
+      path?: string;
+      typescript?: boolean;
+    };
     helper?: {
       classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    "helper-test"?: {
       path?: string;
       typescript?: boolean;
     };
@@ -150,7 +162,15 @@ export type Config = {
       path?: string;
       typescript?: boolean;
     };
+    "modifier-test"?: {
+      path?: string;
+      typescript?: boolean;
+    };
     service?: {
+      path?: string;
+      typescript?: boolean;
+    };
+    "service-test"?: {
       path?: string;
       typescript?: boolean;
     };

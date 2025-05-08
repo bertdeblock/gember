@@ -1,5 +1,5 @@
 import { execa } from "execa";
-import { remove } from "fs-extra";
+import { remove } from "fs-extra/esm";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,12 +13,12 @@ export class Package {
     this.path = path;
   }
 
-  cleanUp(): Promise<void> {
-    return remove(this.path);
+  async cleanUp(): Promise<void> {
+    await remove(this.path);
   }
 
-  gember(...args: string[]): Promise<void> {
-    return gember(args, { cwd: this.path });
+  async gember(...args: string[]): Promise<void> {
+    await gember(args, { cwd: this.path });
   }
 
   readFile(path: string): Promise<string> {
@@ -26,7 +26,7 @@ export class Package {
   }
 
   static async create(name: string, path: string = uuidv4()): Promise<Package> {
-    const pkg = new this(join("test/output", path));
+    const pkg = new this(join("test", "output", path));
 
     await pkg.cleanUp();
     await recursiveCopy(this.createPath(name), pkg.path);
@@ -35,7 +35,7 @@ export class Package {
   }
 
   static createPath(name: string): string {
-    return join("test/packages", name);
+    return join("test", "packages", name);
   }
 }
 
@@ -44,7 +44,7 @@ export async function gember(
   { cwd }: { cwd: string },
 ): Promise<void> {
   await execa(
-    join(dirname(fileURLToPath(import.meta.url)), "../bin/gember.js"),
+    join(dirname(fileURLToPath(import.meta.url)), "..", "bin", "gember.js"),
     args,
     { cwd },
   );

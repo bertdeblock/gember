@@ -1,6 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { EOL } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, join, sep } from "node:path";
 import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 
@@ -24,8 +24,9 @@ export default {
         file.content = file.content.replaceAll(EOL, "\n");
 
         // Because the absolute path is different on each machine:
-        file.dir = file.dir.replace(cwd(), "");
-        file.path = file.path.replace(cwd(), "");
+        file.dir = file.dir.replace(cwd(), "").split(sep).join("/");
+        file.path = file.path.replace(cwd(), "").split(sep).join("/");
+        file.root = "/";
       }
 
       await writeFile(file, JSON.stringify(info, null, 2));

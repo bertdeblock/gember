@@ -1,0 +1,113 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.gjs\` component-test 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import Foo from 'v2-addon/components/foo';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Component | Foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><Foo /></template>);
+
+    assert.dom().hasText('');
+
+    await render(
+      <template>
+        <Foo>
+          template block text
+        </Foo>
+      </template>
+    );
+
+    assert.dom().hasText('template block text');
+  });
+});
+"
+`;
+
+exports[`generates a \`.gjs\` component-test at a custom path 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import Foo from 'v2-addon/components/foo';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Component | Foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><Foo /></template>);
+
+    assert.dom().hasText('');
+
+    await render(
+      <template>
+        <Foo>
+          template block text
+        </Foo>
+      </template>
+    );
+
+    assert.dom().hasText('template block text');
+  });
+});
+"
+`;
+
+exports[`generates a \`.gts\` component-test 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import Foo from 'v2-addon/components/foo';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Component | Foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><Foo /></template>);
+
+    assert.dom().hasText('');
+
+    await render(
+      <template>
+        <Foo>
+          template block text
+        </Foo>
+      </template>
+    );
+
+    assert.dom().hasText('template block text');
+  });
+});
+"
+`;
+
+exports[`generates a \`.gts\` component-test at a custom path 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import Foo from 'v2-addon/components/foo';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Component | Foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><Foo /></template>);
+
+    assert.dom().hasText('');
+
+    await render(
+      <template>
+        <Foo>
+          template block text
+        </Foo>
+      </template>
+    );
+
+    assert.dom().hasText('template block text');
+  });
+});
+"
+`;

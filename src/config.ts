@@ -11,8 +11,16 @@ export type Config = {
       path?: string;
       typescript?: boolean;
     };
+    "component-test"?: {
+      path?: string;
+      typescript?: boolean;
+    };
     helper?: {
       classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    "helper-test"?: {
       path?: string;
       typescript?: boolean;
     };
@@ -21,7 +29,15 @@ export type Config = {
       path?: string;
       typescript?: boolean;
     };
+    "modifier-test"?: {
+      path?: string;
+      typescript?: boolean;
+    };
     service?: {
+      path?: string;
+      typescript?: boolean;
+    };
+    "service-test"?: {
       path?: string;
       typescript?: boolean;
     };
@@ -40,7 +56,7 @@ export type Config = {
   typescript?: boolean;
 };
 
-const CONFIG_FILES = [
+const CONFIG_FILES: string[] = [
   "gember.config.js",
   "gember.config.cjs",
   "gember.config.mjs",
