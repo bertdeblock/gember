@@ -1,199 +1,55 @@
-import { cwd } from "node:process";
-import { hideBin } from "yargs/helpers";
-import yargs from "yargs/yargs";
-import { resolveConfig } from "./config.js";
-import { logGemberErrors } from "./errors.js";
 import {
-  generateComponent,
-  generateHelper,
-  generateModifier,
-  generateService,
-} from "./generators.js";
-import type { GeneratorName } from "./types.js";
+  defineCommand,
+  runMain,
+  type ArgsDef,
+  type SubCommandsDef,
+} from "citty";
+import { readJsonSync } from "fs-extra/esm";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+// eslint-disable-next-line n/no-missing-import
+import type { PackageJson } from "type-fest";
+import { logGemberErrors } from "./errors.js";
+import { generators } from "./generators.js";
 
-yargs(hideBin(process.argv))
-  .command({
-    command: "component [name]",
-    describe: "Generate a new component",
+const { description, name, version }: PackageJson = readJsonSync(
+  join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"),
+);
 
-    builder(yargs) {
-      return yargs
-        .positional("name", {
-          demandOption: true,
-          description: "The component's name",
-          type: "string",
-        })
-        .option("class-based", {
-          alias: ["class"],
-          description: "Generate a class-based component",
-          type: "boolean",
-        })
-        .option("nested", {
-          description:
-            "Generate a nested colocated component, e.g. `foo/bar/index.gjs`",
-          type: "boolean",
-        })
-        .option("path", {
-          description: "Generate a component at a custom path",
-          type: "string",
-        })
-        .option("typescript", {
-          alias: ["ts"],
-          description: "Generate a `.gts` component",
-          type: "boolean",
+const main = defineCommand({
+  meta: {
+    description,
+    name,
+    version,
+  },
+
+  subCommands: generators.reduce((subCommands: SubCommandsDef, generator) => {
+    subCommands[generator.name] = {
+      args: generator.args.reduce((args: ArgsDef, arg) => {
+        args[arg.name] = {
+          alias: arg.alias,
+          description: arg.description,
+          required: arg.required,
+          type: arg.type,
+        };
+
+        return args;
+      }, {}),
+
+      meta: {
+        description: generator.description,
+        name: generator.name,
+      },
+
+      run: (context): void => {
+        logGemberErrors(async () => {
+          await generator.run(context.args);
         });
-    },
-    handler(options) {
-      logGemberErrors(async () =>
-        generateComponent(
-          options.name,
-          cwd(),
-          await applyGemberConfig("component", {
-            classBased: options.classBased,
-            nested: options.nested,
-            path: options.path,
-            typescript: options.typescript,
-          }),
-        ),
-      );
-    },
-  })
-  .command({
-    command: "helper [name]",
-    describe: "Generate a new helper",
+      },
+    };
 
-    builder(yargs) {
-      return yargs
-        .positional("name", {
-          demandOption: true,
-          description: "The helper's name",
-          type: "string",
-        })
-        .option("class-based", {
-          alias: ["class"],
-          description: "Generate a class-based helper",
-          type: "boolean",
-        })
-        .option("path", {
-          description: "Generate a helper at a custom path",
-          type: "string",
-        })
-        .option("typescript", {
-          alias: ["ts"],
-          description: "Generate a `.ts` helper",
-          type: "boolean",
-        });
-    },
-    handler(options) {
-      logGemberErrors(async () =>
-        generateHelper(
-          options.name,
-          cwd(),
-          await applyGemberConfig("helper", {
-            classBased: options.classBased,
-            path: options.path,
-            typescript: options.typescript,
-          }),
-        ),
-      );
-    },
-  })
-  .command({
-    command: "modifier [name]",
-    describe: "Generate a new modifier",
+    return subCommands;
+  }, {}),
+});
 
-    builder(yargs) {
-      return yargs
-        .positional("name", {
-          demandOption: true,
-          description: "The modifier's name",
-          type: "string",
-        })
-        .option("class-based", {
-          alias: ["class"],
-          description: "Generate a class-based modifier",
-          type: "boolean",
-        })
-        .option("path", {
-          description: "Generate a modifier at a custom path",
-          type: "string",
-        })
-        .option("typescript", {
-          alias: ["ts"],
-          description: "Generate a `.ts` modifier",
-          type: "boolean",
-        });
-    },
-    handler(options) {
-      logGemberErrors(async () =>
-        generateModifier(
-          options.name,
-          cwd(),
-          await applyGemberConfig("modifier", {
-            classBased: options.classBased,
-            path: options.path,
-            typescript: options.typescript,
-          }),
-        ),
-      );
-    },
-  })
-  .command({
-    command: "service [name]",
-    describe: "Generate a new service",
-
-    builder(yargs) {
-      return yargs
-        .positional("name", {
-          demandOption: true,
-          description: "The service's name",
-          type: "string",
-        })
-        .option("path", {
-          description: "Generate a service at a custom path",
-          type: "string",
-        })
-        .option("typescript", {
-          alias: ["ts"],
-          description: "Generate a `.ts` service",
-          type: "boolean",
-        });
-    },
-    handler(options) {
-      logGemberErrors(async () =>
-        generateService(
-          options.name,
-          cwd(),
-          await applyGemberConfig("service", {
-            path: options.path,
-            typescript: options.typescript,
-          }),
-        ),
-      );
-    },
-  })
-  .demandCommand()
-  .epilogue("🫚 More info at https://github.com/bertdeblock/gember#usage")
-  .strict()
-  .parse();
-
-type Options = Record<string, unknown>;
-
-async function applyGemberConfig(
-  generatorName: GeneratorName,
-  options: Options,
-): Promise<Options> {
-  const config = await resolveConfig(cwd());
-  const generatorConfig: Options = config.generators?.[generatorName] ?? {};
-  const result: Options = { typescript: config.typescript };
-
-  for (const key in options) {
-    if (options[key] !== undefined) {
-      result[key] = options[key];
-    } else if (generatorConfig[key] !== undefined) {
-      result[key] = generatorConfig[key];
-    }
-  }
-
-  return result;
-}
+runMain(main);

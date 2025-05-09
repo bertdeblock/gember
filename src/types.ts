@@ -19,5 +19,3 @@ export type GeneratorFile = {
   path: string;
   root: string;
 };
-
-export type GeneratorName = "component" | "helper" | "modifier" | "service";

@@ -1,5 +1,4 @@
 import { afterEach, it } from "vitest";
-import { generateModifier } from "../src/generators.ts";
 import { Package } from "./helpers.ts";
 
 let pkg: Package;
@@ -9,7 +8,7 @@ afterEach(() => pkg.cleanUp());
 it("generates a function-based `.js` modifier", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateModifier("foo", pkg.path);
+  await pkg.gember("modifier", "foo");
 
   const content = await pkg.readFile("src/modifiers/foo.js");
 
@@ -19,7 +18,7 @@ it("generates a function-based `.js` modifier", async (ctx) => {
 it("generates a class-based `.js` modifier", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateModifier("foo", pkg.path, { classBased: true });
+  await pkg.gember("modifier", "foo", "--class");
 
   const content = await pkg.readFile("src/modifiers/foo.js");
 
@@ -29,7 +28,7 @@ it("generates a class-based `.js` modifier", async (ctx) => {
 it("generates a function-based `.js` modifier at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateModifier("foo", pkg.path, { path: "src/-private" });
+  await pkg.gember("modifier", "foo", "--path=src/-private");
 
   const content = await pkg.readFile("src/-private/foo.js");
 
@@ -39,7 +38,7 @@ it("generates a function-based `.js` modifier at a custom path", async (ctx) => 
 it("generates a function-based `.ts` modifier", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateModifier("foo", pkg.path, { typescript: true });
+  await pkg.gember("modifier", "foo", "--ts");
 
   const content = await pkg.readFile("src/modifiers/foo.ts");
 
@@ -49,10 +48,7 @@ it("generates a function-based `.ts` modifier", async (ctx) => {
 it("generates a class-based `.ts` modifier", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateModifier("foo", pkg.path, {
-    classBased: true,
-    typescript: true,
-  });
+  await pkg.gember("modifier", "foo", "--class", "--ts");
 
   const content = await pkg.readFile("src/modifiers/foo.ts");
 
@@ -62,10 +58,7 @@ it("generates a class-based `.ts` modifier", async (ctx) => {
 it("generates a function-based `.ts` modifier at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateModifier("foo", pkg.path, {
-    path: "src/-private",
-    typescript: true,
-  });
+  await pkg.gember("modifier", "foo", "--path=src/-private", "--ts");
 
   const content = await pkg.readFile("src/-private/foo.ts");
 
@@ -75,7 +68,7 @@ it("generates a function-based `.ts` modifier at a custom path", async (ctx) => 
 it("generates a nested function-based `.js` modifier", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateModifier("foo/bar", pkg.path);
+  await pkg.gember("modifier", "foo/bar");
 
   const content = await pkg.readFile("src/modifiers/foo/bar.js");
 

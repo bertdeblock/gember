@@ -1,12 +1,17 @@
 import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
 import { GemberError } from "./errors.js";
-import type { GeneratorFile, GeneratorName } from "./types.js";
+import type { GeneratorFile } from "./types.js";
 
 export type Config = {
   generators?: {
     component?: {
       classBased?: boolean;
+      nested?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    "component-test"?: {
       path?: string;
       typescript?: boolean;
     };
@@ -15,8 +20,16 @@ export type Config = {
       path?: string;
       typescript?: boolean;
     };
+    "helper-test"?: {
+      path?: string;
+      typescript?: boolean;
+    };
     modifier?: {
       classBased?: boolean;
+      path?: string;
+      typescript?: boolean;
+    };
+    "modifier-test"?: {
       path?: string;
       typescript?: boolean;
     };
@@ -24,20 +37,26 @@ export type Config = {
       path?: string;
       typescript?: boolean;
     };
+    "service-test"?: {
+      path?: string;
+      typescript?: boolean;
+    };
   };
 
   hooks?: {
+    // A hook that will be executed post running a generator:
     postGenerate?: (info: {
       entityName: string;
       files: GeneratorFile[];
-      generatorName: GeneratorName;
+      generatorName: string;
     }) => Promise<void> | void;
   };
 
+  // Use TypeScript by default for all generators:
   typescript?: boolean;
 };
 
-const CONFIG_FILES = [
+const CONFIG_FILES: string[] = [
   "gember.config.js",
   "gember.config.cjs",
   "gember.config.mjs",

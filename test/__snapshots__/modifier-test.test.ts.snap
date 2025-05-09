@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.gjs\` modifier-test 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Modifier | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><div {{foo\\}}></div></template>);
+
+    assert.ok(true);
+  });
+});
+"
+`;
+
+exports[`generates a \`.gjs\` modifier-test at a custom path 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Modifier | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><div {{foo\\}}></div></template>);
+
+    assert.ok(true);
+  });
+});
+"
+`;
+
+exports[`generates a \`.gts\` modifier-test 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Modifier | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><div {{foo\\}}></div></template>);
+
+    assert.ok(true);
+  });
+});
+"
+`;
+
+exports[`generates a \`.gts\` modifier-test at a custom path 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Modifier | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    await render(<template><div {{foo\\}}></div></template>);
+
+    assert.ok(true);
+  });
+});
+"
+`;

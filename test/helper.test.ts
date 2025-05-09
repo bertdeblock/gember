@@ -1,5 +1,4 @@
 import { afterEach, it } from "vitest";
-import { generateHelper } from "../src/generators.ts";
 import { Package } from "./helpers.ts";
 
 let pkg: Package;
@@ -9,7 +8,7 @@ afterEach(() => pkg.cleanUp());
 it("generates a function-based `.js` helper", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", pkg.path);
+  await pkg.gember("helper", "foo");
 
   const content = await pkg.readFile("src/helpers/foo.js");
 
@@ -19,7 +18,7 @@ it("generates a function-based `.js` helper", async (ctx) => {
 it("generates a class-based `.js` helper", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", pkg.path, { classBased: true });
+  await pkg.gember("helper", "foo", "--class");
 
   const content = await pkg.readFile("src/helpers/foo.js");
 
@@ -29,7 +28,7 @@ it("generates a class-based `.js` helper", async (ctx) => {
 it("generates a function-based `.js` helper at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", pkg.path, { path: "src/-private" });
+  await pkg.gember("helper", "foo", "--path=src/-private");
 
   const content = await pkg.readFile("src/-private/foo.js");
 
@@ -39,7 +38,7 @@ it("generates a function-based `.js` helper at a custom path", async (ctx) => {
 it("generates a function-based `.ts` helper", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", pkg.path, { typescript: true });
+  await pkg.gember("helper", "foo", "--ts");
 
   const content = await pkg.readFile("src/helpers/foo.ts");
 
@@ -49,7 +48,7 @@ it("generates a function-based `.ts` helper", async (ctx) => {
 it("generates a class-based `.ts` helper", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", pkg.path, { classBased: true, typescript: true });
+  await pkg.gember("helper", "foo", "--class", "--ts");
 
   const content = await pkg.readFile("src/helpers/foo.ts");
 
@@ -59,10 +58,7 @@ it("generates a class-based `.ts` helper", async (ctx) => {
 it("generates a function-based `.ts` helper at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo", pkg.path, {
-    path: "src/-private",
-    typescript: true,
-  });
+  await pkg.gember("helper", "foo", "--path=src/-private", "--ts");
 
   const content = await pkg.readFile("src/-private/foo.ts");
 
@@ -72,7 +68,7 @@ it("generates a function-based `.ts` helper at a custom path", async (ctx) => {
 it("generates a nested function-based `.js` helper", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await generateHelper("foo/bar", pkg.path);
+  await pkg.gember("helper", "foo/bar");
 
   const content = await pkg.readFile("src/helpers/foo/bar.js");
 
