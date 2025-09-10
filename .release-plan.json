@@ -1,10 +1,15 @@
 {
   "solution": {
     "@bertdeblock/gember": {
-      "impact": "minor",
-      "oldVersion": "0.6.0",
-      "newVersion": "0.7.0",
+      "impact": "major",
+      "oldVersion": "0.7.0",
+      "newVersion": "1.0.0",
+      "tagName": "latest",
       "constraints": [
+        {
+          "impact": "major",
+          "reason": "Appears in changelog section :boom: Breaking Change"
+        },
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
@@ -17,5 +22,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-02-14)\n\n@bertdeblock/gember 0.7.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#53](https://github.com/bertdeblock/gember/pull/53) Remove use of scaffdog ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#54](https://github.com/bertdeblock/gember/pull/54) Remove custom `pathCase` helper ([@bertdeblock](https://github.com/bertdeblock))\n  * [#53](https://github.com/bertdeblock/gember/pull/53) Remove use of scaffdog ([@bertdeblock](https://github.com/bertdeblock))\n  * [#52](https://github.com/bertdeblock/gember/pull/52) Remove use of the words document, documents, ... ([@bertdeblock](https://github.com/bertdeblock))\n  * [#49](https://github.com/bertdeblock/gember/pull/49) Add test for v2 apps ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-09-10)\n\n* @bertdeblock/gember 1.0.0 (major)\n\n#### :boom: Breaking Change\n* `@bertdeblock/gember`\n  * [#60](https://github.com/bertdeblock/gember/pull/60) Remove deprecated `documentName` property ([@bertdeblock](https://github.com/bertdeblock))\n  * [#57](https://github.com/bertdeblock/gember/pull/57) Update generated helper, modifier and service names ([@bertdeblock](https://github.com/bertdeblock))\n  * [#55](https://github.com/bertdeblock/gember/pull/55) Remove `helper` wrapper from `helper` generator ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#61](https://github.com/bertdeblock/gember/pull/61) Add `component-test`, `helper-test`, `modifier-test` and `service-test` generators ([@bertdeblock](https://github.com/bertdeblock))\n  * [#58](https://github.com/bertdeblock/gember/pull/58) Only generate quotes for the service registry when needed ([@bertdeblock](https://github.com/bertdeblock))\n  * [#57](https://github.com/bertdeblock/gember/pull/57) Update generated helper, modifier and service names ([@bertdeblock](https://github.com/bertdeblock))\n  * [#55](https://github.com/bertdeblock/gember/pull/55) Remove `helper` wrapper from `helper` generator ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#59](https://github.com/bertdeblock/gember/pull/59) Update all dependencies ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
