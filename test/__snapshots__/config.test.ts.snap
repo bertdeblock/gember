@@ -24,13 +24,13 @@ exports[`runs the \`postGenerate\` hook 1`] = `
   "entityName": "foo",
   "files": [
     {
-      "base": "foo.gjs",
-      "content": "<template>{{yield}}</template>\\n",
-      "dir": "test/output/post-generate-info/src/components",
-      "ext": ".gjs",
+      "base": "foo.gts",
+      "content": "import Component from \\"@glimmer/component\\";\\n\\nexport interface FooSignature {\\n  Args: {};\\n  Blocks: {\\n    default: [];\\n  };\\n  Element: null;\\n}\\n\\nexport default class Foo extends Component<FooSignature> {\\n  <template>\\n    {{yield}}\\n  </template>\\n}\\n",
+      "dir": "/src/components",
+      "ext": ".gts",
       "name": "foo",
-      "path": "post-generate-info/src/components/foo.gjs",
-      "root": ""
+      "path": "/src/components/foo.gts",
+      "root": "/"
     }
   ],
   "generatorName": "component"

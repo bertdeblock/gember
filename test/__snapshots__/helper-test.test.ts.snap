@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.gjs\` helper-test 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Helper | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    const inputValue = '1234';
+
+    await render(<template>{{foo inputValue}}</template>);
+
+    assert.dom().hasText('1234');
+  });
+});
+"
+`;
+
+exports[`generates a \`.gjs\` helper-test at a custom path 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Helper | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    const inputValue = '1234';
+
+    await render(<template>{{foo inputValue}}</template>);
+
+    assert.dom().hasText('1234');
+  });
+});
+"
+`;
+
+exports[`generates a \`.gts\` helper-test 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Helper | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    const inputValue = '1234';
+
+    await render(<template>{{foo inputValue}}</template>);
+
+    assert.dom().hasText('1234');
+  });
+});
+"
+`;
+
+exports[`generates a \`.gts\` helper-test at a custom path 1`] = `
+"import { render } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'v2-addon/tests/helpers';
+
+module('Integration | Helper | foo', function (hooks) {
+  setupRenderingTest(hooks);
+
+  test('it renders', async function (assert) {
+    const inputValue = '1234';
+
+    await render(<template>{{foo inputValue}}</template>);
+
+    assert.dom().hasText('1234');
+  });
+});
+"
+`;
