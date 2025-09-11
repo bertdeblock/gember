@@ -1,6 +1,6 @@
 import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import { setupRenderingTest } from '{{package.name}}/tests/helpers';
+import { setupRenderingTest } from '{{testHelpersImportPath}}';
 
 module('Integration | Helper | {{name.camel}}', function (hooks) {
   setupRenderingTest(hooks);

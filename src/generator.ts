@@ -1,10 +1,10 @@
 import { camelCase, pascalCase, pathCase } from "change-case";
 import consola from "consola";
-import { ensureDir, readJson } from "fs-extra/esm";
+import { ensureDir, pathExists, readJson } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
-import { cwd, stdout } from "node:process";
+import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { resolveConfig, type Config } from "./config.js";
 import { FileReference } from "./file-reference.js";
@@ -117,10 +117,17 @@ export function defineGenerator({
         signature: entityNameCases.pascal + "Signature",
       },
       package: packageJson,
+      testHelpersImportPath:
+        (await pathExists(join(packagePath, "tests", "helpers.js"))) ||
+        (await pathExists(join(packagePath, "tests", "helpers.ts")))
+          ? `${packageJson.name}/tests/helpers`
+          : "ember-qunit",
     });
 
     if (resolvedArgs.log) {
-      const border = "─".repeat(stdout.columns ? stdout.columns / 2 : 120);
+      const border = "─".repeat(
+        Math.max(...templateCompiled.split("\n").map((line) => line.length)),
+      );
 
       consola.log(border);
       consola.log("");

@@ -25,6 +25,10 @@ export class Package {
     return readFile(join(this.path, path), "utf-8");
   }
 
+  async remove(path: string): Promise<void> {
+    await remove(join(this.path, path));
+  }
+
   static async create(name: string, path: string = uuidv4()): Promise<Package> {
     const pkg = new this(join("test", "output", path));
 
