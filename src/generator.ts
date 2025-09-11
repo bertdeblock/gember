@@ -130,6 +130,8 @@ export function defineGenerator({
       );
 
       consola.log(border);
+      consola.log(targetFile.path());
+      consola.log(border);
       consola.log("");
       consola.log(templateCompiled);
       consola.log(border);
@@ -177,13 +179,17 @@ export function defineGenerator({
 }
 
 export function defineTestGenerator(
-  options: GeneratorOptions & { testsDir: string },
+  options: GeneratorOptions & { testsDir: string; testsSubDir?: string },
 ): Generator {
   return defineGenerator({
     ...options,
     modifyTargetFile: (targetFile, args) => {
       if (args.path === undefined) {
-        targetFile.subDir = join("tests", options.testsDir, options.name + "s");
+        targetFile.subDir = join(
+          "tests",
+          options.testsDir,
+          options.testsSubDir ?? options.name + "s",
+        );
       }
 
       targetFile.name += "-test";
