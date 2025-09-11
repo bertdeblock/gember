@@ -1,7 +1,7 @@
 import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import {{name.pascal}} from '{{package.name}}/components/{{name.path}}';
-import { setupRenderingTest } from '{{package.name}}/tests/helpers';
+import { setupRenderingTest } from '{{testHelpersImportPath}}';
 
 module('Integration | Component | {{name.pascal}}', function (hooks) {
   setupRenderingTest(hooks);

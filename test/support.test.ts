@@ -38,9 +38,12 @@ it("supports v1 addons", async (ctx) => {
 it("supports v2 addons", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
+  await pkg.remove("tests/helpers.ts");
   await pkg.gember("component", "foo");
+  await pkg.gember("component-test", "foo");
 
-  const content = await pkg.readFile("src/components/foo.gjs");
-
-  ctx.expect(content).toMatchSnapshot();
+  ctx.expect(await pkg.readFile("src/components/foo.gjs")).toMatchSnapshot();
+  ctx
+    .expect(await pkg.readFile("tests/integration/components/foo-test.gjs"))
+    .toMatchSnapshot();
 });

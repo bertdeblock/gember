@@ -1,5 +1,5 @@
 import { module, test } from 'qunit';
-import { setupTest } from '{{package.name}}/tests/helpers';
+import { setupTest } from '{{testHelpersImportPath}}';
 
 module('Unit | Service | {{name.pascal}}', function (hooks) {
   setupTest(hooks);
