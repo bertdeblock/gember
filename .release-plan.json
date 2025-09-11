@@ -1,26 +1,22 @@
 {
   "solution": {
     "@bertdeblock/gember": {
-      "impact": "major",
-      "oldVersion": "0.7.0",
-      "newVersion": "1.0.0",
+      "impact": "minor",
+      "oldVersion": "1.0.0",
+      "newVersion": "1.1.0",
       "tagName": "latest",
       "constraints": [
-        {
-          "impact": "major",
-          "reason": "Appears in changelog section :boom: Breaking Change"
-        },
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
         },
         {
           "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
+          "reason": "Appears in changelog section :bug: Bug Fix"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-09-10)\n\n* @bertdeblock/gember 1.0.0 (major)\n\n#### :boom: Breaking Change\n* `@bertdeblock/gember`\n  * [#60](https://github.com/bertdeblock/gember/pull/60) Remove deprecated `documentName` property ([@bertdeblock](https://github.com/bertdeblock))\n  * [#57](https://github.com/bertdeblock/gember/pull/57) Update generated helper, modifier and service names ([@bertdeblock](https://github.com/bertdeblock))\n  * [#55](https://github.com/bertdeblock/gember/pull/55) Remove `helper` wrapper from `helper` generator ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#61](https://github.com/bertdeblock/gember/pull/61) Add `component-test`, `helper-test`, `modifier-test` and `service-test` generators ([@bertdeblock](https://github.com/bertdeblock))\n  * [#58](https://github.com/bertdeblock/gember/pull/58) Only generate quotes for the service registry when needed ([@bertdeblock](https://github.com/bertdeblock))\n  * [#57](https://github.com/bertdeblock/gember/pull/57) Update generated helper, modifier and service names ([@bertdeblock](https://github.com/bertdeblock))\n  * [#55](https://github.com/bertdeblock/gember/pull/55) Remove `helper` wrapper from `helper` generator ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#59](https://github.com/bertdeblock/gember/pull/59) Update all dependencies ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-09-11)\n\n* @bertdeblock/gember 1.1.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#66](https://github.com/bertdeblock/gember/pull/66) Support copying generated files to the clipboard ([@bertdeblock](https://github.com/bertdeblock))\n  * [#65](https://github.com/bertdeblock/gember/pull/65) Add an `acceptance-test` generator ([@bertdeblock](https://github.com/bertdeblock))\n  * [#64](https://github.com/bertdeblock/gember/pull/64) Test against Node v24 ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :bug: Bug Fix\n* `@bertdeblock/gember`\n  * [#62](https://github.com/bertdeblock/gember/pull/62) Fix test helpers import path ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }

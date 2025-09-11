@@ -1,5 +1,22 @@
 # Changelog
 
+## Release (2025-09-11)
+
+* @bertdeblock/gember 1.1.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#66](https://github.com/bertdeblock/gember/pull/66) Support copying generated files to the clipboard ([@bertdeblock](https://github.com/bertdeblock))
+  * [#65](https://github.com/bertdeblock/gember/pull/65) Add an `acceptance-test` generator ([@bertdeblock](https://github.com/bertdeblock))
+  * [#64](https://github.com/bertdeblock/gember/pull/64) Test against Node v24 ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :bug: Bug Fix
+* `@bertdeblock/gember`
+  * [#62](https://github.com/bertdeblock/gember/pull/62) Fix test helpers import path ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-09-10)
 
 * @bertdeblock/gember 1.0.0 (major)
