@@ -1,3 +1,4 @@
+import { Clipboard } from "@napi-rs/clipboard";
 import { camelCase, pascalCase, pathCase } from "change-case";
 import consola from "consola";
 import { ensureDir, pathExists, readJson } from "fs-extra/esm";
@@ -52,7 +53,7 @@ export function defineGenerator({
   name,
 }: GeneratorOptions): Generator {
   const generatorName = name;
-  const generatorArgs = [log(), ...args]
+  const generatorArgs = [copy(), log(), ...args]
     .map((argFactory) => argFactory(generatorName))
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -124,7 +125,15 @@ export function defineGenerator({
           : "ember-qunit",
     });
 
-    if (resolvedArgs.log) {
+    if (resolvedArgs.copy) {
+      const clipboard = new Clipboard();
+
+      clipboard.setText(templateCompiled);
+
+      consola.success(
+        `🫚 Generated and copied ${generatorName} \`${entityName}\` to the clipboard.`,
+      );
+    } else if (resolvedArgs.log) {
       const border = "─".repeat(
         Math.max(...templateCompiled.split("\n").map((line) => line.length)),
       );
@@ -211,6 +220,14 @@ export function classBased({
       ].join(".");
     },
     name: "classBased",
+    type: "boolean",
+  });
+}
+
+export function copy(): GeneratorArgFactory {
+  return (generatorName) => ({
+    description: `Copy the generated ${generatorName} to the clipboard, instead of writing it to disk`,
+    name: "copy",
     type: "boolean",
   });
 }

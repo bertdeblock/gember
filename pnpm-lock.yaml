@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@napi-rs/clipboard':
+        specifier: ^1.1.3
+        version: 1.1.3
       change-case:
         specifier: ^5.4.4
         version: 5.4.4
@@ -348,6 +351,64 @@ packages:
   '@manypkg/tools@1.1.2':
     resolution: {integrity: sha512-3lBouSuF7CqlseLB+FKES0K4FQ02JrbEoRtJhxnsyB1s5v4AP03gsoohN8jp7DcOImhaR9scYdztq3/sLfk/qQ==}
     engines: {node: '>=14.18.0'}
+
+  '@napi-rs/clipboard-darwin-arm64@1.1.3':
+    resolution: {integrity: sha512-VxXWp573Hpy4fYZqk4K1CxDBUdB8PsycqpfMLWMgDo2G1q1O/PXD5YjFv64ivyXnJ7TMBJmP688pKQajuIce2g==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@napi-rs/clipboard-linux-arm-gnueabihf@1.1.3':
+    resolution: {integrity: sha512-Of1DPeoF+qBx2ilbubGsmsaO0N8/pyQOJxepi9PieDCnOAr3+NMGq6EF4/YBWdDm6fXit6FlN6x3fNXkarnR3g==}
+    engines: {node: '>= 10'}
+    cpu: [arm]
+    os: [linux]
+
+  '@napi-rs/clipboard-linux-arm64-gnu@1.1.3':
+    resolution: {integrity: sha512-s8B/THYZmjkQCKcuWqEKn6hzKGVy4M1b4zY1HPSDO41iJ8CMnkuORrlIs2/cS6DgtR/6ayGnUptAx8Rwsch9ag==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@napi-rs/clipboard-linux-arm64-musl@1.1.3':
+    resolution: {integrity: sha512-Rp19ltQ7HMAvibu5/q5VE9WSMEumCUfX0FsphY6dY1eHxbV9eJiqP5vVW/SEzfZt8zYybT4sRHklSA5BUIFlsg==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [linux]
+
+  '@napi-rs/clipboard-linux-x64-gnu@1.1.3':
+    resolution: {integrity: sha512-YBPbpv90cGXFaHwgJjmiDO4X58Se3big99IX6/AbnI/7kV2nOaDj/3oWajK4/02o+L7WUrKiKwy4a+3rnDUMtA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@napi-rs/clipboard-linux-x64-musl@1.1.3':
+    resolution: {integrity: sha512-lLPe5/qi+ZGvKdb2UfZEIP/JMxmq+2XP0OM+Puh714TsF4+Lo41MY7oF05tegyX5FyPpwpDN1JxKT3KpMAMrwA==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [linux]
+
+  '@napi-rs/clipboard-win32-arm64-msvc@1.1.3':
+    resolution: {integrity: sha512-9mxWO7xO0pasSJIyA8yad6+m/n5TN8/CUmo0Q0RaMS+dg/uLy+kI1aFefco6nawlsa4C1LCQhEl7qPsX+quseA==}
+    engines: {node: '>= 10'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@napi-rs/clipboard-win32-ia32-msvc@1.1.3':
+    resolution: {integrity: sha512-or6krNvL9xna/8ehOmGUGMcH1g4GyBTT4zMYScq2QYgVtneyfKT0dhX+Ij2THsg8xvPhCIHOGwkiZ16vpHV9Cw==}
+    engines: {node: '>= 10'}
+    cpu: [ia32]
+    os: [win32]
+
+  '@napi-rs/clipboard-win32-x64-msvc@1.1.3':
+    resolution: {integrity: sha512-0WWqatmDFi7ABBsxkqh4SYjrPJL8tTIQTW6mZOwFEh/DzWgf05FpKTvL3qF17Dlt6/XaHlL4anlavo/6r/QKtw==}
+    engines: {node: '>= 10'}
+    cpu: [x64]
+    os: [win32]
+
+  '@napi-rs/clipboard@1.1.3':
+    resolution: {integrity: sha512-Dk/swbmbzvwrig641N/mag5pFoBda/u8nth2HBb+4lbgJ1kxKHzvnQJytYaS8MSIgqVEw8ag6egu1CWSugrCKw==}
+    engines: {node: '>= 10'}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2286,6 +2347,45 @@ snapshots:
       fast-glob: 3.3.3
       jju: 1.4.0
       js-yaml: 4.1.0
+
+  '@napi-rs/clipboard-darwin-arm64@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-linux-arm-gnueabihf@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-linux-arm64-gnu@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-linux-arm64-musl@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-linux-x64-gnu@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-linux-x64-musl@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-win32-arm64-msvc@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-win32-ia32-msvc@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard-win32-x64-msvc@1.1.3':
+    optional: true
+
+  '@napi-rs/clipboard@1.1.3':
+    optionalDependencies:
+      '@napi-rs/clipboard-darwin-arm64': 1.1.3
+      '@napi-rs/clipboard-linux-arm-gnueabihf': 1.1.3
+      '@napi-rs/clipboard-linux-arm64-gnu': 1.1.3
+      '@napi-rs/clipboard-linux-arm64-musl': 1.1.3
+      '@napi-rs/clipboard-linux-x64-gnu': 1.1.3
+      '@napi-rs/clipboard-linux-x64-musl': 1.1.3
+      '@napi-rs/clipboard-win32-arm64-msvc': 1.1.3
+      '@napi-rs/clipboard-win32-ia32-msvc': 1.1.3
+      '@napi-rs/clipboard-win32-x64-msvc': 1.1.3
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
