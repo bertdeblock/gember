@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` acceptance-test 1`] = `
+"import { currentURL, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'v2-addon/tests/helpers';
+
+module('Acceptance | foo', function (hooks) {
+  setupApplicationTest(hooks);
+
+  test('it visits /foo', async function (assert) {
+    await visit('/foo');
+
+    assert.strictEqual(currentURL(), '/foo');
+  });
+});
+"
+`;
+
+exports[`generates a \`.js\` acceptance-test at a custom path 1`] = `
+"import { currentURL, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'v2-addon/tests/helpers';
+
+module('Acceptance | foo', function (hooks) {
+  setupApplicationTest(hooks);
+
+  test('it visits /foo', async function (assert) {
+    await visit('/foo');
+
+    assert.strictEqual(currentURL(), '/foo');
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` acceptance-test 1`] = `
+"import { currentURL, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'v2-addon/tests/helpers';
+
+module('Acceptance | foo', function (hooks) {
+  setupApplicationTest(hooks);
+
+  test('it visits /foo', async function (assert) {
+    await visit('/foo');
+
+    assert.strictEqual(currentURL(), '/foo');
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` acceptance-test at a custom path 1`] = `
+"import { currentURL, visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'v2-addon/tests/helpers';
+
+module('Acceptance | foo', function (hooks) {
+  setupApplicationTest(hooks);
+
+  test('it visits /foo', async function (assert) {
+    await visit('/foo');
+
+    assert.strictEqual(currentURL(), '/foo');
+  });
+});
+"
+`;

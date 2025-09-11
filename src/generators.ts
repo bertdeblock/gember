@@ -62,4 +62,11 @@ export const generators: Generator[] = [
     name: "service",
     testsDir: "unit",
   }),
+
+  defineTestGenerator({
+    args: [name(), path(), typescript()],
+    name: "acceptance",
+    testsDir: "acceptance",
+    testsSubDir: "",
+  }),
 ];
