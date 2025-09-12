@@ -35,3 +35,13 @@ jobs:
           - macos-latest
           - ubuntu-latest
           - windows-latest
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-environment
+      - run: pnpm build
+      - run: pnpm dlx ember-cli@latest new smoke-test-app -b @ember/app-blueprint --pnpm
+      - run: node bin/gember.js component foo --cwd=smoke-test-app
+      - run: cd smoke-test-app && pnpm test
