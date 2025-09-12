@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-09-12)
+
+* @bertdeblock/gember 1.1.1 (patch)
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#67](https://github.com/bertdeblock/gember/pull/67) Avoid duplicate templates ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-09-11)
 
 * @bertdeblock/gember 1.1.0 (minor)
