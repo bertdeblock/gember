@@ -1,3 +1,4 @@
+import { pathExists } from "fs-extra/esm";
 import { join, parse, type ParsedPath } from "node:path";
 
 export class FileReference {
@@ -21,6 +22,10 @@ export class FileReference {
     this.name = name;
     this.rootDir = rootDir;
     this.subDir = subDir;
+  }
+
+  exists(): Promise<boolean> {
+    return pathExists(this.path());
   }
 
   parse(): ParsedPath {
