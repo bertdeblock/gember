@@ -4,7 +4,7 @@ import { ensureDir, pathExists, readJson } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
-import { cwd, env } from "node:process";
+import { cwd as processCwd, env } from "node:process";
 import { fileURLToPath } from "node:url";
 import { resolveConfig, type Config } from "./config.js";
 import { FileReference } from "./file-reference.js";
@@ -119,7 +119,8 @@ export function defineGenerator({
     const templateCompiled = template({
       name: {
         ...entityNameCases,
-        pathMaybeQuoted: /(-|\/)/.test(entityNameCases.path)
+        camelCurlyBrackets: `{{${entityNameCases.camel}}}`,
+        pathMaybeQuotes: /(-|\/)/.test(entityNameCases.path)
           ? `"${entityNameCases.path}"`
           : entityNameCases.path,
         signature: entityNameCases.pascal + "Signature",
