@@ -5,7 +5,7 @@ import { ensureDir, pathExists, readJson } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
-import { cwd } from "node:process";
+import { cwd as processCwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { resolveConfig, type Config } from "./config.js";
 import { FileReference } from "./file-reference.js";
@@ -60,12 +60,12 @@ export function defineGenerator({
   name,
 }: GeneratorOptions): Generator {
   const generatorName = name;
-  const generatorArgs = [copy(), log(), ...args]
+  const generatorArgs = [copy(), cwd(), log(), ...args]
     .map((argFactory) => argFactory(generatorName))
     .sort((a, b) => a.name.localeCompare(b.name));
 
   async function run(args: Args): Promise<void> {
-    const packagePath = cwd();
+    const packagePath = args.cwd ?? processCwd();
     const packageJson: EmberPackageJson = await readJson(
       join(packagePath, "package.json"),
     );
@@ -236,6 +236,14 @@ export function copy(): GeneratorArgFactory {
     description: `Copy the generated ${generatorName} to the clipboard, instead of writing it to disk`,
     name: "copy",
     type: "boolean",
+  });
+}
+
+export function cwd(): GeneratorArgFactory {
+  return () => ({
+    description: "The current working directory to run the generator in",
+    name: "cwd",
+    type: "string",
   });
 }
 
