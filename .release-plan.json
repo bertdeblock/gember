@@ -1,22 +1,18 @@
 {
   "solution": {
     "@bertdeblock/gember": {
-      "impact": "minor",
-      "oldVersion": "1.0.0",
-      "newVersion": "1.1.0",
+      "impact": "patch",
+      "oldVersion": "1.1.0",
+      "newVersion": "1.1.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
           "impact": "patch",
-          "reason": "Appears in changelog section :bug: Bug Fix"
+          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-09-11)\n\n* @bertdeblock/gember 1.1.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#66](https://github.com/bertdeblock/gember/pull/66) Support copying generated files to the clipboard ([@bertdeblock](https://github.com/bertdeblock))\n  * [#65](https://github.com/bertdeblock/gember/pull/65) Add an `acceptance-test` generator ([@bertdeblock](https://github.com/bertdeblock))\n  * [#64](https://github.com/bertdeblock/gember/pull/64) Test against Node v24 ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :bug: Bug Fix\n* `@bertdeblock/gember`\n  * [#62](https://github.com/bertdeblock/gember/pull/62) Fix test helpers import path ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-09-12)\n\n* @bertdeblock/gember 1.1.1 (patch)\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#67](https://github.com/bertdeblock/gember/pull/67) Avoid duplicate templates ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
