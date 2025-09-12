@@ -39,8 +39,15 @@ type GeneratorArg = {
   type: "boolean" | "positional" | "string";
 };
 
-type ModifyTargetFile = (targetFile: FileReference, args: Args) => void;
-type ModifyTemplateFile = (templateFile: FileReference, args: Args) => void;
+type ModifyTargetFile = (
+  targetFile: FileReference,
+  args: Args,
+) => Promise<void> | void;
+
+type ModifyTemplateFile = (
+  templateFile: FileReference,
+  args: Args,
+) => Promise<void> | void;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Args = Record<string, any>;
@@ -88,16 +95,16 @@ export function defineGenerator({
       subDir: generatorName,
     });
 
-    modifyTargetFile?.(targetFile, resolvedArgs);
-    modifyTemplateFile?.(templateFile, resolvedArgs);
+    await modifyTargetFile?.(targetFile, resolvedArgs);
+    await modifyTemplateFile?.(templateFile, resolvedArgs);
 
     if (targetFile.subDir === "") {
       targetFile.subDir = join(getSrcDir(packageJson), generatorName + "s");
     }
 
     for (const arg of generatorArgs) {
-      arg.modifyTargetFile?.(targetFile, resolvedArgs);
-      arg.modifyTemplateFile?.(templateFile, resolvedArgs);
+      await arg.modifyTargetFile?.(targetFile, resolvedArgs);
+      await arg.modifyTemplateFile?.(templateFile, resolvedArgs);
     }
 
     const templateContent = await readFile(templateFile.path(), "utf-8");
@@ -289,8 +296,16 @@ export function typescript({
     modifyTargetFile: (targetFile, args): void => {
       targetFile.ext = args.typescript ? tsExt : jsExt;
     },
-    modifyTemplateFile: (templateFile, args): void => {
-      templateFile.ext = args.typescript ? tsExt : jsExt;
+    modifyTemplateFile: async (templateFile, args): Promise<void> => {
+      if (args.typescript) {
+        templateFile.ext = tsExt;
+
+        if ((await templateFile.exists()) === false) {
+          templateFile.ext = jsExt;
+        }
+      } else {
+        templateFile.ext = jsExt;
+      }
     },
     name: "typescript",
     type: "boolean",
