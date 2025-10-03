@@ -8,6 +8,7 @@ import { dirname, join, relative } from "node:path";
 import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 import { resolveConfig, type Config } from "./config.js";
+import { GemberError } from "./errors.js";
 import { FileReference } from "./file-reference.js";
 import { isV1Addon, isV2Addon } from "./helpers.js";
 import type { EmberPackageJson, GeneratorFile } from "./types.js";
@@ -60,7 +61,13 @@ export function defineGenerator({
   name,
 }: GeneratorOptions): Generator {
   const generatorName = name;
-  const generatorArgs = [copy(), log(), ...args]
+  const generatorArgs = [
+    copy(),
+    log(),
+    templateContent(),
+    templatePath(),
+    ...args,
+  ]
     .map((argFactory) => argFactory(generatorName))
     .sort((a, b) => a.name.localeCompare(b.name));
 
@@ -88,15 +95,7 @@ export function defineGenerator({
       subDir: entityPath ?? "",
     });
 
-    const templateFile = new FileReference({
-      ext: ".ts",
-      name: generatorName,
-      rootDir: join(dirname(fileURLToPath(import.meta.url)), "..", "templates"),
-      subDir: generatorName,
-    });
-
     await modifyTargetFile?.(targetFile, resolvedArgs);
-    await modifyTemplateFile?.(templateFile, resolvedArgs);
 
     if (targetFile.subDir === "") {
       targetFile.subDir = join(getSrcDir(packageJson), generatorName + "s");
@@ -104,10 +103,44 @@ export function defineGenerator({
 
     for (const arg of generatorArgs) {
       await arg.modifyTargetFile?.(targetFile, resolvedArgs);
-      await arg.modifyTemplateFile?.(templateFile, resolvedArgs);
     }
 
-    const templateContent = await readFile(templateFile.path(), "utf-8");
+    let templateContent;
+
+    if (args.templateContent) {
+      templateContent = args.templateContent;
+    } else if (args.templatePath) {
+      try {
+        templateContent = await readFile(
+          join(packagePath, args.templatePath),
+          "utf-8",
+        );
+      } catch (cause) {
+        throw new GemberError(`Could not read file \`${args.templatePath}\`.`, {
+          cause,
+        });
+      }
+    } else {
+      const templateFile = new FileReference({
+        ext: ".ts",
+        name: generatorName,
+        rootDir: join(
+          dirname(fileURLToPath(import.meta.url)),
+          "..",
+          "templates",
+        ),
+        subDir: generatorName,
+      });
+
+      await modifyTemplateFile?.(templateFile, resolvedArgs);
+
+      for (const arg of generatorArgs) {
+        await arg.modifyTemplateFile?.(templateFile, resolvedArgs);
+      }
+
+      templateContent = await readFile(templateFile.path(), "utf-8");
+    }
+
     const template = Handlebars.compile(templateContent);
 
     const entityNameCases = {
@@ -116,21 +149,27 @@ export function defineGenerator({
       path: pathCase(entityName),
     };
 
-    const templateCompiled = template({
-      name: {
-        ...entityNameCases,
-        pathMaybeQuoted: /(-|\/)/.test(entityNameCases.path)
-          ? `"${entityNameCases.path}"`
-          : entityNameCases.path,
-        signature: entityNameCases.pascal + "Signature",
-      },
-      package: packageJson,
-      testHelpersImportPath:
-        (await pathExists(join(packagePath, "tests", "helpers.js"))) ||
-        (await pathExists(join(packagePath, "tests", "helpers.ts")))
-          ? `${packageJson.name}/tests/helpers`
-          : "ember-qunit",
-    });
+    let templateCompiled;
+
+    try {
+      templateCompiled = template({
+        name: {
+          ...entityNameCases,
+          pathMaybeQuoted: /(-|\/)/.test(entityNameCases.path)
+            ? `"${entityNameCases.path}"`
+            : entityNameCases.path,
+          signature: entityNameCases.pascal + "Signature",
+        },
+        package: packageJson,
+        testHelpersImportPath:
+          (await pathExists(join(packagePath, "tests", "helpers.js"))) ||
+          (await pathExists(join(packagePath, "tests", "helpers.ts")))
+            ? `${packageJson.name}/tests/helpers`
+            : "ember-qunit",
+      });
+    } catch (cause) {
+      throw new GemberError("Could not compile template.", { cause });
+    }
 
     if (resolvedArgs.copy) {
       const clipboard = new Clipboard();
@@ -278,6 +317,22 @@ export function path(): GeneratorArgFactory {
   return (generatorName) => ({
     description: `Generate a ${generatorName} at a custom path, e.g. \`--path=src/-private\``,
     name: "path",
+    type: "string",
+  });
+}
+
+export function templateContent(): GeneratorArgFactory {
+  return () => ({
+    description: "Custom template content",
+    name: "templateContent",
+    type: "string",
+  });
+}
+
+export function templatePath(): GeneratorArgFactory {
+  return () => ({
+    description: "Custom template path",
+    name: "templatePath",
     type: "string",
   });
 }
