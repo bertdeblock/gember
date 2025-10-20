@@ -1,6 +1,5 @@
 import { Clipboard } from "@napi-rs/clipboard";
 import { camelCase, pascalCase, pathCase } from "change-case";
-import consola from "consola";
 import { ensureDir, pathExists, readJson } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile, writeFile } from "node:fs/promises";
@@ -10,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { resolveConfig, type Config } from "./config.js";
 import { FileReference } from "./file-reference.js";
 import { isV1Addon, isV2Addon } from "./helpers.js";
+import { logger } from "./logger.js";
 import type { EmberPackageJson, GeneratorFile } from "./types.js";
 
 export type Generator = {
@@ -137,7 +137,7 @@ export function defineGenerator({
 
       clipboard.setText(templateCompiled);
 
-      consola.success(
+      logger.success(
         `🫚 Generated and copied ${generatorName} \`${entityName}\` to the clipboard.`,
       );
     } else if (resolvedArgs.log) {
@@ -145,12 +145,12 @@ export function defineGenerator({
         Math.max(...templateCompiled.split("\n").map((line) => line.length)),
       );
 
-      consola.log(border);
-      consola.log(targetFile.path());
-      consola.log(border);
-      consola.log("");
-      consola.log(templateCompiled);
-      consola.log(border);
+      logger.log(border);
+      logger.log(targetFile.path());
+      logger.log(border);
+      logger.log("");
+      logger.log(templateCompiled);
+      logger.log(border);
     } else {
       const targetFileParsed = targetFile.parse();
       const generatorFile: GeneratorFile = {
@@ -166,14 +166,14 @@ export function defineGenerator({
       await ensureDir(generatorFile.dir);
       await writeFile(generatorFile.path, generatorFile.content);
 
-      consola.success(
+      logger.success(
         `🫚 Generated ${generatorName} \`${entityName}\` at \`${relative(packagePath, generatorFile.path)}\`.`,
       );
 
       const postGenerate = config.hooks?.postGenerate;
 
       if (postGenerate) {
-        consola.success("🫚 `hooks.postGenerate`: Running...");
+        logger.success("🫚 `hooks.postGenerate`: Running...");
 
         await postGenerate({
           entityName,
@@ -181,7 +181,7 @@ export function defineGenerator({
           generatorName,
         });
 
-        consola.success("🫚 `hooks.postGenerate`: Done!");
+        logger.success("🫚 `hooks.postGenerate`: Done!");
       }
     }
   }

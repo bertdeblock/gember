@@ -1,5 +1,5 @@
-import { consola } from "consola";
 import process from "node:process";
+import { logger } from "./logger.js";
 
 export class GemberError extends Error {}
 
@@ -10,7 +10,7 @@ export async function logGemberErrors(
     await func();
   } catch (error) {
     if (error instanceof GemberError) {
-      consola.error(error);
+      logger.error(error);
       process.exitCode = 1;
     } else {
       throw error;
