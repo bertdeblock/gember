@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2025-10-20)
+
+* @bertdeblock/gember 1.2.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#72](https://github.com/bertdeblock/gember/pull/72) Do not log dates (better copy-paste UX) ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#67](https://github.com/bertdeblock/gember/pull/67) Avoid duplicate templates ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-09-11)
 
 * @bertdeblock/gember 1.1.0 (minor)
