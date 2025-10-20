@@ -1,22 +1,18 @@
 {
   "solution": {
     "@bertdeblock/gember": {
-      "impact": "minor",
-      "oldVersion": "1.1.0",
-      "newVersion": "1.2.0",
+      "impact": "patch",
+      "oldVersion": "1.2.0",
+      "newVersion": "1.2.1",
       "tagName": "latest",
       "constraints": [
         {
-          "impact": "minor",
-          "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
           "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
+          "reason": "Appears in changelog section :memo: Documentation"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-10-20)\n\n* @bertdeblock/gember 1.2.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#72](https://github.com/bertdeblock/gember/pull/72) Do not log dates (better copy-paste UX) ([@bertdeblock](https://github.com/bertdeblock))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#67](https://github.com/bertdeblock/gember/pull/67) Avoid duplicate templates ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
+  "description": "## Release (2025-10-20)\n\n* @bertdeblock/gember 1.2.1 (patch)\n\n#### :memo: Documentation\n* `@bertdeblock/gember`\n  * [#73](https://github.com/bertdeblock/gember/pull/73) Fix generators type ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }

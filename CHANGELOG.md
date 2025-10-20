@@ -2,6 +2,17 @@
 
 ## Release (2025-10-20)
 
+* @bertdeblock/gember 1.2.1 (patch)
+
+#### :memo: Documentation
+* `@bertdeblock/gember`
+  * [#73](https://github.com/bertdeblock/gember/pull/73) Fix generators type ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
+## Release (2025-10-20)
+
 * @bertdeblock/gember 1.2.0 (minor)
 
 #### :rocket: Enhancement
