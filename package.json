@@ -6,6 +6,12 @@
   "license": "MIT",
   "author": "Bert De Block",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "bin": {
     "gember": "bin/gember.js"
   },
@@ -24,7 +30,7 @@
     "lint:format:fix": "prettier . --cache --write",
     "lint:js": "eslint . --cache",
     "lint:types": "tsc --noEmit",
-    "prepack": "tsc --project tsconfig.json",
+    "prepack": "pnpm build",
     "start": "pnpm build --watch",
     "test": "vitest",
     "test:coverage": "pnpm build && vitest run --coverage"
