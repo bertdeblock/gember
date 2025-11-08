@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2025-11-08)
+
+* @bertdeblock/gember 1.3.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#75](https://github.com/bertdeblock/gember/pull/75) Add a `defineConfig` function ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :memo: Documentation
+* `@bertdeblock/gember`
+  * [#73](https://github.com/bertdeblock/gember/pull/73) Fix generators type ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-10-20)
 
 * @bertdeblock/gember 1.2.0 (minor)
