@@ -12,8 +12,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated component to the console, instead of writing it to disk:
       log?: boolean;
-      // The component's name:
-      name?: string;
       // Generate a nested colocated component, e.g. `foo/bar/index.gts`:
       nested?: boolean;
       // Generate a component at a custom path, e.g. `--path=src/-private`:
@@ -26,8 +24,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated component-test to the console, instead of writing it to disk:
       log?: boolean;
-      // The component-test's name:
-      name?: string;
       // Generate a component-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.gts` component-test, instead of a `.gjs` component-test:
@@ -40,8 +36,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated helper to the console, instead of writing it to disk:
       log?: boolean;
-      // The helper's name:
-      name?: string;
       // Generate a helper at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.ts` helper, instead of a `.js` helper:
@@ -52,8 +46,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated helper-test to the console, instead of writing it to disk:
       log?: boolean;
-      // The helper-test's name:
-      name?: string;
       // Generate a helper-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.gts` helper-test, instead of a `.gjs` helper-test:
@@ -66,8 +58,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated modifier to the console, instead of writing it to disk:
       log?: boolean;
-      // The modifier's name:
-      name?: string;
       // Generate a modifier at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.ts` modifier, instead of a `.js` modifier:
@@ -78,8 +68,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated modifier-test to the console, instead of writing it to disk:
       log?: boolean;
-      // The modifier-test's name:
-      name?: string;
       // Generate a modifier-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.gts` modifier-test, instead of a `.gjs` modifier-test:
@@ -90,8 +78,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated service to the console, instead of writing it to disk:
       log?: boolean;
-      // The service's name:
-      name?: string;
       // Generate a service at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.ts` service, instead of a `.js` service:
@@ -102,8 +88,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated service-test to the console, instead of writing it to disk:
       log?: boolean;
-      // The service-test's name:
-      name?: string;
       // Generate a service-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.ts` service-test, instead of a `.js` service-test:
@@ -114,8 +98,6 @@ export type Config = {
       copy?: boolean;
       // Log the generated acceptance-test to the console, instead of writing it to disk:
       log?: boolean;
-      // The acceptance-test's name:
-      name?: string;
       // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test:
@@ -135,6 +117,8 @@ export type Config = {
   // Use TypeScript by default for all generators:
   typescript?: boolean;
 };
+
+export type ConfigFactory = Config | (() => Config) | (() => Promise<Config>);
 
 const CONFIG_FILES: string[] = [
   "gember.config.js",
