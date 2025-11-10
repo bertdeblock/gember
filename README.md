@@ -47,6 +47,8 @@ yarn add -D @bertdeblock/gember
 
 ## Usage
 
+> 💡 Run `pnpm gember` to run generators interactively.
+
 > 💡 Run `pnpm gember --help` for all available generators.
 
 > 💡 Run `pnpm gember <generator-name> --help` for all available generator options.

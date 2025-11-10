@@ -158,6 +158,8 @@ export function defineGenerator({
           { type: "confirm" },
         );
 
+        logger.log("");
+
         if (response === false) {
           return;
         }
@@ -211,7 +213,7 @@ export function defineTestGenerator(
   return defineGenerator({
     ...options,
     modifyTargetFile: (targetFile, args) => {
-      if (args.path === undefined) {
+      if (args.path === undefined && env.GEMBER_PATH === undefined) {
         targetFile.subDir = join(
           "tests",
           options.testsDir,
