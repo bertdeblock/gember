@@ -254,8 +254,8 @@ export function copy(): GeneratorArgFactory {
 }
 
 export function cwd(): GeneratorArgFactory {
-  return () => ({
-    description: "The current working directory to run the generator in",
+  return (generatorName) => ({
+    description: `The current working directory to run the ${generatorName} generator in`,
     name: "cwd",
     type: "string",
   });

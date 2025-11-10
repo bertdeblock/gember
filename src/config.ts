@@ -10,6 +10,8 @@ export type Config = {
       classBased?: boolean;
       // Copy the generated component to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the component generator in:
+      cwd?: string;
       // Log the generated component to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a nested colocated component, e.g. `foo/bar/index.gts`:
@@ -22,6 +24,8 @@ export type Config = {
     "component-test"?: {
       // Copy the generated component-test to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the component-test generator in:
+      cwd?: string;
       // Log the generated component-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a component-test at a custom path, e.g. `--path=src/-private`:
@@ -34,6 +38,8 @@ export type Config = {
       classBased?: boolean;
       // Copy the generated helper to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the helper generator in:
+      cwd?: string;
       // Log the generated helper to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a helper at a custom path, e.g. `--path=src/-private`:
@@ -44,6 +50,8 @@ export type Config = {
     "helper-test"?: {
       // Copy the generated helper-test to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the helper-test generator in:
+      cwd?: string;
       // Log the generated helper-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a helper-test at a custom path, e.g. `--path=src/-private`:
@@ -56,6 +64,8 @@ export type Config = {
       classBased?: boolean;
       // Copy the generated modifier to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the modifier generator in:
+      cwd?: string;
       // Log the generated modifier to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a modifier at a custom path, e.g. `--path=src/-private`:
@@ -66,6 +76,8 @@ export type Config = {
     "modifier-test"?: {
       // Copy the generated modifier-test to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the modifier-test generator in:
+      cwd?: string;
       // Log the generated modifier-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a modifier-test at a custom path, e.g. `--path=src/-private`:
@@ -76,6 +88,8 @@ export type Config = {
     service?: {
       // Copy the generated service to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the service generator in:
+      cwd?: string;
       // Log the generated service to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a service at a custom path, e.g. `--path=src/-private`:
@@ -86,6 +100,8 @@ export type Config = {
     "service-test"?: {
       // Copy the generated service-test to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the service-test generator in:
+      cwd?: string;
       // Log the generated service-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a service-test at a custom path, e.g. `--path=src/-private`:
@@ -96,6 +112,8 @@ export type Config = {
     "acceptance-test"?: {
       // Copy the generated acceptance-test to the clipboard, instead of writing it to disk:
       copy?: boolean;
+      // The current working directory to run the acceptance-test generator in:
+      cwd?: string;
       // Log the generated acceptance-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
