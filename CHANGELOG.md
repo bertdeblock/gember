@@ -1,5 +1,23 @@
 # Changelog
 
+## Release (2025-11-10)
+
+* @bertdeblock/gember 1.4.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#80](https://github.com/bertdeblock/gember/pull/80) Support running generators interactively ([@bertdeblock](https://github.com/bertdeblock))
+  * [#76](https://github.com/bertdeblock/gember/pull/76) Ask the user to confirm before overwriting an existing file ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#69](https://github.com/bertdeblock/gember/pull/69) Run smoke test in CI ([@bertdeblock](https://github.com/bertdeblock))
+  * [#79](https://github.com/bertdeblock/gember/pull/79) Fix generating files during development ([@bertdeblock](https://github.com/bertdeblock))
+  * [#70](https://github.com/bertdeblock/gember/pull/70) Update most dependencies ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-11-08)
 
 * @bertdeblock/gember 1.3.0 (minor)
