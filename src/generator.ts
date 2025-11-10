@@ -152,6 +152,17 @@ export function defineGenerator({
       logger.log(templateCompiled);
       logger.log(border);
     } else {
+      if (await targetFile.exists()) {
+        const response = await logger.prompt(
+          `\`${relative(packagePath, targetFile.path())}\` already exists. Do you want to overwrite this file?`,
+          { type: "confirm" },
+        );
+
+        if (response === false) {
+          return;
+        }
+      }
+
       const targetFileParsed = targetFile.parse();
       const generatorFile: GeneratorFile = {
         base: targetFileParsed.base,
