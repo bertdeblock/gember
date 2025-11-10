@@ -12,17 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-environment
-      - run: pnpm lint
+      - name: Lint
+        run: pnpm lint
 
   test:
-    name: "test (node: ${{matrix.node-version}}, os: ${{matrix.os}})"
+    name: "Test (Node: ${{matrix.node-version}}, OS: ${{matrix.os}})"
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-environment
         with:
           node-version: ${{matrix.node-version}}
-      - run: pnpm test:coverage
+      - name: Run tests with coverage
+        run: pnpm test:coverage
     strategy:
       fail-fast: false
       matrix:
@@ -35,3 +37,27 @@ jobs:
           - macos-latest
           - ubuntu-latest
           - windows-latest
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-environment
+      - name: Build gember
+        run: pnpm build
+      - name: Create test app
+        run: pnpm dlx ember-cli@latest new test-app -b @ember/app-blueprint --pnpm --skip-git
+      - name: Run generators in test-app
+        run: |
+          node bin/gember.js component foo --cwd=test-app
+          node bin/gember.js component-test foo --cwd=test-app
+          node bin/gember.js helper foo --cwd=test-app
+          node bin/gember.js helper-test foo --cwd=test-app
+          node bin/gember.js modifier foo --cwd=test-app
+          node bin/gember.js modifier-test foo --cwd=test-app
+          node bin/gember.js service foo --cwd=test-app
+          node bin/gember.js service-test foo --cwd=test-app
+      - name: Run tests in test app
+        run: |
+          cd test-app
+          pnpm test

@@ -3,6 +3,7 @@
 exports[`generates a \`.gjs\` helper-test 1`] = `
 "import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
+import foo from 'v2-addon/helpers/foo';
 import { setupRenderingTest } from 'v2-addon/tests/helpers';
 
 module('Integration | Helper | foo', function (hooks) {
@@ -22,6 +23,7 @@ module('Integration | Helper | foo', function (hooks) {
 exports[`generates a \`.gjs\` helper-test at a custom path 1`] = `
 "import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
+import foo from 'v2-addon/helpers/foo';
 import { setupRenderingTest } from 'v2-addon/tests/helpers';
 
 module('Integration | Helper | foo', function (hooks) {
@@ -41,6 +43,7 @@ module('Integration | Helper | foo', function (hooks) {
 exports[`generates a \`.gts\` helper-test 1`] = `
 "import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
+import foo from 'v2-addon/helpers/foo';
 import { setupRenderingTest } from 'v2-addon/tests/helpers';
 
 module('Integration | Helper | foo', function (hooks) {
@@ -60,6 +63,7 @@ module('Integration | Helper | foo', function (hooks) {
 exports[`generates a \`.gts\` helper-test at a custom path 1`] = `
 "import { render } from '@ember/test-helpers';
 import { module, test } from 'qunit';
+import foo from 'v2-addon/helpers/foo';
 import { setupRenderingTest } from 'v2-addon/tests/helpers';
 
 module('Integration | Helper | foo', function (hooks) {
