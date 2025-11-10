@@ -1,6 +1,6 @@
 {
   "name": "@bertdeblock/gember",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Generate components, helpers, modifiers and services in v1/v2 apps/addons.",
   "repository": "https://github.com/bertdeblock/gember",
   "license": "MIT",
