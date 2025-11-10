@@ -4,7 +4,7 @@ import { ensureDir, pathExists, readJson } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
-import { cwd } from "node:process";
+import { cwd, env } from "node:process";
 import { fileURLToPath } from "node:url";
 import { resolveConfig, type Config } from "./config.js";
 import { FileReference } from "./file-reference.js";
@@ -85,7 +85,7 @@ export function defineGenerator({
       ext: ".ts",
       name: entityName,
       rootDir: packagePath,
-      subDir: entityPath ?? "",
+      subDir: entityPath ?? env.GEMBER_PATH ?? "",
     });
 
     const templateFile = new FileReference({
