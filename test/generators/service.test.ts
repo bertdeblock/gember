@@ -1,5 +1,5 @@
 import { afterEach, it } from "vitest";
-import { Package } from "./helpers.ts";
+import { Package } from "../helpers.ts";
 
 let pkg: Package;
 
@@ -18,7 +18,7 @@ it("generates a `.js` service", async (ctx) => {
 it("generates a `.ts` service", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("service", "foo", "--ts");
+  await pkg.gember("service", "foo", "--typescript");
 
   const content = await pkg.readFile("src/services/foo.ts");
 
@@ -38,7 +38,7 @@ it("generates a `.js` service at a custom path", async (ctx) => {
 it("generates a `.ts` service at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("service", "foo", "--path=src/-private", "--ts");
+  await pkg.gember("service", "foo", "--path=src/-private", "--typescript");
 
   const content = await pkg.readFile("src/-private/foo.ts");
 
@@ -58,7 +58,7 @@ it("generates a nested `.js` service", async (ctx) => {
 it("generates a nested `.ts` service", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("service", "foo/bar", "--ts");
+  await pkg.gember("service", "foo/bar", "--typescript");
 
   const content = await pkg.readFile("src/services/foo/bar.ts");
 

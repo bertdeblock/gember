@@ -1,7 +1,6 @@
 import { writeFile } from "node:fs/promises";
 import { EOL } from "node:os";
 import { dirname, join, sep } from "node:path";
-import { cwd } from "node:process";
 import { fileURLToPath } from "node:url";
 
 /** @type {import('../../../src/config.ts').Config} */
@@ -24,8 +23,8 @@ export default {
         file.content = file.content.replaceAll(EOL, "\n");
 
         // Because the absolute path is different on each machine:
-        file.dir = file.dir.replace(cwd(), "").split(sep).join("/");
-        file.path = file.path.replace(cwd(), "").split(sep).join("/");
+        file.dir = file.dir.split(sep).join("/");
+        file.path = file.path.split(sep).join("/");
         file.root = "/";
       }
 

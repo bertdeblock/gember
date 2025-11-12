@@ -26,10 +26,10 @@ exports[`runs the \`postGenerate\` hook 1`] = `
     {
       "base": "foo.gts",
       "content": "import Component from \\"@glimmer/component\\";\\n\\nexport interface FooSignature {\\n  Args: {};\\n  Blocks: {\\n    default: [];\\n  };\\n  Element: null;\\n}\\n\\nexport default class Foo extends Component<FooSignature> {\\n  <template>\\n    {{yield}}\\n  </template>\\n}\\n",
-      "dir": "/src/components",
+      "dir": "test/output/post-generate-info/src/components",
       "ext": ".gts",
       "name": "foo",
-      "path": "/src/components/foo.gts",
+      "path": "test/output/post-generate-info/src/components/foo.gts",
       "root": "/"
     }
   ],

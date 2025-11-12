@@ -5,7 +5,7 @@
 
 Generate components, helpers, modifiers and services in v1/v2 apps/addons.
 
-> ℹ️ Only supports `.gjs` (default) and `.gts` files for components.
+ℹ️ Only supports `.gjs` (default) and `.gts` files for components.
 
 ## Installation
 
@@ -14,6 +14,15 @@ Generate components, helpers, modifiers and services in v1/v2 apps/addons.
 
 ```shell
 npm install -D @bertdeblock/gember
+```
+
+</details>
+
+<details>
+  <summary>deno</summary>
+
+```shell
+deno add -D @bertdeblock/gember
 ```
 
 </details>
@@ -47,11 +56,27 @@ yarn add -D @bertdeblock/gember
 
 ## Usage
 
-> 💡 Run `pnpm gember` to run generators interactively.
+```shell
+Generate components, helpers, modifiers and services in v1/v2 apps/addons.
 
-> 💡 Run `pnpm gember --help` for all available generators.
+USAGE gember component|component-test|helper|helper-test|modifier|modifier-test|service|service-test|acceptance-test
 
-> 💡 Run `pnpm gember <generator-name> --help` for all available generator options.
+COMMANDS
+
+        component    Generate a new component
+   component-test    Generate a new component-test
+           helper    Generate a new helper
+      helper-test    Generate a new helper-test
+         modifier    Generate a new modifier
+    modifier-test    Generate a new modifier-test
+          service    Generate a new service
+     service-test    Generate a new service-test
+  acceptance-test    Generate a new acceptance-test
+
+Use gember <command> --help for more information about a command.
+```
+
+💡 Run `pnpm gember` to run generators interactively.
 
 <details open>
   <summary>Generating components</summary>
@@ -131,7 +156,7 @@ import { defineConfig } from "@bertdeblock/gember";
 // An object:
 export default defineConfig({});
 
-// A function that returns an object:
+// A sync function that returns an object:
 export default defineConfig(() => ({}));
 
 // An async function that returns an object:

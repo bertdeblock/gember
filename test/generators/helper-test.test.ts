@@ -1,5 +1,5 @@
 import { afterEach, it } from "vitest";
-import { Package } from "./helpers.ts";
+import { Package } from "../helpers.ts";
 
 let pkg: Package;
 
@@ -28,7 +28,7 @@ it("generates a `.gjs` helper-test at a custom path", async (ctx) => {
 it("generates a `.gts` helper-test", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("helper-test", "foo", "--ts");
+  await pkg.gember("helper-test", "foo", "--typescript");
 
   const content = await pkg.readFile("tests/integration/helpers/foo-test.gts");
 
@@ -38,7 +38,7 @@ it("generates a `.gts` helper-test", async (ctx) => {
 it("generates a `.gts` helper-test at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("helper-test", "foo", "--path=tests/foo", "--ts");
+  await pkg.gember("helper-test", "foo", "--path=tests/foo", "--typescript");
 
   const content = await pkg.readFile("tests/foo/foo-test.gts");
 

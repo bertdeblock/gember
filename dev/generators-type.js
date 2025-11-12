@@ -1,5 +1,5 @@
 // eslint-disable-next-line n/no-missing-import
-import { generators } from "../dist/generators.js";
+import { generators } from "../dist/generators/generators.js";
 
 let generatorsType = "";
 

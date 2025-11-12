@@ -1,7 +1,7 @@
 import { pathExists } from "fs-extra/esm";
 import { join, parse, type ParsedPath } from "node:path";
 
-export class FileReference {
+export class FileRef {
   ext: string;
   name: string;
   rootDir: string;

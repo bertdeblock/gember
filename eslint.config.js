@@ -1,8 +1,9 @@
 import eslint from "@eslint/js";
+import { defineConfig } from "eslint/config";
 import eslintPluginNode from "eslint-plugin-n";
 import typescriptEslint from "typescript-eslint";
 
-export default typescriptEslint.config(
+export default defineConfig(
   eslint.configs.recommended,
   typescriptEslint.configs.recommended,
   eslintPluginNode.configs["flat/recommended-module"],
@@ -13,7 +14,7 @@ export default typescriptEslint.config(
       "dist",
       "templates",
       "test/output",
-      "test/packages",
+      "test/packages/**/*.cjs",
     ],
   },
   {
