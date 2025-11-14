@@ -49,3 +49,19 @@ it("generates a `.ts` acceptance-test at a custom path", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("destroys an acceptance-test", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("acceptance-test", "foo");
+
+  ctx
+    .expect(await pkg.pathExists("tests/acceptance/foo-test.js"))
+    .to.equal(true);
+
+  await pkg.gember("acceptance-test", "foo", "--destroy");
+
+  ctx
+    .expect(await pkg.pathExists("tests/acceptance/foo-test.js"))
+    .to.equal(false);
+});

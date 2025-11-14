@@ -44,3 +44,19 @@ it("generates a `.ts` service-test at a custom path", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("destroys a service-test", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("service-test", "foo");
+
+  ctx
+    .expect(await pkg.pathExists("tests/unit/services/foo-test.js"))
+    .to.equal(true);
+
+  await pkg.gember("service-test", "foo", "--destroy");
+
+  ctx
+    .expect(await pkg.pathExists("tests/unit/services/foo-test.js"))
+    .to.equal(false);
+});

@@ -3,6 +3,7 @@ import {
   defineGenerator,
   defineTestGenerator,
   nested,
+  test,
   typescript,
   type Generator,
 } from "./generator.js";
@@ -15,6 +16,7 @@ export const generators: Generator[] = [
         description:
           "Generate a nested colocated component, e.g. `foo/bar/index.gts`",
       }),
+      test(),
       typescript({ gts: true }),
     ],
     name: "component",
@@ -27,7 +29,7 @@ export const generators: Generator[] = [
   }),
 
   defineGenerator({
-    args: [classBased(), typescript()],
+    args: [classBased(), test(), typescript()],
     name: "helper",
   }),
 
@@ -38,7 +40,7 @@ export const generators: Generator[] = [
   }),
 
   defineGenerator({
-    args: [classBased(), typescript()],
+    args: [classBased(), test(), typescript()],
     name: "modifier",
   }),
 
@@ -49,7 +51,7 @@ export const generators: Generator[] = [
   }),
 
   defineGenerator({
-    args: [typescript()],
+    args: [test(), typescript()],
     name: "service",
   }),
 

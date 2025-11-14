@@ -2,6 +2,11 @@ import process from "node:process";
 import { logger } from "./logger.js";
 
 export class GemberError extends Error {}
+export class GemberBugError extends GemberError {
+  constructor(message?: string, options?: ErrorOptions) {
+    super(`[BUG] ${message}`, options);
+  }
+}
 
 export async function logGemberErrors(
   func: () => Promise<void>,

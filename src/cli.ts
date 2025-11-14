@@ -5,7 +5,7 @@ import {
   // type CommandDef,
   type SubCommandsDef,
 } from "citty";
-import { GemberError, logGemberErrors } from "./errors.js";
+import { GemberBugError, GemberError, logGemberErrors } from "./errors.js";
 import { generators } from "./generators/generators.js";
 import { readOwnPackageJsonSync } from "./internal.js";
 import { logger } from "./logger.js";
@@ -61,8 +61,8 @@ const main = defineCommand({
         );
 
         if (selectedGenerator === undefined) {
-          throw new GemberError(
-            `[BUG] Could not find generator \`${selectedGeneratorName}\`.`,
+          throw new GemberBugError(
+            `Could not find generator \`${selectedGeneratorName}\`.`,
           );
         }
 
@@ -124,6 +124,31 @@ function generatorCommands(deprecated?: boolean): SubCommandsDef {
 
         logGemberErrors(async () => {
           await generator.run(context.args);
+
+          if (context.args.test) {
+            if (generator.isTestGenerator) {
+              logger.warn(
+                `You passed the \`--test\` option, but the \`${generator.name}\` generator is already a test generator.`,
+              );
+            } else if (generator.args.find((arg) => arg.name === "test")) {
+              const testGeneratorName = `${generator.name}-test`;
+              const testGenerator = generators.find(
+                (g) => g.name === testGeneratorName,
+              );
+
+              if (testGenerator) {
+                await testGenerator.run(context.args);
+              } else {
+                throw new GemberBugError(
+                  `Could not find generator \`${testGeneratorName}\`.`,
+                );
+              }
+            } else {
+              logger.warn(
+                `You passed the \`--test\` option, but the \`${generator.name}\` generator does not have a corresponding test generator.`,
+              );
+            }
+          }
         });
       },
     };

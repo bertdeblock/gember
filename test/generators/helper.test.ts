@@ -74,3 +74,26 @@ it("generates a nested function-based `.js` helper", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a corresponding helper-test", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("helper", "foo", "--test");
+
+  ctx.expect(await pkg.pathExists("src/helpers/foo.js")).to.equal(true);
+  ctx
+    .expect(await pkg.pathExists("tests/integration/helpers/foo-test.gjs"))
+    .to.equal(true);
+});
+
+it("destroys a helper", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("helper", "foo");
+
+  ctx.expect(await pkg.pathExists("src/helpers/foo.js")).to.equal(true);
+
+  await pkg.gember("helper", "foo", "--destroy");
+
+  ctx.expect(await pkg.pathExists("src/helpers/foo.js")).to.equal(false);
+});
