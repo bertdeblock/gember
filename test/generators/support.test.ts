@@ -1,5 +1,5 @@
 import { afterEach, it } from "vitest";
-import { Package } from "./helpers.ts";
+import { Package } from "../helpers.ts";
 
 let pkg: Package;
 

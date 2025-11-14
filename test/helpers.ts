@@ -17,8 +17,20 @@ export class Package {
     await remove(this.path);
   }
 
+  static async create(name: string, path: string = uuidv4()): Promise<Package> {
+    const pkg = new this(join("test", "output", path));
+
+    await pkg.cleanUp();
+    await recursiveCopy(join("test", "packages", name), pkg.path);
+
+    return pkg;
+  }
+
   async gember(...args: string[]): Promise<void> {
-    await gember(args, { cwd: this.path });
+    await execa(
+      join(dirname(fileURLToPath(import.meta.url)), "..", "bin", "gember.js"),
+      [...args, `--cwd=${this.path}`],
+    );
   }
 
   readFile(path: string): Promise<string> {
@@ -28,28 +40,4 @@ export class Package {
   async remove(path: string): Promise<void> {
     await remove(join(this.path, path));
   }
-
-  static async create(name: string, path: string = uuidv4()): Promise<Package> {
-    const pkg = new this(join("test", "output", path));
-
-    await pkg.cleanUp();
-    await recursiveCopy(this.createPath(name), pkg.path);
-
-    return pkg;
-  }
-
-  static createPath(name: string): string {
-    return join("test", "packages", name);
-  }
-}
-
-export async function gember(
-  args: string[],
-  { cwd }: { cwd: string },
-): Promise<void> {
-  await execa(
-    join(dirname(fileURLToPath(import.meta.url)), "..", "bin", "gember.js"),
-    args,
-    { cwd },
-  );
 }

@@ -1,22 +1,36 @@
 import { Clipboard } from "@napi-rs/clipboard";
 import { camelCase, pascalCase, pathCase } from "change-case";
-import { ensureDir, pathExists, readJson } from "fs-extra/esm";
+import { outputFile, pathExists, remove } from "fs-extra/esm";
 import Handlebars from "handlebars";
-import { readFile, writeFile } from "node:fs/promises";
-import { dirname, join, relative } from "node:path";
+import { readFile } from "node:fs/promises";
+import { join, relative } from "node:path";
 import { cwd as processCwd, env } from "node:process";
-import { fileURLToPath } from "node:url";
-import { resolveConfig, type Config } from "./config.js";
-import { FileReference } from "./file-reference.js";
-import { isV1Addon, isV2Addon } from "./helpers.js";
-import { logger } from "./logger.js";
-import type { EmberPackageJson, GeneratorFile } from "./types.js";
+import { FileRef } from "./file-ref.js";
+import { resolveConfig, type Config } from "../config.js";
+import { getOwnPath } from "../internal.js";
+import { logger } from "../logger.js";
+import {
+  isV1Addon,
+  isV2Addon,
+  readPackageJson,
+  type EmberPackageJson,
+} from "../package-json.js";
 
 export type Generator = {
   args: GeneratorArg[];
   description: string;
   name: string;
   run: (args: Args) => Promise<void>;
+};
+
+export type GeneratorFile = {
+  base: string;
+  content: string;
+  dir: string;
+  ext: string;
+  name: string;
+  path: string;
+  root: string;
 };
 
 type GeneratorOptions = {
@@ -40,12 +54,12 @@ type GeneratorArg = {
 };
 
 type ModifyTargetFile = (
-  targetFile: FileReference,
+  targetFile: FileRef,
   args: Args,
 ) => Promise<void> | void;
 
 type ModifyTemplateFile = (
-  templateFile: FileReference,
+  templateFile: FileRef,
   args: Args,
 ) => Promise<void> | void;
 
@@ -57,19 +71,23 @@ export function defineGenerator({
   description,
   modifyTargetFile,
   modifyTemplateFile,
-  name,
+  name: generatorName,
 }: GeneratorOptions): Generator {
-  const generatorName = name;
-  const generatorArgs = [copy(), cwd(), log(), ...args]
+  const generatorArgs = [
+    copy(),
+    cwd(),
+    destroy(),
+    log(),
+    name(),
+    path(),
+    ...args,
+  ]
     .map((argFactory) => argFactory(generatorName))
     .sort((a, b) => a.name.localeCompare(b.name));
 
   async function run(args: Args): Promise<void> {
     const packagePath = args.cwd ?? processCwd();
-    const packageJson: EmberPackageJson = await readJson(
-      join(packagePath, "package.json"),
-    );
-
+    const packageJson = await readPackageJson<EmberPackageJson>(packagePath);
     const config = await resolveConfig(packagePath);
     const resolvedArgs = resolveArgs(
       config,
@@ -81,17 +99,17 @@ export function defineGenerator({
     const entityName: string = resolvedArgs.name;
     const entityPath: string | undefined = resolvedArgs.path;
 
-    const targetFile = new FileReference({
+    const targetFile = new FileRef({
       ext: ".ts",
       name: entityName,
       rootDir: packagePath,
       subDir: entityPath ?? env.GEMBER_PATH ?? "",
     });
 
-    const templateFile = new FileReference({
+    const templateFile = new FileRef({
       ext: ".ts",
       name: generatorName,
-      rootDir: join(dirname(fileURLToPath(import.meta.url)), "..", "templates"),
+      rootDir: getOwnPath("templates"),
       subDir: generatorName,
     });
 
@@ -105,6 +123,22 @@ export function defineGenerator({
     for (const arg of generatorArgs) {
       await arg.modifyTargetFile?.(targetFile, resolvedArgs);
       await arg.modifyTemplateFile?.(templateFile, resolvedArgs);
+    }
+
+    if (args.destroy) {
+      if (await targetFile.exists()) {
+        await remove(targetFile.path());
+
+        logger.success(
+          `Destroyed ${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\`.`,
+        );
+      } else {
+        logger.warn(
+          `${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\` does not exist.`,
+        );
+      }
+
+      return;
     }
 
     const templateContent = await readFile(templateFile.path(), "utf-8");
@@ -139,7 +173,7 @@ export function defineGenerator({
       clipboard.setText(templateCompiled);
 
       logger.success(
-        `🫚 Generated and copied ${generatorName} \`${entityName}\` to the clipboard.`,
+        `Generated and copied ${generatorName} \`${entityName}\` to the clipboard.`,
       );
     } else if (resolvedArgs.log) {
       const border = "─".repeat(
@@ -155,7 +189,7 @@ export function defineGenerator({
     } else {
       if (await targetFile.exists()) {
         const response = await logger.prompt(
-          `\`${relative(packagePath, targetFile.path())}\` already exists. Do you want to overwrite this file?`,
+          `${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\` already exists. Do you want to overwrite this file?`,
           { type: "confirm" },
         );
 
@@ -166,36 +200,34 @@ export function defineGenerator({
         }
       }
 
-      const targetFileParsed = targetFile.parse();
-      const generatorFile: GeneratorFile = {
-        base: targetFileParsed.base,
-        content: templateCompiled,
-        dir: targetFileParsed.dir,
-        ext: targetFileParsed.ext,
-        name: targetFileParsed.name,
-        path: targetFile.path(),
-        root: targetFileParsed.root,
-      };
-
-      await ensureDir(generatorFile.dir);
-      await writeFile(generatorFile.path, generatorFile.content);
+      await outputFile(targetFile.path(), templateCompiled);
 
       logger.success(
-        `🫚 Generated ${generatorName} \`${entityName}\` at \`${relative(packagePath, generatorFile.path)}\`.`,
+        `Generated ${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\`.`,
       );
 
-      const postGenerate = config.hooks?.postGenerate;
+      if (config.hooks?.postGenerate) {
+        logger.start("`hooks.postGenerate`: Running...");
 
-      if (postGenerate) {
-        logger.success("🫚 `hooks.postGenerate`: Running...");
+        const targetFileParsed = targetFile.parse();
 
-        await postGenerate({
+        await config.hooks.postGenerate({
           entityName,
-          files: [generatorFile],
+          files: [
+            {
+              base: targetFileParsed.base,
+              content: templateCompiled,
+              dir: targetFileParsed.dir,
+              ext: targetFileParsed.ext,
+              name: targetFileParsed.name,
+              path: targetFile.path(),
+              root: targetFileParsed.root,
+            },
+          ],
           generatorName,
         });
 
-        logger.success("🫚 `hooks.postGenerate`: Done!");
+        logger.success("`hooks.postGenerate`: Done!");
       }
     }
   }
@@ -261,6 +293,15 @@ export function cwd(): GeneratorArgFactory {
   });
 }
 
+export function destroy(): GeneratorArgFactory {
+  return (generatorName) => ({
+    alias: ["d"],
+    description: `Destroy a ${generatorName} by name`,
+    name: "destroy",
+    type: "boolean",
+  });
+}
+
 export function log(): GeneratorArgFactory {
   return (generatorName) => ({
     description: `Log the generated ${generatorName} to the console, instead of writing it to disk`,
@@ -273,7 +314,6 @@ export function name(): GeneratorArgFactory {
   return (generatorName) => ({
     description: `The ${generatorName}'s name`,
     name: "name",
-    required: true,
     type: "positional",
   });
 }

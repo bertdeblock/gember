@@ -1,5 +1,5 @@
 import { afterEach, it } from "vitest";
-import { Package } from "./helpers.ts";
+import { Package } from "../helpers.ts";
 
 let pkg: Package;
 
@@ -18,7 +18,7 @@ it("generates a template-only `.gjs` component", async (ctx) => {
 it("generates a class-based `.gjs` component", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("component", "foo", "--class");
+  await pkg.gember("component", "foo", "--classBased");
 
   const content = await pkg.readFile("src/components/foo.gjs");
 
@@ -38,7 +38,7 @@ it("generates a template-only `.gjs` component at a custom path", async (ctx) =>
 it("generates a template-only `.gts` component", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("component", "foo", "--ts");
+  await pkg.gember("component", "foo", "--typescript");
 
   const content = await pkg.readFile("src/components/foo.gts");
 
@@ -48,7 +48,7 @@ it("generates a template-only `.gts` component", async (ctx) => {
 it("generates a class-based `.gts` component", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("component", "foo", "--class", "--ts");
+  await pkg.gember("component", "foo", "--classBased", "--typescript");
 
   const content = await pkg.readFile("src/components/foo.gts");
 
@@ -58,7 +58,7 @@ it("generates a class-based `.gts` component", async (ctx) => {
 it("generates a template-only `.gts` component at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("component", "foo", "--path=src/-private", "--ts");
+  await pkg.gember("component", "foo", "--path=src/-private", "--typescript");
 
   const content = await pkg.readFile("src/-private/foo.gts");
 

@@ -1,7 +1,8 @@
 import { findUp } from "find-up";
 import { pathToFileURL } from "node:url";
 import { GemberError } from "./errors.js";
-import type { GeneratorFile } from "./types.js";
+import type { GeneratorFile } from "./generators/generator.js";
+import { logger } from "./logger.js";
 
 export type Config = {
   generators?: {
@@ -136,8 +137,6 @@ export type Config = {
   typescript?: boolean;
 };
 
-export type ConfigFactory = Config | (() => Config) | (() => Promise<Config>);
-
 const CONFIG_FILES: string[] = [
   "gember.config.js",
   "gember.config.cjs",
@@ -182,7 +181,16 @@ export async function resolveConfig(cwd: string): Promise<Config> {
     resolvedConfig = {};
   }
 
+  logger.debug(`Resolved config at \`${cwd}\`:`);
+  logger.debug(resolvedConfig);
+
   RESOLVED_CONFIGS.set(cwd, resolvedConfig);
 
   return resolvedConfig;
+}
+
+type ConfigFactory = Config | (() => Config) | (() => Promise<Config>);
+
+export function defineConfig(config: ConfigFactory): ConfigFactory {
+  return config;
 }

@@ -1,9 +1,13 @@
-import { it } from "vitest";
+import { afterEach, it } from "vitest";
 import { resolveConfig } from "../src/config.js";
 import { Package } from "./helpers.js";
 
+let pkg: Package;
+
+afterEach(() => pkg.cleanUp());
+
 it("supports a `gember.config.js` file", async (ctx) => {
-  const pkg = await Package.create("v2-addon-config-js");
+  pkg = await Package.create("v2-addon-config-js");
 
   const config = await resolveConfig(pkg.path);
 
@@ -11,7 +15,7 @@ it("supports a `gember.config.js` file", async (ctx) => {
 });
 
 it("supports a `gember.config.cjs` file", async (ctx) => {
-  const pkg = await Package.create("v2-addon-config-cjs");
+  pkg = await Package.create("v2-addon-config-cjs");
 
   const config = await resolveConfig(pkg.path);
 
@@ -19,7 +23,7 @@ it("supports a `gember.config.cjs` file", async (ctx) => {
 });
 
 it("supports a `gember.config.mjs` file", async (ctx) => {
-  const pkg = await Package.create("v2-addon-config-mjs");
+  pkg = await Package.create("v2-addon-config-mjs");
 
   const config = await resolveConfig(pkg.path);
 
@@ -27,7 +31,7 @@ it("supports a `gember.config.mjs` file", async (ctx) => {
 });
 
 it("runs the `postGenerate` hook", async (ctx) => {
-  const pkg = await Package.create("v2-addon-config", "post-generate-info");
+  pkg = await Package.create("v2-addon-config", "post-generate-info");
 
   await pkg.gember("component", "foo");
 
@@ -39,7 +43,7 @@ it("runs the `postGenerate` hook", async (ctx) => {
 });
 
 it("applies specific generator options", async (ctx) => {
-  const pkg = await Package.create("v2-addon-config");
+  pkg = await Package.create("v2-addon-config");
 
   await pkg.gember("component", "foo");
 

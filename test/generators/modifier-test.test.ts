@@ -1,5 +1,5 @@
 import { afterEach, it } from "vitest";
-import { Package } from "./helpers.ts";
+import { Package } from "../helpers.ts";
 
 let pkg: Package;
 
@@ -30,7 +30,7 @@ it("generates a `.gjs` modifier-test at a custom path", async (ctx) => {
 it("generates a `.gts` modifier-test", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("modifier-test", "foo", "--ts");
+  await pkg.gember("modifier-test", "foo", "--typescript");
 
   const content = await pkg.readFile(
     "tests/integration/modifiers/foo-test.gts",
@@ -42,7 +42,7 @@ it("generates a `.gts` modifier-test", async (ctx) => {
 it("generates a `.gts` modifier-test at a custom path", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
-  await pkg.gember("modifier-test", "foo", "--path=tests/foo", "--ts");
+  await pkg.gember("modifier-test", "foo", "--path=tests/foo", "--typescript");
 
   const content = await pkg.readFile("tests/foo/foo-test.gts");
 

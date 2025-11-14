@@ -2,25 +2,30 @@ import {
   defineCommand,
   runMain,
   type ArgsDef,
+  // type CommandDef,
   type SubCommandsDef,
 } from "citty";
-import { readJsonSync } from "fs-extra/esm";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-// eslint-disable-next-line n/no-missing-import
-import type { PackageJson } from "type-fest";
 import { GemberError, logGemberErrors } from "./errors.js";
-import { generators } from "./generators.js";
+import { generators } from "./generators/generators.js";
+import { readOwnPackageJsonSync } from "./internal.js";
 import { logger } from "./logger.js";
 
-const { description, name, version }: PackageJson = readJsonSync(
-  join(dirname(fileURLToPath(import.meta.url)), "..", "package.json"),
-);
+const { description, version } = readOwnPackageJsonSync();
+
+// const COMMANDS: Record<string, CommandDef> = {
+//   generator: {
+//     meta: {
+//       description: "Run a generator",
+//     },
+
+//     subCommands: generatorCommands(),
+//   },
+// };
 
 const main = defineCommand({
   meta: {
     description,
-    name,
+    name: "gember",
     version,
   },
 
@@ -80,7 +85,15 @@ const main = defineCommand({
     });
   },
 
-  subCommands: generators.reduce((subCommands: SubCommandsDef, generator) => {
+  subCommands: {
+    ...generatorCommands(),
+    // g: COMMANDS.generator,
+    // generator: COMMANDS.generator,
+  },
+});
+
+function generatorCommands(deprecated?: boolean): SubCommandsDef {
+  return generators.reduce((subCommands: SubCommandsDef, generator) => {
     subCommands[generator.name] = {
       args: generator.args.reduce((args: ArgsDef, arg) => {
         args[arg.name] = {
@@ -94,11 +107,21 @@ const main = defineCommand({
       }, {}),
 
       meta: {
-        description: generator.description,
-        name: generator.name,
+        description:
+          generator.description +
+          (deprecated
+            ? ` [DEPRECATED: Run \`gember generator ${generator.name}\` or \`gember g ${generator.name}\`]`
+            : ""),
       },
 
       run: (context): void => {
+        if (deprecated) {
+          logger.warn({
+            message: `Running \`gember ${generator.name}\` is deprecated. Please run \`gember generator ${generator.name}\` or \`gember g ${generator.name}\` instead.`,
+            tag: "DEPRECATION",
+          });
+        }
+
         logGemberErrors(async () => {
           await generator.run(context.args);
         });
@@ -106,7 +129,7 @@ const main = defineCommand({
     };
 
     return subCommands;
-  }, {}),
-});
+  }, {});
+}
 
 runMain(main);
