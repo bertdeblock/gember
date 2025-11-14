@@ -13,12 +13,16 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the component generator in:
       cwd?: string;
+      // Destroy a component by name:
+      destroy?: boolean;
       // Log the generated component to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a nested colocated component, e.g. `foo/bar/index.gts`:
       nested?: boolean;
       // Generate a component at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding component-test:
+      test?: boolean;
       // Generate a `.gts` component, instead of a `.gjs` component:
       typescript?: boolean;
     };
@@ -27,6 +31,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the component-test generator in:
       cwd?: string;
+      // Destroy a component-test by name:
+      destroy?: boolean;
       // Log the generated component-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a component-test at a custom path, e.g. `--path=src/-private`:
@@ -41,10 +47,14 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the helper generator in:
       cwd?: string;
+      // Destroy a helper by name:
+      destroy?: boolean;
       // Log the generated helper to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a helper at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding helper-test:
+      test?: boolean;
       // Generate a `.ts` helper, instead of a `.js` helper:
       typescript?: boolean;
     };
@@ -53,6 +63,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the helper-test generator in:
       cwd?: string;
+      // Destroy a helper-test by name:
+      destroy?: boolean;
       // Log the generated helper-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a helper-test at a custom path, e.g. `--path=src/-private`:
@@ -67,10 +79,14 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the modifier generator in:
       cwd?: string;
+      // Destroy a modifier by name:
+      destroy?: boolean;
       // Log the generated modifier to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a modifier at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding modifier-test:
+      test?: boolean;
       // Generate a `.ts` modifier, instead of a `.js` modifier:
       typescript?: boolean;
     };
@@ -79,6 +95,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the modifier-test generator in:
       cwd?: string;
+      // Destroy a modifier-test by name:
+      destroy?: boolean;
       // Log the generated modifier-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a modifier-test at a custom path, e.g. `--path=src/-private`:
@@ -91,10 +109,14 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the service generator in:
       cwd?: string;
+      // Destroy a service by name:
+      destroy?: boolean;
       // Log the generated service to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a service at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding service-test:
+      test?: boolean;
       // Generate a `.ts` service, instead of a `.js` service:
       typescript?: boolean;
     };
@@ -103,6 +125,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the service-test generator in:
       cwd?: string;
+      // Destroy a service-test by name:
+      destroy?: boolean;
       // Log the generated service-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a service-test at a custom path, e.g. `--path=src/-private`:
@@ -115,6 +139,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the acceptance-test generator in:
       cwd?: string;
+      // Destroy a acceptance-test by name:
+      destroy?: boolean;
       // Log the generated acceptance-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:

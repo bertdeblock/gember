@@ -56,87 +56,233 @@ yarn add -D @bertdeblock/gember
 
 ## Usage
 
-```shell
-Generate components, helpers, modifiers and services in v1/v2 apps/addons.
+### gember
 
-USAGE gember component|component-test|helper|helper-test|modifier|modifier-test|service|service-test|acceptance-test
+```shell
+Generate components, helpers, modifiers and services in v1/v2 apps/addons. (gember v1.4.0)
+
+USAGE `gember component|component-test|helper|helper-test|modifier|modifier-test|service|service-test|acceptance-test`
 
 COMMANDS
 
-        component    Generate a new component
-   component-test    Generate a new component-test
-           helper    Generate a new helper
-      helper-test    Generate a new helper-test
-         modifier    Generate a new modifier
-    modifier-test    Generate a new modifier-test
-          service    Generate a new service
-     service-test    Generate a new service-test
-  acceptance-test    Generate a new acceptance-test
+        `component`    Generate a new component
+   `component-test`    Generate a new component-test
+           `helper`    Generate a new helper
+      `helper-test`    Generate a new helper-test
+         `modifier`    Generate a new modifier
+    `modifier-test`    Generate a new modifier-test
+          `service`    Generate a new service
+     `service-test`    Generate a new service-test
+  `acceptance-test`    Generate a new acceptance-test
 
-Use gember <command> --help for more information about a command.
+Use `gember <command> --help` for more information about a command.
 ```
 
-💡 Run `pnpm gember` to run generators interactively.
-
-<details open>
-  <summary>Generating components</summary>
+### component
 
 ```shell
-pnpm gember component --help # for all available options
+Generate a new component (component)
 
-# examples:
-pnpm gember component foo
-pnpm gember component foo --class-based # or `--class`
-pnpm gember component foo --nested
-pnpm gember component foo --path="src/-private"
-pnpm gember component foo --typescript # or `--ts`
+USAGE `component [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The component's name
+
+OPTIONS
+
+  `-class, -class-based, --classBased`    Generate a `class-based` component, instead of a `template-only` component
+                              `--copy`    Copy the generated component to the clipboard, instead of writing it to disk
+                               `--cwd`    The current working directory to run the component generator in
+                       `-d, --destroy`    Destroy a component by name
+                               `--log`    Log the generated component to the console, instead of writing it to disk
+                            `--nested`    Generate a nested colocated component, e.g. `foo/bar/index.gts`
+                              `--path`    Generate a component at a custom path, e.g. `--path=src/-private`
+                              `--test`    Generate a corresponding component-test
+             `-gts, -ts, --typescript`    Generate a `.gts` component, instead of a `.gjs` component
+
 ```
 
-</details>
-
-<details>
-  <summary>Generating helpers</summary>
+### component-test
 
 ```shell
-pnpm gember helper --help # for all available options
+Generate a new component-test (component-test)
 
-# examples:
-pnpm gember helper foo
-pnpm gember helper foo --class-based # or `--class`
-pnpm gember helper foo --path="src/-private"
-pnpm gember helper foo --typescript # or `--ts`
+USAGE `component-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The component-test's name
+
+OPTIONS
+
+                   `--copy`    Copy the generated component-test to the clipboard, instead of writing it to disk
+                    `--cwd`    The current working directory to run the component-test generator in
+            `-d, --destroy`    Destroy a component-test by name
+                    `--log`    Log the generated component-test to the console, instead of writing it to disk
+                   `--path`    Generate a component-test at a custom path, e.g. `--path=src/-private`
+  `-gts, -ts, --typescript`    Generate a `.gts` component-test, instead of a `.gjs` component-test
+
 ```
 
-</details>
-
-<details>
-  <summary>Generating modifiers</summary>
+### helper
 
 ```shell
-pnpm gember modifier --help # for all available options
+Generate a new helper (helper)
 
-# examples:
-pnpm gember modifier foo
-pnpm gember modifier foo --class-based # or `--class`
-pnpm gember modifier foo --path="src/-private"
-pnpm gember modifier foo --typescript # or `--ts`
+USAGE `helper [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The helper's name
+
+OPTIONS
+
+  `-class, -class-based, --classBased`    Generate a `class-based` helper, instead of a `function-based` helper
+                              `--copy`    Copy the generated helper to the clipboard, instead of writing it to disk
+                               `--cwd`    The current working directory to run the helper generator in
+                       `-d, --destroy`    Destroy a helper by name
+                               `--log`    Log the generated helper to the console, instead of writing it to disk
+                              `--path`    Generate a helper at a custom path, e.g. `--path=src/-private`
+                              `--test`    Generate a corresponding helper-test
+                   `-ts, --typescript`    Generate a `.ts` helper, instead of a `.js` helper
+
 ```
 
-</details>
-
-<details>
-  <summary>Generating services</summary>
+### helper-test
 
 ```shell
-pnpm gember service --help # for all available options
+Generate a new helper-test (helper-test)
 
-# examples:
-pnpm gember service foo
-pnpm gember service foo --path="src/-private"
-pnpm gember service foo --typescript # or `--ts`
+USAGE `helper-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The helper-test's name
+
+OPTIONS
+
+                   `--copy`    Copy the generated helper-test to the clipboard, instead of writing it to disk
+                    `--cwd`    The current working directory to run the helper-test generator in
+            `-d, --destroy`    Destroy a helper-test by name
+                    `--log`    Log the generated helper-test to the console, instead of writing it to disk
+                   `--path`    Generate a helper-test at a custom path, e.g. `--path=src/-private`
+  `-gts, -ts, --typescript`    Generate a `.gts` helper-test, instead of a `.gjs` helper-test
+
 ```
 
-</details>
+### modifier
+
+```shell
+Generate a new modifier (modifier)
+
+USAGE `modifier [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The modifier's name
+
+OPTIONS
+
+  `-class, -class-based, --classBased`    Generate a `class-based` modifier, instead of a `function-based` modifier
+                              `--copy`    Copy the generated modifier to the clipboard, instead of writing it to disk
+                               `--cwd`    The current working directory to run the modifier generator in
+                       `-d, --destroy`    Destroy a modifier by name
+                               `--log`    Log the generated modifier to the console, instead of writing it to disk
+                              `--path`    Generate a modifier at a custom path, e.g. `--path=src/-private`
+                              `--test`    Generate a corresponding modifier-test
+                   `-ts, --typescript`    Generate a `.ts` modifier, instead of a `.js` modifier
+
+```
+
+### modifier-test
+
+```shell
+Generate a new modifier-test (modifier-test)
+
+USAGE `modifier-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The modifier-test's name
+
+OPTIONS
+
+                   `--copy`    Copy the generated modifier-test to the clipboard, instead of writing it to disk
+                    `--cwd`    The current working directory to run the modifier-test generator in
+            `-d, --destroy`    Destroy a modifier-test by name
+                    `--log`    Log the generated modifier-test to the console, instead of writing it to disk
+                   `--path`    Generate a modifier-test at a custom path, e.g. `--path=src/-private`
+  `-gts, -ts, --typescript`    Generate a `.gts` modifier-test, instead of a `.gjs` modifier-test
+
+```
+
+### service
+
+```shell
+Generate a new service (service)
+
+USAGE `service [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The service's name
+
+OPTIONS
+
+             `--copy`    Copy the generated service to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the service generator in
+      `-d, --destroy`    Destroy a service by name
+              `--log`    Log the generated service to the console, instead of writing it to disk
+             `--path`    Generate a service at a custom path, e.g. `--path=src/-private`
+             `--test`    Generate a corresponding service-test
+  `-ts, --typescript`    Generate a `.ts` service, instead of a `.js` service
+
+```
+
+### service-test
+
+```shell
+Generate a new service-test (service-test)
+
+USAGE `service-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The service-test's name
+
+OPTIONS
+
+             `--copy`    Copy the generated service-test to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the service-test generator in
+      `-d, --destroy`    Destroy a service-test by name
+              `--log`    Log the generated service-test to the console, instead of writing it to disk
+             `--path`    Generate a service-test at a custom path, e.g. `--path=src/-private`
+  `-ts, --typescript`    Generate a `.ts` service-test, instead of a `.js` service-test
+
+```
+
+### acceptance-test
+
+```shell
+Generate a new acceptance-test (acceptance-test)
+
+USAGE `acceptance-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The acceptance-test's name
+
+OPTIONS
+
+             `--copy`    Copy the generated acceptance-test to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the acceptance-test generator in
+      `-d, --destroy`    Destroy a acceptance-test by name
+              `--log`    Log the generated acceptance-test to the console, instead of writing it to disk
+             `--path`    Generate a acceptance-test at a custom path, e.g. `--path=src/-private`
+  `-ts, --typescript`    Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test
+
+```
 
 ## Configuration
 
@@ -175,12 +321,16 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the component generator in:
       cwd?: string;
+      // Destroy a component by name:
+      destroy?: boolean;
       // Log the generated component to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a nested colocated component, e.g. `foo/bar/index.gts`:
       nested?: boolean;
       // Generate a component at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding component-test:
+      test?: boolean;
       // Generate a `.gts` component, instead of a `.gjs` component:
       typescript?: boolean;
     };
@@ -189,6 +339,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the component-test generator in:
       cwd?: string;
+      // Destroy a component-test by name:
+      destroy?: boolean;
       // Log the generated component-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a component-test at a custom path, e.g. `--path=src/-private`:
@@ -203,10 +355,14 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the helper generator in:
       cwd?: string;
+      // Destroy a helper by name:
+      destroy?: boolean;
       // Log the generated helper to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a helper at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding helper-test:
+      test?: boolean;
       // Generate a `.ts` helper, instead of a `.js` helper:
       typescript?: boolean;
     };
@@ -215,6 +371,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the helper-test generator in:
       cwd?: string;
+      // Destroy a helper-test by name:
+      destroy?: boolean;
       // Log the generated helper-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a helper-test at a custom path, e.g. `--path=src/-private`:
@@ -229,10 +387,14 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the modifier generator in:
       cwd?: string;
+      // Destroy a modifier by name:
+      destroy?: boolean;
       // Log the generated modifier to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a modifier at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding modifier-test:
+      test?: boolean;
       // Generate a `.ts` modifier, instead of a `.js` modifier:
       typescript?: boolean;
     };
@@ -241,6 +403,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the modifier-test generator in:
       cwd?: string;
+      // Destroy a modifier-test by name:
+      destroy?: boolean;
       // Log the generated modifier-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a modifier-test at a custom path, e.g. `--path=src/-private`:
@@ -253,10 +417,14 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the service generator in:
       cwd?: string;
+      // Destroy a service by name:
+      destroy?: boolean;
       // Log the generated service to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a service at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding service-test:
+      test?: boolean;
       // Generate a `.ts` service, instead of a `.js` service:
       typescript?: boolean;
     };
@@ -265,6 +433,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the service-test generator in:
       cwd?: string;
+      // Destroy a service-test by name:
+      destroy?: boolean;
       // Log the generated service-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a service-test at a custom path, e.g. `--path=src/-private`:
@@ -277,6 +447,8 @@ export type Config = {
       copy?: boolean;
       // The current working directory to run the acceptance-test generator in:
       cwd?: string;
+      // Destroy a acceptance-test by name:
+      destroy?: boolean;
       // Log the generated acceptance-test to the console, instead of writing it to disk:
       log?: boolean;
       // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
