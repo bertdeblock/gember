@@ -1,5 +1,5 @@
 import { execa } from "execa";
-import { remove } from "fs-extra/esm";
+import { pathExists, remove } from "fs-extra/esm";
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -33,11 +33,19 @@ export class Package {
     );
   }
 
+  getPath(path: string): string {
+    return join(this.path, path);
+  }
+
+  pathExists(path: string): Promise<boolean> {
+    return pathExists(this.getPath(path));
+  }
+
   readFile(path: string): Promise<string> {
-    return readFile(join(this.path, path), "utf-8");
+    return readFile(this.getPath(path), "utf-8");
   }
 
   async remove(path: string): Promise<void> {
-    await remove(join(this.path, path));
+    await remove(this.getPath(path));
   }
 }

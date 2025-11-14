@@ -64,3 +64,26 @@ it("generates a nested `.ts` service", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a corresponding service-test", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("service", "foo", "--test");
+
+  ctx.expect(await pkg.pathExists("src/services/foo.js")).to.equal(true);
+  ctx
+    .expect(await pkg.pathExists("tests/unit/services/foo-test.js"))
+    .to.equal(true);
+});
+
+it("destroys a service", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("service", "foo");
+
+  ctx.expect(await pkg.pathExists("src/services/foo.js")).to.equal(true);
+
+  await pkg.gember("service", "foo", "--destroy");
+
+  ctx.expect(await pkg.pathExists("src/services/foo.js")).to.equal(false);
+});

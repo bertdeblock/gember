@@ -84,3 +84,26 @@ it("generates a nested colocated template-only `.gjs` component", async (ctx) =>
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a corresponding component-test", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("component", "foo", "--test");
+
+  ctx.expect(await pkg.pathExists("src/components/foo.gjs")).to.equal(true);
+  ctx
+    .expect(await pkg.pathExists("tests/integration/components/foo-test.gjs"))
+    .to.equal(true);
+});
+
+it("destroys a component", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("component", "foo");
+
+  ctx.expect(await pkg.pathExists("src/components/foo.gjs")).to.equal(true);
+
+  await pkg.gember("component", "foo", "--destroy");
+
+  ctx.expect(await pkg.pathExists("src/components/foo.gjs")).to.equal(false);
+});

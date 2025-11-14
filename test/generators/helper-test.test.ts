@@ -44,3 +44,19 @@ it("generates a `.gts` helper-test at a custom path", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("destroys a helper-test", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("helper-test", "foo");
+
+  ctx
+    .expect(await pkg.pathExists("tests/integration/helpers/foo-test.gjs"))
+    .to.equal(true);
+
+  await pkg.gember("helper-test", "foo", "--destroy");
+
+  ctx
+    .expect(await pkg.pathExists("tests/integration/helpers/foo-test.gjs"))
+    .to.equal(false);
+});

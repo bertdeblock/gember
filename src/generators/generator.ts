@@ -19,6 +19,7 @@ import {
 export type Generator = {
   args: GeneratorArg[];
   description: string;
+  isTestGenerator: boolean;
   name: string;
   run: (args: Args) => Promise<void>;
 };
@@ -36,6 +37,7 @@ export type GeneratorFile = {
 type GeneratorOptions = {
   args: GeneratorArgFactory[];
   description?: string;
+  isTestGenerator?: boolean;
   modifyTargetFile?: ModifyTargetFile;
   modifyTemplateFile?: ModifyTemplateFile;
   name: string;
@@ -69,6 +71,7 @@ type Args = Record<string, any>;
 export function defineGenerator({
   args,
   description,
+  isTestGenerator,
   modifyTargetFile,
   modifyTemplateFile,
   name: generatorName,
@@ -235,6 +238,7 @@ export function defineGenerator({
   return {
     args: generatorArgs,
     description: description ?? `Generate a new ${generatorName}`,
+    isTestGenerator: isTestGenerator ?? false,
     name: generatorName,
     run,
   };
@@ -245,6 +249,7 @@ export function defineTestGenerator(
 ): Generator {
   return defineGenerator({
     ...options,
+    isTestGenerator: true,
     modifyTargetFile: (targetFile, args) => {
       if (args.path === undefined && env.GEMBER_PATH === undefined) {
         targetFile.subDir = join(
@@ -341,6 +346,14 @@ export function path(): GeneratorArgFactory {
     description: `Generate a ${generatorName} at a custom path, e.g. \`--path=src/-private\``,
     name: "path",
     type: "string",
+  });
+}
+
+export function test(): GeneratorArgFactory {
+  return (generatorName) => ({
+    description: `Generate a corresponding ${generatorName}-test`,
+    name: "test",
+    type: "boolean",
   });
 }
 

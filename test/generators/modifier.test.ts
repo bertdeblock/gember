@@ -74,3 +74,26 @@ it("generates a nested function-based `.js` modifier", async (ctx) => {
 
   ctx.expect(content).toMatchSnapshot();
 });
+
+it("generates a corresponding modifier-test", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("modifier", "foo", "--test");
+
+  ctx.expect(await pkg.pathExists("src/modifiers/foo.js")).to.equal(true);
+  ctx
+    .expect(await pkg.pathExists("tests/integration/modifiers/foo-test.gjs"))
+    .to.equal(true);
+});
+
+it("destroys a modifier", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("modifier", "foo");
+
+  ctx.expect(await pkg.pathExists("src/modifiers/foo.js")).to.equal(true);
+
+  await pkg.gember("modifier", "foo", "--destroy");
+
+  ctx.expect(await pkg.pathExists("src/modifiers/foo.js")).to.equal(false);
+});
