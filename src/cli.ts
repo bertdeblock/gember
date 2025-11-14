@@ -22,7 +22,7 @@ const { description, version } = readOwnPackageJsonSync();
 //   },
 // };
 
-const main = defineCommand({
+export const main = defineCommand({
   meta: {
     description,
     name: "gember",
@@ -112,6 +112,7 @@ function generatorCommands(deprecated?: boolean): SubCommandsDef {
           (deprecated
             ? ` [DEPRECATED: Run \`gember generator ${generator.name}\` or \`gember g ${generator.name}\`]`
             : ""),
+        name: generator.name,
       },
 
       run: (context): void => {
@@ -157,4 +158,6 @@ function generatorCommands(deprecated?: boolean): SubCommandsDef {
   }, {});
 }
 
-runMain(main);
+export async function run(): Promise<void> {
+  await runMain(main);
+}
