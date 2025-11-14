@@ -1,5 +1,21 @@
 # Changelog
 
+## Release (2025-11-14)
+
+* @bertdeblock/gember 1.5.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#83](https://github.com/bertdeblock/gember/pull/83) Support generating a corresponding test file via a `--test` option ([@bertdeblock](https://github.com/bertdeblock))
+  * [#81](https://github.com/bertdeblock/gember/pull/81) Support destroying files via a `--destroy` option ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :memo: Documentation
+* `@bertdeblock/gember`
+  * [#84](https://github.com/bertdeblock/gember/pull/84) Generate usage ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-11-10)
 
 * @bertdeblock/gember 1.4.0 (minor)
