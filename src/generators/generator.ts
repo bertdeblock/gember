@@ -3,10 +3,11 @@ import { camelCase, pascalCase, pathCase } from "change-case";
 import { outputFile, pathExists, remove } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile } from "node:fs/promises";
-import { join, relative } from "node:path";
+import { isAbsolute, join, relative } from "node:path";
 import { cwd as processCwd, env } from "node:process";
 import { FileRef } from "./file-ref.js";
 import { resolveConfig, type Config } from "../config.js";
+import { GemberError } from "../errors.js";
 import { getOwnPath } from "../internal.js";
 import { logger } from "../logger.js";
 import {
@@ -83,6 +84,8 @@ export function defineGenerator({
     log(),
     name(),
     path(),
+    templateContent(),
+    templatePath(),
     ...args,
   ]
     .map((argFactory) => argFactory(generatorName))
@@ -109,15 +112,7 @@ export function defineGenerator({
       subDir: entityPath ?? env.GEMBER_PATH ?? "",
     });
 
-    const templateFile = new FileRef({
-      ext: ".ts",
-      name: generatorName,
-      rootDir: getOwnPath("templates"),
-      subDir: generatorName,
-    });
-
     await modifyTargetFile?.(targetFile, resolvedArgs);
-    await modifyTemplateFile?.(templateFile, resolvedArgs);
 
     if (targetFile.subDir === "") {
       targetFile.subDir = join(getSrcDir(packageJson), generatorName + "s");
@@ -125,7 +120,6 @@ export function defineGenerator({
 
     for (const arg of generatorArgs) {
       await arg.modifyTargetFile?.(targetFile, resolvedArgs);
-      await arg.modifyTemplateFile?.(templateFile, resolvedArgs);
     }
 
     if (args.destroy) {
@@ -144,7 +138,40 @@ export function defineGenerator({
       return;
     }
 
-    const templateContent = await readFile(templateFile.path(), "utf-8");
+    let templateContent;
+
+    if (args.templateContent) {
+      templateContent = args.templateContent;
+    } else if (args.templatePath) {
+      try {
+        templateContent = await readFile(
+          isAbsolute(args.templatePath)
+            ? args.templatePath
+            : join(packagePath, args.templatePath),
+          "utf-8",
+        );
+      } catch (cause) {
+        throw new GemberError(`Could not read file \`${args.templatePath}\`.`, {
+          cause,
+        });
+      }
+    } else {
+      const templateFile = new FileRef({
+        ext: ".ts",
+        name: generatorName,
+        rootDir: getOwnPath("templates"),
+        subDir: generatorName,
+      });
+
+      await modifyTemplateFile?.(templateFile, resolvedArgs);
+
+      for (const arg of generatorArgs) {
+        await arg.modifyTemplateFile?.(templateFile, resolvedArgs);
+      }
+
+      templateContent = await readFile(templateFile.path(), "utf-8");
+    }
+
     const template = Handlebars.compile(templateContent);
 
     const entityNameCases = {
@@ -153,22 +180,30 @@ export function defineGenerator({
       path: pathCase(entityName),
     };
 
-    const templateCompiled = template({
-      name: {
-        ...entityNameCases,
-        camelCurlyBrackets: `{{${entityNameCases.camel}}}`,
-        pathMaybeQuotes: /(-|\/)/.test(entityNameCases.path)
-          ? `"${entityNameCases.path}"`
-          : entityNameCases.path,
-        signature: entityNameCases.pascal + "Signature",
-      },
-      package: packageJson,
-      testHelpersImportPath:
-        (await pathExists(join(packagePath, "tests", "helpers.js"))) ||
-        (await pathExists(join(packagePath, "tests", "helpers.ts")))
-          ? `${packageJson.name}/tests/helpers`
-          : "ember-qunit",
-    });
+    let templateCompiled;
+
+    try {
+      templateCompiled = template({
+        name: {
+          ...entityNameCases,
+          camelCurlyBrackets: `{{${entityNameCases.camel}}}`,
+          pathMaybeQuotes: /(-|\/)/.test(entityNameCases.path)
+            ? `"${entityNameCases.path}"`
+            : entityNameCases.path,
+          signature: entityNameCases.pascal + "Signature",
+        },
+        package: packageJson,
+        testHelpersImportPath:
+          (await pathExists(join(packagePath, "tests", "helpers.js"))) ||
+          (await pathExists(join(packagePath, "tests", "helpers.ts")))
+            ? `${packageJson.name}/tests/helpers`
+            : "ember-qunit",
+      });
+    } catch (cause) {
+      throw new GemberError(`Could not compile ${generatorName} template.`, {
+        cause,
+      });
+    }
 
     if (resolvedArgs.copy) {
       const clipboard = new Clipboard();
@@ -349,6 +384,22 @@ export function path(): GeneratorArgFactory {
   return (generatorName) => ({
     description: `Generate a ${generatorName} at a custom path, e.g. \`--path=src/-private\``,
     name: "path",
+    type: "string",
+  });
+}
+
+export function templateContent(): GeneratorArgFactory {
+  return (generatorName) => ({
+    description: `Custom ${generatorName} template content`,
+    name: "templateContent",
+    type: "string",
+  });
+}
+
+export function templatePath(): GeneratorArgFactory {
+  return (generatorName) => ({
+    description: `Custom ${generatorName} template path`,
+    name: "templatePath",
     type: "string",
   });
 }

@@ -17,6 +17,10 @@ export type Config = {
       log?: boolean;
       // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom acceptance-test template content:
+      templateContent?: string;
+      // Custom acceptance-test template path:
+      templatePath?: string;
       // Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test:
       typescript?: boolean;
     };
@@ -35,6 +39,10 @@ export type Config = {
       nested?: boolean;
       // Generate a component at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom component template content:
+      templateContent?: string;
+      // Custom component template path:
+      templatePath?: string;
       // Generate a corresponding component-test:
       test?: boolean;
       // Generate a `.gts` component, instead of a `.gjs` component:
@@ -51,6 +59,10 @@ export type Config = {
       log?: boolean;
       // Generate a component-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom component-test template content:
+      templateContent?: string;
+      // Custom component-test template path:
+      templatePath?: string;
       // Generate a `.gts` component-test, instead of a `.gjs` component-test:
       typescript?: boolean;
     };
@@ -65,6 +77,10 @@ export type Config = {
       log?: boolean;
       // Generate a controller at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom controller template content:
+      templateContent?: string;
+      // Custom controller template path:
+      templatePath?: string;
       // Generate a corresponding controller-test:
       test?: boolean;
       // Generate a `.ts` controller, instead of a `.js` controller:
@@ -81,6 +97,10 @@ export type Config = {
       log?: boolean;
       // Generate a controller-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom controller-test template content:
+      templateContent?: string;
+      // Custom controller-test template path:
+      templatePath?: string;
       // Generate a `.ts` controller-test, instead of a `.js` controller-test:
       typescript?: boolean;
     };
@@ -97,6 +117,10 @@ export type Config = {
       log?: boolean;
       // Generate a helper at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom helper template content:
+      templateContent?: string;
+      // Custom helper template path:
+      templatePath?: string;
       // Generate a corresponding helper-test:
       test?: boolean;
       // Generate a `.ts` helper, instead of a `.js` helper:
@@ -113,6 +137,10 @@ export type Config = {
       log?: boolean;
       // Generate a helper-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom helper-test template content:
+      templateContent?: string;
+      // Custom helper-test template path:
+      templatePath?: string;
       // Generate a `.gts` helper-test, instead of a `.gjs` helper-test:
       typescript?: boolean;
     };
@@ -129,6 +157,10 @@ export type Config = {
       log?: boolean;
       // Generate a modifier at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom modifier template content:
+      templateContent?: string;
+      // Custom modifier template path:
+      templatePath?: string;
       // Generate a corresponding modifier-test:
       test?: boolean;
       // Generate a `.ts` modifier, instead of a `.js` modifier:
@@ -145,6 +177,10 @@ export type Config = {
       log?: boolean;
       // Generate a modifier-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom modifier-test template content:
+      templateContent?: string;
+      // Custom modifier-test template path:
+      templatePath?: string;
       // Generate a `.gts` modifier-test, instead of a `.gjs` modifier-test:
       typescript?: boolean;
     };
@@ -159,6 +195,10 @@ export type Config = {
       log?: boolean;
       // Generate a route at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom route template content:
+      templateContent?: string;
+      // Custom route template path:
+      templatePath?: string;
       // Generate a corresponding route-test:
       test?: boolean;
       // Generate a `.ts` route, instead of a `.js` route:
@@ -175,6 +215,10 @@ export type Config = {
       log?: boolean;
       // Generate a route-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom route-test template content:
+      templateContent?: string;
+      // Custom route-test template path:
+      templatePath?: string;
       // Generate a `.ts` route-test, instead of a `.js` route-test:
       typescript?: boolean;
     };
@@ -189,6 +233,10 @@ export type Config = {
       log?: boolean;
       // Generate a service at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom service template content:
+      templateContent?: string;
+      // Custom service template path:
+      templatePath?: string;
       // Generate a corresponding service-test:
       test?: boolean;
       // Generate a `.ts` service, instead of a `.js` service:
@@ -205,6 +253,10 @@ export type Config = {
       log?: boolean;
       // Generate a service-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom service-test template content:
+      templateContent?: string;
+      // Custom service-test template path:
+      templatePath?: string;
       // Generate a `.ts` service-test, instead of a `.js` service-test:
       typescript?: boolean;
     };
@@ -219,6 +271,10 @@ export type Config = {
       log?: boolean;
       // Generate a util at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom util template content:
+      templateContent?: string;
+      // Custom util template path:
+      templatePath?: string;
       // Generate a corresponding util-test:
       test?: boolean;
       // Generate a `.ts` util, instead of a `.js` util:
@@ -235,6 +291,10 @@ export type Config = {
       log?: boolean;
       // Generate a util-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Custom util-test template content:
+      templateContent?: string;
+      // Custom util-test template path:
+      templatePath?: string;
       // Generate a `.ts` util-test, instead of a `.js` util-test:
       typescript?: boolean;
     };
