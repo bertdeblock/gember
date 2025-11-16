@@ -1,22 +1,22 @@
 import eslint from "@eslint/js";
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import eslintPluginNode from "eslint-plugin-n";
 import typescriptEslint from "typescript-eslint";
 
 export default defineConfig(
+  globalIgnores([
+    "bin",
+    "coverage",
+    "dist",
+    "templates",
+    "test/output",
+    "test/packages/**/*.cjs",
+  ]),
+
   eslint.configs.recommended,
   typescriptEslint.configs.recommended,
   eslintPluginNode.configs["flat/recommended-module"],
-  {
-    ignores: [
-      "bin",
-      "coverage",
-      "dist",
-      "templates",
-      "test/output",
-      "test/packages/**/*.cjs",
-    ],
-  },
+
   {
     files: ["**/*.ts"],
     rules: {
