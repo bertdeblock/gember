@@ -25,7 +25,7 @@
     "build": "tsc --project tsconfig.json",
     "dev": "pnpm build --watch",
     "format": "prettier . --cache --write",
-    "gember": "GEMBER_PATH=test/output bin/gember.js",
+    "gember": "GEMBER_CWD=test/output bin/gember.js",
     "lint": "concurrently --group --prefix-colors auto \"npm:lint:*(!fix)\"",
     "lint:fix": "concurrently --group --prefix-colors auto \"npm:lint:*:fix\"",
     "lint:format": "prettier . --cache --check",

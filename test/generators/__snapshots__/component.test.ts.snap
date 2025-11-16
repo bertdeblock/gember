@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`generates a class-based \`.gjs\` component 1`] = `
-"import Component from "@glimmer/component";
+"import Component from '@glimmer/component';
 
 export default class Foo extends Component {
   <template>{{yield}}</template>
@@ -10,7 +10,7 @@ export default class Foo extends Component {
 `;
 
 exports[`generates a class-based \`.gts\` component 1`] = `
-"import Component from "@glimmer/component";
+"import Component from '@glimmer/component';
 
 export interface FooSignature {
   Args: {};

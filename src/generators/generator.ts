@@ -89,7 +89,7 @@ export function defineGenerator({
     .sort((a, b) => a.name.localeCompare(b.name));
 
   async function run(args: Args): Promise<void> {
-    const packagePath = args.cwd ?? processCwd();
+    const packagePath = args.cwd ?? env.GEMBER_CWD ?? processCwd();
     const packageJson = await readPackageJson<EmberPackageJson>(packagePath);
     const config = await resolveConfig(packagePath);
     const resolvedArgs = resolveArgs(

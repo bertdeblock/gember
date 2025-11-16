@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` util-test 1`] = `
+"import foo from 'v2-addon/utils/foo';
+import { module, test } from 'qunit';
+
+module('Unit | Util | foo', function () {
+  test('it works', function (assert) {
+    const result = foo();
+
+    assert.ok(result);
+  });
+});
+"
+`;
+
+exports[`generates a \`.js\` util-test at a custom path 1`] = `
+"import foo from 'v2-addon/utils/foo';
+import { module, test } from 'qunit';
+
+module('Unit | Util | foo', function () {
+  test('it works', function (assert) {
+    const result = foo();
+
+    assert.ok(result);
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` util-test 1`] = `
+"import foo from 'v2-addon/utils/foo';
+import { module, test } from 'qunit';
+
+module('Unit | Util | foo', function () {
+  test('it works', function (assert) {
+    const result = foo();
+
+    assert.ok(result);
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` util-test at a custom path 1`] = `
+"import foo from 'v2-addon/utils/foo';
+import { module, test } from 'qunit';
+
+module('Unit | Util | foo', function () {
+  test('it works', function (assert) {
+    const result = foo();
+
+    assert.ok(result);
+  });
+});
+"
+`;

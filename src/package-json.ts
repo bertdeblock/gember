@@ -1,4 +1,4 @@
-import { readJson } from "fs-extra/esm";
+import { pathExists, readJson } from "fs-extra/esm";
 import { join } from "node:path";
 import type { PackageJson } from "type-fest";
 
@@ -22,10 +22,18 @@ export function isV2Addon(packageJson: EmberPackageJson): boolean {
   return false;
 }
 
-export function readPackageJson<ReturnType = PackageJson>(
+export async function readPackageJson<ReturnType = PackageJson>(
   packagePath: string,
 ): Promise<ReturnType> {
-  return readJson(join(packagePath, "package.json"));
+  const packageJsonPath = join(packagePath, "package.json");
+
+  if (await pathExists(packageJsonPath)) {
+    return readJson(packageJsonPath);
+  } else {
+    return {
+      name: "not-a-package",
+    } as ReturnType;
+  }
 }
 
 export type EmberPackageJson = PackageJson & {

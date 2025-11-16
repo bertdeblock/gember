@@ -1,4 +1,4 @@
-import Helper from "@ember/component/helper";
+import Helper from '@ember/component/helper';
 
 type Named = {};
 type Positional = [];

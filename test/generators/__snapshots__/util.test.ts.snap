@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` util 1`] = `
+"export default function foo() {
+  return true;
+}
+"
+`;
+
+exports[`generates a \`.js\` util at a custom path 1`] = `
+"export default function foo() {
+  return true;
+}
+"
+`;
+
+exports[`generates a \`.ts\` util 1`] = `
+"export default function foo() {
+  return true;
+}
+"
+`;
+
+exports[`generates a \`.ts\` util at a custom path 1`] = `
+"export default function foo() {
+  return true;
+}
+"
+`;
+
+exports[`generates a nested \`.js\` util 1`] = `
+"export default function fooBar() {
+  return true;
+}
+"
+`;
+
+exports[`generates a nested \`.ts\` util 1`] = `
+"export default function fooBar() {
+  return true;
+}
+"
+`;

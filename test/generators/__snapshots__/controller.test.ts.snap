@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` controller 1`] = `
+"import Controller from '@ember/controller';
+
+export default class FooController extends Controller {}
+"
+`;
+
+exports[`generates a \`.js\` controller at a custom path 1`] = `
+"import Controller from '@ember/controller';
+
+export default class FooController extends Controller {}
+"
+`;
+
+exports[`generates a \`.ts\` controller 1`] = `
+"import Controller from '@ember/controller';
+
+export default class FooController extends Controller {}
+"
+`;
+
+exports[`generates a \`.ts\` controller at a custom path 1`] = `
+"import Controller from '@ember/controller';
+
+export default class FooController extends Controller {}
+"
+`;
+
+exports[`generates a nested \`.js\` controller 1`] = `
+"import Controller from '@ember/controller';
+
+export default class FooBarController extends Controller {}
+"
+`;
+
+exports[`generates a nested \`.ts\` controller 1`] = `
+"import Controller from '@ember/controller';
+
+export default class FooBarController extends Controller {}
+"
+`;

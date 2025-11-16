@@ -6,6 +6,20 @@ import { logger } from "./logger.js";
 
 export type Config = {
   generators?: {
+    "acceptance-test"?: {
+      // Copy the generated acceptance-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the acceptance-test generator in:
+      cwd?: string;
+      // Destroy a acceptance-test by name:
+      destroy?: boolean;
+      // Log the generated acceptance-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test:
+      typescript?: boolean;
+    };
     component?: {
       // Generate a `class-based` component, instead of a `template-only` component:
       classBased?: boolean;
@@ -38,6 +52,36 @@ export type Config = {
       // Generate a component-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.gts` component-test, instead of a `.gjs` component-test:
+      typescript?: boolean;
+    };
+    controller?: {
+      // Copy the generated controller to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the controller generator in:
+      cwd?: string;
+      // Destroy a controller by name:
+      destroy?: boolean;
+      // Log the generated controller to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a controller at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a corresponding controller-test:
+      test?: boolean;
+      // Generate a `.ts` controller, instead of a `.js` controller:
+      typescript?: boolean;
+    };
+    "controller-test"?: {
+      // Copy the generated controller-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the controller-test generator in:
+      cwd?: string;
+      // Destroy a controller-test by name:
+      destroy?: boolean;
+      // Log the generated controller-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a controller-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` controller-test, instead of a `.js` controller-test:
       typescript?: boolean;
     };
     helper?: {
@@ -104,6 +148,36 @@ export type Config = {
       // Generate a `.gts` modifier-test, instead of a `.gjs` modifier-test:
       typescript?: boolean;
     };
+    route?: {
+      // Copy the generated route to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the route generator in:
+      cwd?: string;
+      // Destroy a route by name:
+      destroy?: boolean;
+      // Log the generated route to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a route at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a corresponding route-test:
+      test?: boolean;
+      // Generate a `.ts` route, instead of a `.js` route:
+      typescript?: boolean;
+    };
+    "route-test"?: {
+      // Copy the generated route-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the route-test generator in:
+      cwd?: string;
+      // Destroy a route-test by name:
+      destroy?: boolean;
+      // Log the generated route-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a route-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` route-test, instead of a `.js` route-test:
+      typescript?: boolean;
+    };
     service?: {
       // Copy the generated service to the clipboard, instead of writing it to disk:
       copy?: boolean;
@@ -134,18 +208,34 @@ export type Config = {
       // Generate a `.ts` service-test, instead of a `.js` service-test:
       typescript?: boolean;
     };
-    "acceptance-test"?: {
-      // Copy the generated acceptance-test to the clipboard, instead of writing it to disk:
+    util?: {
+      // Copy the generated util to the clipboard, instead of writing it to disk:
       copy?: boolean;
-      // The current working directory to run the acceptance-test generator in:
+      // The current working directory to run the util generator in:
       cwd?: string;
-      // Destroy a acceptance-test by name:
+      // Destroy a util by name:
       destroy?: boolean;
-      // Log the generated acceptance-test to the console, instead of writing it to disk:
+      // Log the generated util to the console, instead of writing it to disk:
       log?: boolean;
-      // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
+      // Generate a util at a custom path, e.g. `--path=src/-private`:
       path?: string;
-      // Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test:
+      // Generate a corresponding util-test:
+      test?: boolean;
+      // Generate a `.ts` util, instead of a `.js` util:
+      typescript?: boolean;
+    };
+    "util-test"?: {
+      // Copy the generated util-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the util-test generator in:
+      cwd?: string;
+      // Destroy a util-test by name:
+      destroy?: boolean;
+      // Log the generated util-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a util-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` util-test, instead of a `.js` util-test:
       typescript?: boolean;
     };
   };

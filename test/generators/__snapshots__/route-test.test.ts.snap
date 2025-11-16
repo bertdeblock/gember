@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` route-test 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Route | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo');
+
+    assert.ok(route);
+  });
+});
+"
+`;
+
+exports[`generates a \`.js\` route-test at a custom path 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Route | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo');
+
+    assert.ok(route);
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` route-test 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Route | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo');
+
+    assert.ok(route);
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` route-test at a custom path 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Route | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo');
+
+    assert.ok(route);
+  });
+});
+"
+`;
