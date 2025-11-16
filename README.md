@@ -61,21 +61,49 @@ yarn add -D @bertdeblock/gember
 ```shell
 Generate components, helpers, modifiers and services in v1/v2 apps/addons. (gember v1.4.0)
 
-USAGE `gember component|component-test|helper|helper-test|modifier|modifier-test|service|service-test|acceptance-test`
+USAGE `gember acceptance-test|component|component-test|controller|controller-test|helper|helper-test|modifier|modifier-test|route|route-test|service|service-test|util|util-test`
 
 COMMANDS
 
+  `acceptance-test`    Generate a new acceptance-test
         `component`    Generate a new component
    `component-test`    Generate a new component-test
+       `controller`    Generate a new controller
+  `controller-test`    Generate a new controller-test
            `helper`    Generate a new helper
       `helper-test`    Generate a new helper-test
          `modifier`    Generate a new modifier
     `modifier-test`    Generate a new modifier-test
+            `route`    Generate a new route
+       `route-test`    Generate a new route-test
           `service`    Generate a new service
      `service-test`    Generate a new service-test
-  `acceptance-test`    Generate a new acceptance-test
+             `util`    Generate a new util
+        `util-test`    Generate a new util-test
 
 Use `gember <command> --help` for more information about a command.
+```
+
+### acceptance-test
+
+```shell
+Generate a new acceptance-test (acceptance-test)
+
+USAGE `acceptance-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The acceptance-test's name
+
+OPTIONS
+
+             `--copy`    Copy the generated acceptance-test to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the acceptance-test generator in
+      `-d, --destroy`    Destroy a acceptance-test by name
+              `--log`    Log the generated acceptance-test to the console, instead of writing it to disk
+             `--path`    Generate a acceptance-test at a custom path, e.g. `--path=src/-private`
+  `-ts, --typescript`    Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test
+
 ```
 
 ### component
@@ -122,6 +150,51 @@ OPTIONS
                     `--log`    Log the generated component-test to the console, instead of writing it to disk
                    `--path`    Generate a component-test at a custom path, e.g. `--path=src/-private`
   `-gts, -ts, --typescript`    Generate a `.gts` component-test, instead of a `.gjs` component-test
+
+```
+
+### controller
+
+```shell
+Generate a new controller (controller)
+
+USAGE `controller [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The controller's name
+
+OPTIONS
+
+             `--copy`    Copy the generated controller to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the controller generator in
+      `-d, --destroy`    Destroy a controller by name
+              `--log`    Log the generated controller to the console, instead of writing it to disk
+             `--path`    Generate a controller at a custom path, e.g. `--path=src/-private`
+             `--test`    Generate a corresponding controller-test
+  `-ts, --typescript`    Generate a `.ts` controller, instead of a `.js` controller
+
+```
+
+### controller-test
+
+```shell
+Generate a new controller-test (controller-test)
+
+USAGE `controller-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The controller-test's name
+
+OPTIONS
+
+             `--copy`    Copy the generated controller-test to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the controller-test generator in
+      `-d, --destroy`    Destroy a controller-test by name
+              `--log`    Log the generated controller-test to the console, instead of writing it to disk
+             `--path`    Generate a controller-test at a custom path, e.g. `--path=src/-private`
+  `-ts, --typescript`    Generate a `.ts` controller-test, instead of a `.js` controller-test
 
 ```
 
@@ -217,6 +290,51 @@ OPTIONS
 
 ```
 
+### route
+
+```shell
+Generate a new route (route)
+
+USAGE `route [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The route's name
+
+OPTIONS
+
+             `--copy`    Copy the generated route to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the route generator in
+      `-d, --destroy`    Destroy a route by name
+              `--log`    Log the generated route to the console, instead of writing it to disk
+             `--path`    Generate a route at a custom path, e.g. `--path=src/-private`
+             `--test`    Generate a corresponding route-test
+  `-ts, --typescript`    Generate a `.ts` route, instead of a `.js` route
+
+```
+
+### route-test
+
+```shell
+Generate a new route-test (route-test)
+
+USAGE `route-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The route-test's name
+
+OPTIONS
+
+             `--copy`    Copy the generated route-test to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the route-test generator in
+      `-d, --destroy`    Destroy a route-test by name
+              `--log`    Log the generated route-test to the console, instead of writing it to disk
+             `--path`    Generate a route-test at a custom path, e.g. `--path=src/-private`
+  `-ts, --typescript`    Generate a `.ts` route-test, instead of a `.js` route-test
+
+```
+
 ### service
 
 ```shell
@@ -262,25 +380,48 @@ OPTIONS
 
 ```
 
-### acceptance-test
+### util
 
 ```shell
-Generate a new acceptance-test (acceptance-test)
+Generate a new util (util)
 
-USAGE `acceptance-test [OPTIONS] <NAME>`
+USAGE `util [OPTIONS] <NAME>`
 
 ARGUMENTS
 
-  `NAME`    The acceptance-test's name
+  `NAME`    The util's name
 
 OPTIONS
 
-             `--copy`    Copy the generated acceptance-test to the clipboard, instead of writing it to disk
-              `--cwd`    The current working directory to run the acceptance-test generator in
-      `-d, --destroy`    Destroy a acceptance-test by name
-              `--log`    Log the generated acceptance-test to the console, instead of writing it to disk
-             `--path`    Generate a acceptance-test at a custom path, e.g. `--path=src/-private`
-  `-ts, --typescript`    Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test
+             `--copy`    Copy the generated util to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the util generator in
+      `-d, --destroy`    Destroy a util by name
+              `--log`    Log the generated util to the console, instead of writing it to disk
+             `--path`    Generate a util at a custom path, e.g. `--path=src/-private`
+             `--test`    Generate a corresponding util-test
+  `-ts, --typescript`    Generate a `.ts` util, instead of a `.js` util
+
+```
+
+### util-test
+
+```shell
+Generate a new util-test (util-test)
+
+USAGE `util-test [OPTIONS] <NAME>`
+
+ARGUMENTS
+
+  `NAME`    The util-test's name
+
+OPTIONS
+
+             `--copy`    Copy the generated util-test to the clipboard, instead of writing it to disk
+              `--cwd`    The current working directory to run the util-test generator in
+      `-d, --destroy`    Destroy a util-test by name
+              `--log`    Log the generated util-test to the console, instead of writing it to disk
+             `--path`    Generate a util-test at a custom path, e.g. `--path=src/-private`
+  `-ts, --typescript`    Generate a `.ts` util-test, instead of a `.js` util-test
 
 ```
 
@@ -314,6 +455,20 @@ export default defineConfig(async () => ({}));
 ```ts
 export type Config = {
   generators?: {
+    "acceptance-test"?: {
+      // Copy the generated acceptance-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the acceptance-test generator in:
+      cwd?: string;
+      // Destroy a acceptance-test by name:
+      destroy?: boolean;
+      // Log the generated acceptance-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test:
+      typescript?: boolean;
+    };
     component?: {
       // Generate a `class-based` component, instead of a `template-only` component:
       classBased?: boolean;
@@ -346,6 +501,36 @@ export type Config = {
       // Generate a component-test at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a `.gts` component-test, instead of a `.gjs` component-test:
+      typescript?: boolean;
+    };
+    controller?: {
+      // Copy the generated controller to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the controller generator in:
+      cwd?: string;
+      // Destroy a controller by name:
+      destroy?: boolean;
+      // Log the generated controller to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a controller at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a corresponding controller-test:
+      test?: boolean;
+      // Generate a `.ts` controller, instead of a `.js` controller:
+      typescript?: boolean;
+    };
+    "controller-test"?: {
+      // Copy the generated controller-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the controller-test generator in:
+      cwd?: string;
+      // Destroy a controller-test by name:
+      destroy?: boolean;
+      // Log the generated controller-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a controller-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` controller-test, instead of a `.js` controller-test:
       typescript?: boolean;
     };
     helper?: {
@@ -412,6 +597,36 @@ export type Config = {
       // Generate a `.gts` modifier-test, instead of a `.gjs` modifier-test:
       typescript?: boolean;
     };
+    route?: {
+      // Copy the generated route to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the route generator in:
+      cwd?: string;
+      // Destroy a route by name:
+      destroy?: boolean;
+      // Log the generated route to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a route at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a corresponding route-test:
+      test?: boolean;
+      // Generate a `.ts` route, instead of a `.js` route:
+      typescript?: boolean;
+    };
+    "route-test"?: {
+      // Copy the generated route-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the route-test generator in:
+      cwd?: string;
+      // Destroy a route-test by name:
+      destroy?: boolean;
+      // Log the generated route-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a route-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` route-test, instead of a `.js` route-test:
+      typescript?: boolean;
+    };
     service?: {
       // Copy the generated service to the clipboard, instead of writing it to disk:
       copy?: boolean;
@@ -442,18 +657,34 @@ export type Config = {
       // Generate a `.ts` service-test, instead of a `.js` service-test:
       typescript?: boolean;
     };
-    "acceptance-test"?: {
-      // Copy the generated acceptance-test to the clipboard, instead of writing it to disk:
+    util?: {
+      // Copy the generated util to the clipboard, instead of writing it to disk:
       copy?: boolean;
-      // The current working directory to run the acceptance-test generator in:
+      // The current working directory to run the util generator in:
       cwd?: string;
-      // Destroy a acceptance-test by name:
+      // Destroy a util by name:
       destroy?: boolean;
-      // Log the generated acceptance-test to the console, instead of writing it to disk:
+      // Log the generated util to the console, instead of writing it to disk:
       log?: boolean;
-      // Generate a acceptance-test at a custom path, e.g. `--path=src/-private`:
+      // Generate a util at a custom path, e.g. `--path=src/-private`:
       path?: string;
-      // Generate a `.ts` acceptance-test, instead of a `.js` acceptance-test:
+      // Generate a corresponding util-test:
+      test?: boolean;
+      // Generate a `.ts` util, instead of a `.js` util:
+      typescript?: boolean;
+    };
+    "util-test"?: {
+      // Copy the generated util-test to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the util-test generator in:
+      cwd?: string;
+      // Destroy a util-test by name:
+      destroy?: boolean;
+      // Log the generated util-test to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a util-test at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.ts` util-test, instead of a `.js` util-test:
       typescript?: boolean;
     };
   };

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`applies specific generator options 1`] = `
-"import Component from "@glimmer/component";
+"import Component from '@glimmer/component';
 
 export interface FooSignature {
   Args: {};
@@ -25,7 +25,7 @@ exports[`runs the \`postGenerate\` hook 1`] = `
   "files": [
     {
       "base": "foo.gts",
-      "content": "import Component from \\"@glimmer/component\\";\\n\\nexport interface FooSignature {\\n  Args: {};\\n  Blocks: {\\n    default: [];\\n  };\\n  Element: null;\\n}\\n\\nexport default class Foo extends Component<FooSignature> {\\n  <template>\\n    {{yield}}\\n  </template>\\n}\\n",
+      "content": "import Component from '@glimmer/component';\\n\\nexport interface FooSignature {\\n  Args: {};\\n  Blocks: {\\n    default: [];\\n  };\\n  Element: null;\\n}\\n\\nexport default class Foo extends Component<FooSignature> {\\n  <template>\\n    {{yield}}\\n  </template>\\n}\\n",
       "dir": "test/output/post-generate-info/src/components",
       "ext": ".gts",
       "name": "foo",

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`generates a class-based \`.js\` modifier 1`] = `
-"import Modifier from "ember-modifier";
+"import Modifier from 'ember-modifier';
 
 export default class foo extends Modifier {
   modify(element, positional, named) {}
@@ -10,7 +10,7 @@ export default class foo extends Modifier {
 `;
 
 exports[`generates a class-based \`.ts\` modifier 1`] = `
-"import Modifier from "ember-modifier";
+"import Modifier from 'ember-modifier';
 
 type Named = {};
 type Positional = [];
@@ -31,21 +31,21 @@ export default class foo extends Modifier<FooSignature> {
 `;
 
 exports[`generates a function-based \`.js\` modifier 1`] = `
-"import { modifier } from "ember-modifier";
+"import { modifier } from 'ember-modifier';
 
 export default modifier(function foo(element, positional, named) {});
 "
 `;
 
 exports[`generates a function-based \`.js\` modifier at a custom path 1`] = `
-"import { modifier } from "ember-modifier";
+"import { modifier } from 'ember-modifier';
 
 export default modifier(function foo(element, positional, named) {});
 "
 `;
 
 exports[`generates a function-based \`.ts\` modifier 1`] = `
-"import { modifier } from "ember-modifier";
+"import { modifier } from 'ember-modifier';
 
 export interface FooSignature {
   Args: {
@@ -60,7 +60,7 @@ export default modifier<FooSignature>(function foo(element, positional, named) {
 `;
 
 exports[`generates a function-based \`.ts\` modifier at a custom path 1`] = `
-"import { modifier } from "ember-modifier";
+"import { modifier } from 'ember-modifier';
 
 export interface FooSignature {
   Args: {
@@ -75,7 +75,7 @@ export default modifier<FooSignature>(function foo(element, positional, named) {
 `;
 
 exports[`generates a nested function-based \`.js\` modifier 1`] = `
-"import { modifier } from "ember-modifier";
+"import { modifier } from 'ember-modifier';
 
 export default modifier(function fooBar(element, positional, named) {});
 "

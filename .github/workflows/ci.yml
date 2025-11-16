@@ -51,13 +51,20 @@ jobs:
         run: |
           node bin/gember.js component foo --cwd=test-app
           node bin/gember.js component-test foo --cwd=test-app
+          node bin/gember.js controller foo --cwd=test-app
+          node bin/gember.js controller-test foo --cwd=test-app
           node bin/gember.js helper foo --cwd=test-app
           node bin/gember.js helper-test foo --cwd=test-app
           node bin/gember.js modifier foo --cwd=test-app
           node bin/gember.js modifier-test foo --cwd=test-app
+          node bin/gember.js route foo --cwd=test-app
+          node bin/gember.js route-test foo --cwd=test-app
           node bin/gember.js service foo --cwd=test-app
           node bin/gember.js service-test foo --cwd=test-app
+          node bin/gember.js util foo --cwd=test-app
+          node bin/gember.js util-test foo --cwd=test-app
       - name: Run tests in test app
         run: |
           cd test-app
+          pnpm lint:format
           pnpm test

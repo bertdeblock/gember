@@ -11,6 +11,13 @@ import {
 } from "./generator.js";
 
 export const generators: Generator[] = [
+  defineTestGenerator({
+    args: [typescript()],
+    name: "acceptance",
+    testsDir: "acceptance",
+    testsSubDir: "",
+  }),
+
   defineGenerator({
     args: [
       classBased({ functionBasedName: "template-only" }),
@@ -28,6 +35,17 @@ export const generators: Generator[] = [
     args: [typescript({ gts: true })],
     name: "component",
     testsDir: "integration",
+  }),
+
+  defineGenerator({
+    args: [test(), typescript()],
+    name: "controller",
+  }),
+
+  defineTestGenerator({
+    args: [typescript()],
+    name: "controller",
+    testsDir: "unit",
   }),
 
   defineGenerator({
@@ -54,6 +72,17 @@ export const generators: Generator[] = [
 
   defineGenerator({
     args: [test(), typescript()],
+    name: "route",
+  }),
+
+  defineTestGenerator({
+    args: [typescript()],
+    name: "route",
+    testsDir: "unit",
+  }),
+
+  defineGenerator({
+    args: [test(), typescript()],
     name: "service",
   }),
 
@@ -63,11 +92,15 @@ export const generators: Generator[] = [
     testsDir: "unit",
   }),
 
+  defineGenerator({
+    args: [test(), typescript()],
+    name: "util",
+  }),
+
   defineTestGenerator({
     args: [typescript()],
-    name: "acceptance",
-    testsDir: "acceptance",
-    testsSubDir: "",
+    name: "util",
+    testsDir: "unit",
   }),
 ];
 

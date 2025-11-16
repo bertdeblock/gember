@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`generates a class-based \`.js\` helper 1`] = `
-"import Helper from "@ember/component/helper";
+"import Helper from '@ember/component/helper';
 
 export default class foo extends Helper {
   compute(positional, named) {
@@ -12,7 +12,7 @@ export default class foo extends Helper {
 `;
 
 exports[`generates a class-based \`.ts\` helper 1`] = `
-"import Helper from "@ember/component/helper";
+"import Helper from '@ember/component/helper';
 
 type Named = {};
 type Positional = [];

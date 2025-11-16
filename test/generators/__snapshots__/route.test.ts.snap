@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` route 1`] = `
+"import Route from '@ember/routing/route';
+
+export default class FooRoute extends Route {}
+"
+`;
+
+exports[`generates a \`.js\` route at a custom path 1`] = `
+"import Route from '@ember/routing/route';
+
+export default class FooRoute extends Route {}
+"
+`;
+
+exports[`generates a \`.ts\` route 1`] = `
+"import Route from '@ember/routing/route';
+
+export default class FooRoute extends Route {}
+"
+`;
+
+exports[`generates a \`.ts\` route at a custom path 1`] = `
+"import Route from '@ember/routing/route';
+
+export default class FooRoute extends Route {}
+"
+`;
+
+exports[`generates a nested \`.js\` route 1`] = `
+"import Route from '@ember/routing/route';
+
+export default class FooBarRoute extends Route {}
+"
+`;
+
+exports[`generates a nested \`.ts\` route 1`] = `
+"import Route from '@ember/routing/route';
+
+export default class FooBarRoute extends Route {}
+"
+`;

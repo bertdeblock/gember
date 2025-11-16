@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`generates a \`.js\` controller-test 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Controller | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const controller = this.owner.lookup('controller:foo');
+
+    assert.ok(controller);
+  });
+});
+"
+`;
+
+exports[`generates a \`.js\` controller-test at a custom path 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Controller | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const controller = this.owner.lookup('controller:foo');
+
+    assert.ok(controller);
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` controller-test 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Controller | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const controller = this.owner.lookup('controller:foo');
+
+    assert.ok(controller);
+  });
+});
+"
+`;
+
+exports[`generates a \`.ts\` controller-test at a custom path 1`] = `
+"import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Controller | Foo', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const controller = this.owner.lookup('controller:foo');
+
+    assert.ok(controller);
+  });
+});
+"
+`;

@@ -1,4 +1,4 @@
-import Helper from "@ember/component/helper";
+import Helper from '@ember/component/helper';
 
 export default class {{name.camel}} extends Helper {
   compute(positional, named) {

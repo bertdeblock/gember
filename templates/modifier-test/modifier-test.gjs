@@ -7,7 +7,11 @@ module('Integration | Modifier | {{name.camel}}', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    await render(<template><div {{name.camelCurlyBrackets}}></div></template>);
+    await render(
+      <template>
+        <div {{name.camelCurlyBrackets}}></div>
+      </template>
+    );
 
     assert.ok(true);
   });

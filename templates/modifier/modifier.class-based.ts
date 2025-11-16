@@ -1,4 +1,4 @@
-import Modifier from "ember-modifier";
+import Modifier from 'ember-modifier';
 
 type Named = {};
 type Positional = [];
