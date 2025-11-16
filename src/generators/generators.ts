@@ -1,9 +1,11 @@
+import { GemberBugError } from "../errors.js";
 import {
   classBased,
   defineGenerator,
   defineTestGenerator,
   nested,
   test,
+  testGeneratorName,
   typescript,
   type Generator,
 } from "./generator.js";
@@ -68,3 +70,19 @@ export const generators: Generator[] = [
     testsSubDir: "",
   }),
 ];
+
+export function getGenerator(generatorName: string): Generator {
+  const generator = generators.find(
+    (generator) => generator.name === generatorName,
+  );
+
+  if (generator === undefined) {
+    throw new GemberBugError(`Could not find generator \`${generatorName}\`.`);
+  }
+
+  return generator;
+}
+
+export function getTestGenerator(generatorName: string): Generator {
+  return getGenerator(testGeneratorName(generatorName));
+}

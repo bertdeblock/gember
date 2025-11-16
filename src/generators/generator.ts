@@ -259,10 +259,14 @@ export function defineTestGenerator(
         );
       }
 
-      targetFile.name += "-test";
+      targetFile.name = testGeneratorName(targetFile.name);
     },
-    name: `${options.name}-test`,
+    name: testGeneratorName(options.name),
   });
+}
+
+export function testGeneratorName(generatorName: string): string {
+  return generatorName + "-test";
 }
 
 export function classBased({
@@ -351,7 +355,7 @@ export function path(): GeneratorArgFactory {
 
 export function test(): GeneratorArgFactory {
   return (generatorName) => ({
-    description: `Generate a corresponding ${generatorName}-test`,
+    description: `Generate a corresponding ${testGeneratorName(generatorName)}`,
     name: "test",
     type: "boolean",
   });
