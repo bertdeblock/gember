@@ -28,6 +28,49 @@ export default class Foo extends Component<FooSignature> {
 "
 `;
 
+exports[`generates a named export > --classBased --typescript 1`] = `
+"import Component from '@glimmer/component';
+
+export interface FooSignature {
+  Args: {};
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export class Foo extends Component<FooSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`generates a named export > --classBased 1`] = `
+"import Component from '@glimmer/component';
+
+export class Foo extends Component {
+  <template>{{yield}}</template>
+}
+"
+`;
+
+exports[`generates a named export > --typescript 1`] = `
+"import type { TOC } from '@ember/component/template-only';
+
+export interface FooSignature {
+  Args: {};
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export const Foo: TOC<FooSignature> = <template>{{yield}}</template>;
+"
+`;
+
 exports[`generates a nested colocated template-only \`.gjs\` component 1`] = `
 "<template>{{yield}}</template>
 "

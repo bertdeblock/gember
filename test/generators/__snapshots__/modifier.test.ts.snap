@@ -74,6 +74,58 @@ export default modifier<FooSignature>(function foo(element, positional, named) {
 "
 `;
 
+exports[`generates a named export > --classBased --typescript 1`] = `
+"import Modifier from 'ember-modifier';
+
+type Named = {};
+type Positional = [];
+type Element = null;
+
+export interface FooSignature {
+  Args: {
+    Named: Named;
+    Positional: Positional;
+  };
+  Element: Element;
+}
+
+export class foo extends Modifier<FooSignature> {
+  modify(element: Element, positional: Positional, named: Named) {}
+}
+"
+`;
+
+exports[`generates a named export > --classBased 1`] = `
+"import Modifier from 'ember-modifier';
+
+export class foo extends Modifier {
+  modify(element, positional, named) {}
+}
+"
+`;
+
+exports[`generates a named export > --typescript 1`] = `
+"import { modifier } from 'ember-modifier';
+
+export interface FooSignature {
+  Args: {
+    Named: {};
+    Positional: [];
+  };
+  Element: null;
+}
+
+export const foo = modifier<FooSignature>(function foo(element, positional, named) {});
+"
+`;
+
+exports[`generates a named export > no extra args 1`] = `
+"import { modifier } from 'ember-modifier';
+
+export const foo = modifier(function foo(element, positional, named) {});
+"
+`;
+
 exports[`generates a nested function-based \`.js\` modifier 1`] = `
 "import { modifier } from 'ember-modifier';
 

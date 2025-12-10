@@ -12,7 +12,7 @@ export interface {{name.signature}} {
   Return: Return;
 }
 
-export default class {{name.camel}} extends Helper<{{name.signature}}> {
+{{#if args.namedExport}}export{{else}}export default{{/if}} class {{name.camel}} extends Helper<{{name.signature}}> {
   compute(positional: Positional, named: Named): Return {
     return positional;
   }

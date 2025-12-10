@@ -1,3 +1,3 @@
 import { modifier } from 'ember-modifier';
 
-export default modifier(function {{name.camel}}(element, positional, named) {});
+{{#if args.namedExport}}export const {{name.camel}} ={{else}}export default{{/if}} modifier(function {{name.camel}}(element, positional, named) {});
