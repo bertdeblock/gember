@@ -28,6 +28,20 @@ exports[`generates a \`.ts\` util at a custom path 1`] = `
 "
 `;
 
+exports[`generates a named export > --typescript 1`] = `
+"export function foo() {
+  return true;
+}
+"
+`;
+
+exports[`generates a named export > no extra args 1`] = `
+"export function foo() {
+  return true;
+}
+"
+`;
+
 exports[`generates a nested \`.js\` util 1`] = `
 "export default function fooBar() {
   return true;

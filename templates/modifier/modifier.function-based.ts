@@ -8,4 +8,4 @@ export interface {{name.signature}} {
   Element: null;
 }
 
-export default modifier<{{name.signature}}>(function {{name.camel}}(element, positional, named) {});
+{{#if args.namedExport}}export const {{name.camel}} ={{else}}export default{{/if}} modifier<{{name.signature}}>(function {{name.camel}}(element, positional, named) {});

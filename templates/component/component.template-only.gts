@@ -8,6 +8,8 @@ export interface {{name.signature}} {
   Element: null;
 }
 
-const {{name.pascal}}: TOC<{{name.signature}}> = <template>\{{yield}}</template>;
+{{#if args.namedExport}}export {{/if}}const {{name.pascal}}: TOC<{{name.signature}}> = <template>\{{yield}}</template>;
+{{#unless args.namedExport}}
 
 export default {{name.pascal}};
+{{/unless}}

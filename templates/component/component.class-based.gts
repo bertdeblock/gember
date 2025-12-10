@@ -8,7 +8,7 @@ export interface {{name.signature}} {
   Element: null;
 }
 
-export default class {{name.pascal}} extends Component<{{name.signature}}> {
+{{#if args.namedExport}}export{{else}}export default{{/if}} class {{name.pascal}} extends Component<{{name.signature}}> {
   <template>
     \{{yield}}
   </template>

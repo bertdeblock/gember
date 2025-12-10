@@ -62,6 +62,54 @@ exports[`generates a function-based \`.ts\` helper at a custom path 1`] = `
 "
 `;
 
+exports[`generates a named export > --classBased --typescript 1`] = `
+"import Helper from '@ember/component/helper';
+
+type Named = {};
+type Positional = [];
+type Return = Positional;
+
+export interface FooSignature {
+  Args: {
+    Named: Named;
+    Positional: Positional;
+  };
+  Return: Return;
+}
+
+export class foo extends Helper<FooSignature> {
+  compute(positional: Positional, named: Named): Return {
+    return positional;
+  }
+}
+"
+`;
+
+exports[`generates a named export > --classBased 1`] = `
+"import Helper from '@ember/component/helper';
+
+export class foo extends Helper {
+  compute(positional, named) {
+    return positional;
+  }
+}
+"
+`;
+
+exports[`generates a named export > --typescript 1`] = `
+"export function foo(positional, named) {
+  return positional;
+}
+"
+`;
+
+exports[`generates a named export > no extra args 1`] = `
+"export function foo(positional, named) {
+  return positional;
+}
+"
+`;
+
 exports[`generates a nested function-based \`.js\` helper 1`] = `
 "export default function fooBar(positional, named) {
   return positional;

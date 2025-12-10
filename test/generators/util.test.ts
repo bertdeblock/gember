@@ -1,4 +1,4 @@
-import { afterEach, it } from "vitest";
+import { afterEach, describe, it } from "vitest";
 import { Package } from "../helpers.ts";
 
 let pkg: Package;
@@ -87,3 +87,21 @@ it("destroys a util", async (ctx) => {
 
   ctx.expect(await pkg.pathExists("src/utils/foo.js")).to.equal(false);
 });
+
+describe("generates a named export", () => {
+  for (const args of [[], ["--typescript"]]) {
+    it(args.length ? args.join(" ") : "no extra args", async (ctx) => {
+      pkg = await Package.create("v2-addon");
+
+      await pkg.gember("util", "foo", "--namedExport", ...args);
+
+      const content = await pkg.readFile(addExtension("src/utils/foo", args));
+
+      ctx.expect(content).toMatchSnapshot();
+    });
+  }
+});
+
+function addExtension(path: string, args: string[]): string {
+  return path + (args.includes("--typescript") ? ".ts" : ".js");
+}

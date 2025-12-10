@@ -154,6 +154,7 @@ export function defineGenerator({
     };
 
     const templateCompiled = template({
+      args: resolvedArgs,
       name: {
         ...entityNameCases,
         camelCurlyBrackets: `{{${entityNameCases.camel}}}`,
@@ -324,6 +325,15 @@ export function name(): GeneratorArgFactory {
     description: `The ${generatorName}'s name`,
     name: "name",
     type: "positional",
+  });
+}
+
+export function namedExport(): GeneratorArgFactory {
+  return () => ({
+    alias: ["named"],
+    description: "Generate a named export, instead of a default export",
+    name: "namedExport",
+    type: "boolean",
   });
 }
 
