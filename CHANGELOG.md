@@ -1,5 +1,16 @@
 # Changelog
 
+## Release (2025-12-10)
+
+* @bertdeblock/gember 1.6.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#87](https://github.com/bertdeblock/gember/pull/87) Support generating named exports instead of default exports for component, helper, modifier and util generators ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-11-16)
 
 * @bertdeblock/gember 1.5.0 (minor)
