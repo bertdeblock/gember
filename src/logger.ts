@@ -1,3 +1,6 @@
-import { createConsola } from "consola";
+import { createConsola, LogLevels } from "consola";
 
-export const logger = createConsola({ formatOptions: { date: false } });
+export const logger = createConsola({
+  formatOptions: { date: false },
+  level: LogLevels.info,
+});

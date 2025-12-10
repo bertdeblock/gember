@@ -3,7 +3,7 @@ import { camelCase, pascalCase, pathCase } from "change-case";
 import { outputFile, pathExists, remove } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile } from "node:fs/promises";
-import { join, relative } from "node:path";
+import { join, relative, sep } from "node:path";
 import { cwd as processCwd, env } from "node:process";
 import { FileRef } from "./file-ref.js";
 import { resolveConfig, type Config } from "../config.js";
@@ -128,16 +128,20 @@ export function defineGenerator({
       await arg.modifyTemplateFile?.(templateFile, resolvedArgs);
     }
 
+    const targetFileRelativePath = relative(packagePath, targetFile.path())
+      .split(sep)
+      .join("/");
+
     if (args.destroy) {
       if (await targetFile.exists()) {
         await remove(targetFile.path());
 
         logger.success(
-          `Destroyed ${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\`.`,
+          `Destroyed ${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\`.`,
         );
       } else {
         logger.warn(
-          `${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\` does not exist.`,
+          `${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\` does not exist.`,
         );
       }
 
@@ -180,20 +184,11 @@ export function defineGenerator({
         `Generated and copied ${generatorName} \`${entityName}\` to the clipboard.`,
       );
     } else if (resolvedArgs.log) {
-      const border = "─".repeat(
-        Math.max(...templateCompiled.split("\n").map((line) => line.length)),
-      );
-
-      logger.log(border);
-      logger.log(targetFile.path());
-      logger.log(border);
-      logger.log("");
       logger.log(templateCompiled);
-      logger.log(border);
     } else {
       if (await targetFile.exists()) {
         const response = await logger.prompt(
-          `${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\` already exists. Do you want to overwrite this file?`,
+          `${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\` already exists. Do you want to overwrite this file?`,
           { type: "confirm" },
         );
 
@@ -207,7 +202,7 @@ export function defineGenerator({
       await outputFile(targetFile.path(), templateCompiled);
 
       logger.success(
-        `Generated ${generatorName} \`${entityName}\` at \`${relative(packagePath, targetFile.path())}\`.`,
+        `Generated ${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\`.`,
       );
 
       if (config.hooks?.postGenerate) {
