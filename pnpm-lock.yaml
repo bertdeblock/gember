@@ -42,6 +42,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4(@types/node@24.10.1)(jiti@1.21.7))
+      combinations:
+        specifier: ^1.0.0
+        version: 1.0.0
       concurrently:
         specifier: ^9.2.1
         version: 9.2.1
@@ -906,6 +909,9 @@ packages:
 
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+
+  combinations@1.0.0:
+    resolution: {integrity: sha512-aVgTfI/dewHblSn4gF+NZHvS7wtwg9YAPF2EknHMdH+xLsXLLIMpmHkSj64Zxs/R2m9VAAgn3bENjssrn7V4vQ==}
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
@@ -2950,6 +2956,8 @@ snapshots:
       color-name: 1.1.4
 
   color-name@1.1.4: {}
+
+  combinations@1.0.0: {}
 
   concat-map@0.0.1: {}
 

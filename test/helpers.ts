@@ -17,20 +17,22 @@ export class Package {
     await remove(this.path);
   }
 
-  static async create(name: string, path: string = uuidv4()): Promise<Package> {
+  static async create(type: string, path: string = uuidv4()): Promise<Package> {
     const pkg = new this(join("test", "output", path));
 
     await pkg.cleanUp();
-    await recursiveCopy(join("test", "packages", name), pkg.path);
+    await recursiveCopy(join("test", "packages", type), pkg.path);
 
     return pkg;
   }
 
-  async gember(...args: string[]): Promise<void> {
-    await execa(
+  async gember(...args: string[]): Promise<{ output: string }> {
+    const { stdout: output } = await execa(
       join(dirname(fileURLToPath(import.meta.url)), "..", "bin", "gember.js"),
       [...args, `--cwd=${this.path}`],
     );
+
+    return { output };
   }
 
   getPath(path: string): string {
