@@ -3,7 +3,7 @@
 [![CI](https://github.com/bertdeblock/gember/workflows/CI/badge.svg)](https://github.com/bertdeblock/gember/actions?query=workflow%3ACI)
 [![NPM Version](https://badge.fury.io/js/%40bertdeblock%2Fgember.svg)](https://badge.fury.io/js/%40bertdeblock%2Fgember)
 
-Generate components, helpers, modifiers and services in v1/v2 apps/addons.
+Generators for Ember apps and addons.
 
 ℹ️ Only supports `.gjs` (default) and `.gts` files for components.
 
@@ -59,7 +59,7 @@ yarn add -D @bertdeblock/gember
 ### gember
 
 ```shell
-Generate components, helpers, modifiers and services in v1/v2 apps/addons. (gember v1.4.0)
+Generators for Ember v1/v2 addons and v1/v2 apps. (gember v1.4.0)
 
 USAGE `gember acceptance-test|component|component-test|controller|controller-test|helper|helper-test|modifier|modifier-test|route|route-test|service|service-test|util|util-test`
 
