@@ -1,5 +1,20 @@
 # Changelog
 
+## Release (2025-12-25)
+
+* @bertdeblock/gember 1.6.1 (patch)
+
+#### :memo: Documentation
+* `@bertdeblock/gember`
+  * [#91](https://github.com/bertdeblock/gember/pull/91) Update docs ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#89](https://github.com/bertdeblock/gember/pull/89) Generate a sh*tload of tests ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-12-10)
 
 * @bertdeblock/gember 1.6.0 (minor)
