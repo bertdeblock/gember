@@ -1,5 +1,5 @@
 import { Clipboard } from "@napi-rs/clipboard";
-import { camelCase, pascalCase, pathCase } from "change-case";
+import { camelCase, kebabCase, pascalCase } from "change-case";
 import { outputFile, pathExists, remove } from "fs-extra/esm";
 import Handlebars from "handlebars";
 import { readFile } from "node:fs/promises";
@@ -402,6 +402,13 @@ function getSrcDir(packageJson: EmberPackageJson): string {
     : isV1Addon(packageJson)
       ? "addon"
       : "app";
+}
+
+function pathCase(entityName: string): string {
+  return entityName
+    .split("/")
+    .map((part) => kebabCase(part))
+    .join("/");
 }
 
 function resolveArgs(
