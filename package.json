@@ -1,6 +1,6 @@
 {
   "name": "@bertdeblock/gember",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Generators for Ember apps and addons.",
   "repository": "https://github.com/bertdeblock/gember",
   "license": "MIT",
