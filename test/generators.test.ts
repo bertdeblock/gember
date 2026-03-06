@@ -30,7 +30,11 @@ for (const packageType of ["v1-addon", "v1-app", "v2-addon", "v2-app"]) {
           it(`args: ${args.join(" ")}`, async (ctx) => {
             pkg = await Package.create(packageType);
 
-            const { output } = await pkg.gember(generator.name, "foo", ...args);
+            const { output } = await pkg.gember(
+              generator.name,
+              "foo/bar-baz",
+              ...args,
+            );
 
             ctx.expect(output).toMatchSnapshot();
           });
