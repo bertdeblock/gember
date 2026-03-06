@@ -1,5 +1,24 @@
 # Changelog
 
+## Release (2026-03-06)
+
+* @bertdeblock/gember 1.6.1 (patch)
+
+#### :bug: Bug Fix
+* `@bertdeblock/gember`
+  * [#93](https://github.com/bertdeblock/gember/pull/93) Fix generating paths ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :memo: Documentation
+* `@bertdeblock/gember`
+  * [#91](https://github.com/bertdeblock/gember/pull/91) Update docs ([@bertdeblock](https://github.com/bertdeblock))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#89](https://github.com/bertdeblock/gember/pull/89) Generate a sh*tload of tests ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2025-12-10)
 
 * @bertdeblock/gember 1.6.0 (minor)
