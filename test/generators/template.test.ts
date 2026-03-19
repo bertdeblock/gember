@@ -86,3 +86,13 @@ it("destroys a template", async (ctx) => {
 
   ctx.expect(await pkg.pathExists("src/templates/foo.gjs")).to.equal(false);
 });
+
+it("creates nested route templates", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("template", "foo/bar/baz");
+
+  const content = await pkg.readFile("src/templates/foo/bar/baz.gjs");
+
+  ctx.expect(content).toMatchSnapshot();
+});

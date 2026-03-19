@@ -1,5 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`creates nested route templates 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
 exports[`generates a class-based \`.gjs\` template 1`] = `
 "import Component from '@glimmer/component';
 
