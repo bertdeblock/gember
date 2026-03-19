@@ -95,6 +95,17 @@ export const generators: Generator[] = [
   }),
 
   defineGenerator({
+    args: [
+      classBased({ functionBasedName: "template-only" }),
+      typescript({ gts: true }),
+    ],
+    modifyTemplateFile: (templateFile) => {
+      templateFile.name = "component";
+    },
+    name: "template",
+  }),
+
+  defineGenerator({
     args: [namedExport(), test(), typescript()],
     name: "util",
   }),

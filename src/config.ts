@@ -178,6 +178,22 @@ export type Config = {
       // Generate a `.ts` route-test, instead of a `.js` route-test:
       typescript?: boolean;
     };
+    template?: {
+      // Generate a `class-based` template, instead of a `template-only` template:
+      classBased?: boolean;
+      // Copy the generated template to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the template generator in:
+      cwd?: string;
+      // Destroy a template by name:
+      destroy?: boolean;
+      // Log the generated template to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a template at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.gts` template, instead of a `.gjs` template:
+      typescript?: boolean;
+    };
     service?: {
       // Copy the generated service to the clipboard, instead of writing it to disk:
       copy?: boolean;

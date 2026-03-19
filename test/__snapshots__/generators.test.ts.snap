@@ -2192,6 +2192,68 @@ module('Unit | Service | FooBarBaz', function (hooks) {
 
 exports[`package-type: v1-addon > generator: service-test > args: --typescript 1`] = `"[success] Generated service-test \`foo/bar-baz\` at \`tests/unit/services/foo/bar-baz-test.ts\`."`;
 
+exports[`package-type: v1-addon > generator: template > args: --classBased --log --typescript 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class FooBarBaz extends Component<FooBarBazSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`package-type: v1-addon > generator: template > args: --classBased --log 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export default class FooBarBaz extends Component {
+  <template>{{yield}}</template>
+}
+"
+`;
+
+exports[`package-type: v1-addon > generator: template > args: --classBased --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`addon/templates/foo/bar-baz.gts\`."`;
+
+exports[`package-type: v1-addon > generator: template > args: --classBased 1`] = `"[success] Generated template \`foo/bar-baz\` at \`addon/templates/foo/bar-baz.gjs\`."`;
+
+exports[`package-type: v1-addon > generator: template > args: --log --typescript 1`] = `
+"[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v1-addon > generator: template > args: --log 1`] = `
+"[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v1-addon > generator: template > args: --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`addon/templates/foo/bar-baz.gts\`."`;
+
 exports[`package-type: v1-addon > generator: util > args: --log --namedExport --test --typescript 1`] = `
 "[log] export function fooBarBaz() {
   return true;
@@ -4539,6 +4601,68 @@ module('Unit | Service | FooBarBaz', function (hooks) {
 `;
 
 exports[`package-type: v1-app > generator: service-test > args: --typescript 1`] = `"[success] Generated service-test \`foo/bar-baz\` at \`tests/unit/services/foo/bar-baz-test.ts\`."`;
+
+exports[`package-type: v1-app > generator: template > args: --classBased --log --typescript 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class FooBarBaz extends Component<FooBarBazSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`package-type: v1-app > generator: template > args: --classBased --log 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export default class FooBarBaz extends Component {
+  <template>{{yield}}</template>
+}
+"
+`;
+
+exports[`package-type: v1-app > generator: template > args: --classBased --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."`;
+
+exports[`package-type: v1-app > generator: template > args: --classBased 1`] = `"[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gjs\`."`;
+
+exports[`package-type: v1-app > generator: template > args: --log --typescript 1`] = `
+"[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v1-app > generator: template > args: --log 1`] = `
+"[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v1-app > generator: template > args: --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."`;
 
 exports[`package-type: v1-app > generator: util > args: --log --namedExport --test --typescript 1`] = `
 "[log] export function fooBarBaz() {
@@ -6888,6 +7012,68 @@ module('Unit | Service | FooBarBaz', function (hooks) {
 
 exports[`package-type: v2-addon > generator: service-test > args: --typescript 1`] = `"[success] Generated service-test \`foo/bar-baz\` at \`tests/unit/services/foo/bar-baz-test.ts\`."`;
 
+exports[`package-type: v2-addon > generator: template > args: --classBased --log --typescript 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class FooBarBaz extends Component<FooBarBazSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`package-type: v2-addon > generator: template > args: --classBased --log 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export default class FooBarBaz extends Component {
+  <template>{{yield}}</template>
+}
+"
+`;
+
+exports[`package-type: v2-addon > generator: template > args: --classBased --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`src/templates/foo/bar-baz.gts\`."`;
+
+exports[`package-type: v2-addon > generator: template > args: --classBased 1`] = `"[success] Generated template \`foo/bar-baz\` at \`src/templates/foo/bar-baz.gjs\`."`;
+
+exports[`package-type: v2-addon > generator: template > args: --log --typescript 1`] = `
+"[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v2-addon > generator: template > args: --log 1`] = `
+"[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v2-addon > generator: template > args: --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`src/templates/foo/bar-baz.gts\`."`;
+
 exports[`package-type: v2-addon > generator: util > args: --log --namedExport --test --typescript 1`] = `
 "[log] export function fooBarBaz() {
   return true;
@@ -9235,6 +9421,68 @@ module('Unit | Service | FooBarBaz', function (hooks) {
 `;
 
 exports[`package-type: v2-app > generator: service-test > args: --typescript 1`] = `"[success] Generated service-test \`foo/bar-baz\` at \`tests/unit/services/foo/bar-baz-test.ts\`."`;
+
+exports[`package-type: v2-app > generator: template > args: --classBased --log --typescript 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class FooBarBaz extends Component<FooBarBazSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`package-type: v2-app > generator: template > args: --classBased --log 1`] = `
+"[log] import Component from '@glimmer/component';
+
+export default class FooBarBaz extends Component {
+  <template>{{yield}}</template>
+}
+"
+`;
+
+exports[`package-type: v2-app > generator: template > args: --classBased --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."`;
+
+exports[`package-type: v2-app > generator: template > args: --classBased 1`] = `"[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gjs\`."`;
+
+exports[`package-type: v2-app > generator: template > args: --log --typescript 1`] = `
+"[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v2-app > generator: template > args: --log 1`] = `
+"[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v2-app > generator: template > args: --typescript 1`] = `"[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."`;
 
 exports[`package-type: v2-app > generator: util > args: --log --namedExport --test --typescript 1`] = `
 "[log] export function fooBarBaz() {
