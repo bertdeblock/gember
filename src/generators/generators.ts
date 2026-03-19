@@ -5,6 +5,7 @@ import {
   defineTestGenerator,
   namedExport,
   nested,
+  template,
   test,
   testGeneratorName,
   typescript,
@@ -73,7 +74,7 @@ export const generators: Generator[] = [
   }),
 
   defineGenerator({
-    args: [test(), typescript()],
+    args: [template(), test(), typescript()],
     name: "route",
   }),
 
@@ -131,4 +132,8 @@ export function getGenerator(generatorName: string): Generator {
 
 export function getTestGenerator(generatorName: string): Generator {
   return getGenerator(testGeneratorName(generatorName));
+}
+
+export function getTemplateGenerator(): Generator {
+  return getGenerator("template");
 }

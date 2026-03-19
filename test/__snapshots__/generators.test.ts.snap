@@ -1980,6 +1980,98 @@ module('Integration | Modifier | fooBarBaz', function (hooks) {
 
 exports[`package-type: v1-addon > generator: modifier-test > args: --typescript 1`] = `"[success] Generated modifier-test \`foo/bar-baz\` at \`tests/integration/modifiers/foo/bar-baz-test.gts\`."`;
 
+exports[`package-type: v1-addon > generator: route > args: --log --template --test --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v1-addon > generator: route > args: --log --template --test 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v1-addon > generator: route > args: --log --template --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v1-addon > generator: route > args: --log --template 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] <template>{{yield}}</template>
+"
+`;
+
 exports[`package-type: v1-addon > generator: route > args: --log --test --typescript 1`] = `
 "[log] import Route from '@ember/routing/route';
 
@@ -2032,6 +2124,28 @@ exports[`package-type: v1-addon > generator: route > args: --log 1`] = `
 
 export default class FooBarBazRoute extends Route {}
 "
+`;
+
+exports[`package-type: v1-addon > generator: route > args: --template --test --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`addon/routes/foo/bar-baz.ts\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`addon/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v1-addon > generator: route > args: --template --test 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`addon/routes/foo/bar-baz.js\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.js\`.
+[success] Generated template \`foo/bar-baz\` at \`addon/templates/foo/bar-baz.gjs\`."
+`;
+
+exports[`package-type: v1-addon > generator: route > args: --template --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`addon/routes/foo/bar-baz.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`addon/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v1-addon > generator: route > args: --template 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`addon/routes/foo/bar-baz.js\`.
+[success] Generated template \`foo/bar-baz\` at \`addon/templates/foo/bar-baz.gjs\`."
 `;
 
 exports[`package-type: v1-addon > generator: route > args: --test --typescript 1`] = `
@@ -4390,6 +4504,98 @@ module('Integration | Modifier | fooBarBaz', function (hooks) {
 
 exports[`package-type: v1-app > generator: modifier-test > args: --typescript 1`] = `"[success] Generated modifier-test \`foo/bar-baz\` at \`tests/integration/modifiers/foo/bar-baz-test.gts\`."`;
 
+exports[`package-type: v1-app > generator: route > args: --log --template --test --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v1-app > generator: route > args: --log --template --test 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v1-app > generator: route > args: --log --template --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v1-app > generator: route > args: --log --template 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] <template>{{yield}}</template>
+"
+`;
+
 exports[`package-type: v1-app > generator: route > args: --log --test --typescript 1`] = `
 "[log] import Route from '@ember/routing/route';
 
@@ -4442,6 +4648,28 @@ exports[`package-type: v1-app > generator: route > args: --log 1`] = `
 
 export default class FooBarBazRoute extends Route {}
 "
+`;
+
+exports[`package-type: v1-app > generator: route > args: --template --test --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.ts\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v1-app > generator: route > args: --template --test 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.js\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.js\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gjs\`."
+`;
+
+exports[`package-type: v1-app > generator: route > args: --template --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v1-app > generator: route > args: --template 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.js\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gjs\`."
 `;
 
 exports[`package-type: v1-app > generator: route > args: --test --typescript 1`] = `
@@ -6800,6 +7028,98 @@ module('Integration | Modifier | fooBarBaz', function (hooks) {
 
 exports[`package-type: v2-addon > generator: modifier-test > args: --typescript 1`] = `"[success] Generated modifier-test \`foo/bar-baz\` at \`tests/integration/modifiers/foo/bar-baz-test.gts\`."`;
 
+exports[`package-type: v2-addon > generator: route > args: --log --template --test --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v2-addon > generator: route > args: --log --template --test 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'v2-addon/tests/helpers';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v2-addon > generator: route > args: --log --template --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v2-addon > generator: route > args: --log --template 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] <template>{{yield}}</template>
+"
+`;
+
 exports[`package-type: v2-addon > generator: route > args: --log --test --typescript 1`] = `
 "[log] import Route from '@ember/routing/route';
 
@@ -6852,6 +7172,28 @@ exports[`package-type: v2-addon > generator: route > args: --log 1`] = `
 
 export default class FooBarBazRoute extends Route {}
 "
+`;
+
+exports[`package-type: v2-addon > generator: route > args: --template --test --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`src/routes/foo/bar-baz.ts\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`src/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v2-addon > generator: route > args: --template --test 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`src/routes/foo/bar-baz.js\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.js\`.
+[success] Generated template \`foo/bar-baz\` at \`src/templates/foo/bar-baz.gjs\`."
+`;
+
+exports[`package-type: v2-addon > generator: route > args: --template --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`src/routes/foo/bar-baz.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`src/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v2-addon > generator: route > args: --template 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`src/routes/foo/bar-baz.js\`.
+[success] Generated template \`foo/bar-baz\` at \`src/templates/foo/bar-baz.gjs\`."
 `;
 
 exports[`package-type: v2-addon > generator: route > args: --test --typescript 1`] = `
@@ -9210,6 +9552,98 @@ module('Integration | Modifier | fooBarBaz', function (hooks) {
 
 exports[`package-type: v2-app > generator: modifier-test > args: --typescript 1`] = `"[success] Generated modifier-test \`foo/bar-baz\` at \`tests/integration/modifiers/foo/bar-baz-test.gts\`."`;
 
+exports[`package-type: v2-app > generator: route > args: --log --template --test --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v2-app > generator: route > args: --log --template --test 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+
+module('Unit | Route | FooBarBaz', function (hooks) {
+  setupTest(hooks);
+
+  test('it exists', function (assert) {
+    const route = this.owner.lookup('route:foo/bar-baz');
+
+    assert.ok(route);
+  });
+});
+
+[log] <template>{{yield}}</template>
+"
+`;
+
+exports[`package-type: v2-app > generator: route > args: --log --template --typescript 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] import type { TOC } from '@ember/component/template-only';
+
+export interface FooBarBazSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const FooBarBaz: TOC<FooBarBazSignature> = <template>{{yield}}</template>;
+
+export default FooBarBaz;
+"
+`;
+
+exports[`package-type: v2-app > generator: route > args: --log --template 1`] = `
+"[log] import Route from '@ember/routing/route';
+
+export default class FooBarBazRoute extends Route {}
+
+[log] <template>{{yield}}</template>
+"
+`;
+
 exports[`package-type: v2-app > generator: route > args: --log --test --typescript 1`] = `
 "[log] import Route from '@ember/routing/route';
 
@@ -9262,6 +9696,28 @@ exports[`package-type: v2-app > generator: route > args: --log 1`] = `
 
 export default class FooBarBazRoute extends Route {}
 "
+`;
+
+exports[`package-type: v2-app > generator: route > args: --template --test --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.ts\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v2-app > generator: route > args: --template --test 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.js\`.
+[success] Generated route-test \`foo/bar-baz\` at \`tests/unit/routes/foo/bar-baz-test.js\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gjs\`."
+`;
+
+exports[`package-type: v2-app > generator: route > args: --template --typescript 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.ts\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gts\`."
+`;
+
+exports[`package-type: v2-app > generator: route > args: --template 1`] = `
+"[success] Generated route \`foo/bar-baz\` at \`app/routes/foo/bar-baz.js\`.
+[success] Generated template \`foo/bar-baz\` at \`app/templates/foo/bar-baz.gjs\`."
 `;
 
 exports[`package-type: v2-app > generator: route > args: --test --typescript 1`] = `

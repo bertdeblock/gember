@@ -159,6 +159,8 @@ export type Config = {
       log?: boolean;
       // Generate a route at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding template:
+      template?: boolean;
       // Generate a corresponding route-test:
       test?: boolean;
       // Generate a `.ts` route, instead of a `.js` route:
