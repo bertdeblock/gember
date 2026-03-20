@@ -358,6 +358,14 @@ export function path(): GeneratorArgFactory {
   });
 }
 
+export function template(): GeneratorArgFactory {
+  return () => ({
+    description: `Generate a corresponding template`,
+    name: "template",
+    type: "boolean",
+  });
+}
+
 export function test(): GeneratorArgFactory {
   return (generatorName) => ({
     description: `Generate a corresponding ${testGeneratorName(generatorName)}`,

@@ -76,6 +76,15 @@ it("generates a corresponding route-test", async (ctx) => {
     .to.equal(true);
 });
 
+it("generates a corresponding template", async (ctx) => {
+  pkg = await Package.create("v2-addon");
+
+  await pkg.gember("route", "foo", "--template");
+
+  ctx.expect(await pkg.pathExists("src/routes/foo.js")).to.equal(true);
+  ctx.expect(await pkg.pathExists("src/templates/foo.gjs")).to.equal(true);
+});
+
 it("destroys a route", async (ctx) => {
   pkg = await Package.create("v2-addon");
 

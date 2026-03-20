@@ -1,0 +1,92 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`creates nested route templates 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`generates a class-based \`.gjs\` template 1`] = `
+"import Component from '@glimmer/component';
+
+export default class Foo extends Component {
+  <template>{{yield}}</template>
+}
+"
+`;
+
+exports[`generates a class-based \`.gts\` template 1`] = `
+"import Component from '@glimmer/component';
+
+export interface FooSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+export default class Foo extends Component<FooSignature> {
+  <template>
+    {{yield}}
+  </template>
+}
+"
+`;
+
+exports[`generates a nested \`.gjs\` template 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`generates a template-only \`.gjs\` template 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`generates a template-only \`.gjs\` template at a custom path 1`] = `
+"<template>{{yield}}</template>
+"
+`;
+
+exports[`generates a template-only \`.gts\` template 1`] = `
+"import type { TOC } from '@ember/component/template-only';
+
+export interface FooSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const Foo: TOC<FooSignature> = <template>{{yield}}</template>;
+
+export default Foo;
+"
+`;
+
+exports[`generates a template-only \`.gts\` template at a custom path 1`] = `
+"import type { TOC } from '@ember/component/template-only';
+
+export interface FooSignature {
+  Args: {
+    model: unknown;
+    controller: unknown;
+  };
+  Blocks: {
+    default: [];
+  };
+  Element: null;
+}
+
+const Foo: TOC<FooSignature> = <template>{{yield}}</template>;
+
+export default Foo;
+"
+`;
