@@ -5,6 +5,10 @@
 
 Generators for Ember apps and addons.
 
+## Compatibility
+
+- Node.js v18 or above
+
 ## Installation
 
 ```shell
