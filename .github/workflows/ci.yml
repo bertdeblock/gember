@@ -10,7 +10,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-environment
       - name: Lint
         run: pnpm lint
@@ -19,7 +19,7 @@ jobs:
     name: "Test (Node: ${{matrix.node-version}}, OS: ${{matrix.os}})"
     runs-on: ${{matrix.os}}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-environment
         with:
           node-version: ${{matrix.node-version}}
@@ -41,7 +41,7 @@ jobs:
   smoke-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup-environment
       - name: Build gember
         run: pnpm build
