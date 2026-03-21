@@ -100,9 +100,6 @@ export const generators: Generator[] = [
       classBased({ functionBasedName: "template-only" }),
       typescript({ gts: true }),
     ],
-    modifyTemplateFile: (templateFile) => {
-      templateFile.name = "component";
-    },
     name: "template",
   }),
 
@@ -132,8 +129,4 @@ export function getGenerator(generatorName: string): Generator {
 
 export function getTestGenerator(generatorName: string): Generator {
   return getGenerator(testGeneratorName(generatorName));
-}
-
-export function getTemplateGenerator(): Generator {
-  return getGenerator("template");
 }

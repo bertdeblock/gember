@@ -85,6 +85,8 @@ export type Config = {
       destroy?: boolean;
       // Log the generated component to the console, instead of writing it to disk:
       log?: boolean;
+      // Generate a named export, instead of a default export:
+      namedExport?: boolean;
       // Generate a nested colocated component, e.g. `foo/bar/index.gts`:
       nested?: boolean;
       // Generate a component at a custom path, e.g. `--path=src/-private`:
@@ -149,6 +151,8 @@ export type Config = {
       destroy?: boolean;
       // Log the generated helper to the console, instead of writing it to disk:
       log?: boolean;
+      // Generate a named export, instead of a default export:
+      namedExport?: boolean;
       // Generate a helper at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a corresponding helper-test:
@@ -181,6 +185,8 @@ export type Config = {
       destroy?: boolean;
       // Log the generated modifier to the console, instead of writing it to disk:
       log?: boolean;
+      // Generate a named export, instead of a default export:
+      namedExport?: boolean;
       // Generate a modifier at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a corresponding modifier-test:
@@ -213,6 +219,8 @@ export type Config = {
       log?: boolean;
       // Generate a route at a custom path, e.g. `--path=src/-private`:
       path?: string;
+      // Generate a corresponding template:
+      template?: boolean;
       // Generate a corresponding route-test:
       test?: boolean;
       // Generate a `.ts` route, instead of a `.js` route:
@@ -262,6 +270,22 @@ export type Config = {
       // Generate a `.ts` service-test, instead of a `.js` service-test:
       typescript?: boolean;
     };
+    template?: {
+      // Generate a `class-based` template, instead of a `template-only` template:
+      classBased?: boolean;
+      // Copy the generated template to the clipboard, instead of writing it to disk:
+      copy?: boolean;
+      // The current working directory to run the template generator in:
+      cwd?: string;
+      // Destroy a template by name:
+      destroy?: boolean;
+      // Log the generated template to the console, instead of writing it to disk:
+      log?: boolean;
+      // Generate a template at a custom path, e.g. `--path=src/-private`:
+      path?: string;
+      // Generate a `.gts` template, instead of a `.gjs` template:
+      typescript?: boolean;
+    };
     util?: {
       // Copy the generated util to the clipboard, instead of writing it to disk:
       copy?: boolean;
@@ -271,6 +295,8 @@ export type Config = {
       destroy?: boolean;
       // Log the generated util to the console, instead of writing it to disk:
       log?: boolean;
+      // Generate a named export, instead of a default export:
+      namedExport?: boolean;
       // Generate a util at a custom path, e.g. `--path=src/-private`:
       path?: string;
       // Generate a corresponding util-test:

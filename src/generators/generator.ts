@@ -19,6 +19,7 @@ import {
 export type Generator = {
   args: GeneratorArg[];
   description: string;
+  hasArg: (name: GeneratorArg["name"]) => boolean;
   isTestGenerator: boolean;
   name: string;
   run: (args: Args) => Promise<void>;
@@ -234,6 +235,7 @@ export function defineGenerator({
   return {
     args: generatorArgs,
     description: description ?? `Generate a new ${generatorName}`,
+    hasArg: (name) => generatorArgs.some((arg) => arg.name === name),
     isTestGenerator: isTestGenerator ?? false,
     name: generatorName,
     run,
@@ -360,7 +362,7 @@ export function path(): GeneratorArgFactory {
 
 export function template(): GeneratorArgFactory {
   return () => ({
-    description: `Generate a corresponding template`,
+    description: "Generate a corresponding template",
     name: "template",
     type: "boolean",
   });

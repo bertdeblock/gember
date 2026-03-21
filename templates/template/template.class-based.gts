@@ -2,8 +2,8 @@ import Component from '@glimmer/component';
 
 export interface {{name.signature}} {
   Args: {
-    model: unknown;
     controller: unknown;
+    model: unknown;
   };
   Blocks: {
     default: [];

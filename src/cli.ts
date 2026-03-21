@@ -9,7 +9,6 @@ import { GemberError, logGemberErrors } from "./errors.js";
 import {
   generators,
   getGenerator,
-  getTemplateGenerator,
   getTestGenerator,
 } from "./generators/generators.js";
 import { readOwnPackageJsonSync } from "./internal.js";
@@ -123,26 +122,26 @@ function generatorCommands(deprecated?: boolean): SubCommandsDef {
         logGemberErrors(async () => {
           await generator.run(context.args);
 
+          if (context.args.template) {
+            if (generator.hasArg("template")) {
+              await getGenerator("template").run(context.args);
+            } else {
+              logger.warn(
+                `You passed the \`--template\` option, but the \`${generator.name}\` generator does not have a corresponding template generator.`,
+              );
+            }
+          }
+
           if (context.args.test) {
             if (generator.isTestGenerator) {
               logger.warn(
                 `You passed the \`--test\` option, but the \`${generator.name}\` generator is already a test generator.`,
               );
-            } else if (generator.args.find((arg) => arg.name === "test")) {
+            } else if (generator.hasArg("test")) {
               await getTestGenerator(generator.name).run(context.args);
             } else {
               logger.warn(
                 `You passed the \`--test\` option, but the \`${generator.name}\` generator does not have a corresponding test generator.`,
-              );
-            }
-          }
-
-          if (context.args.template) {
-            if (generator.args.find((arg) => arg.name === "template")) {
-              await getTemplateGenerator().run(context.args);
-            } else {
-              logger.warn(
-                `You passed the \`--template\` option, but the \`${generator.name}\` generator does not support generating a template.`,
               );
             }
           }
