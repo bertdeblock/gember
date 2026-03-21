@@ -1,5 +1,22 @@
 # Changelog
 
+## Release (2026-03-21)
+
+* @bertdeblock/gember 1.7.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#96](https://github.com/bertdeblock/gember/pull/96) Update dependencies ([@bertdeblock](https://github.com/bertdeblock))
+  * [#94](https://github.com/bertdeblock/gember/pull/94) Support generating route templates ([@evoactivity](https://github.com/evoactivity))
+
+#### :house: Internal
+* `@bertdeblock/gember`
+  * [#97](https://github.com/bertdeblock/gember/pull/97) Minor refactors ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 2
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+- Liam Potter ([@evoactivity](https://github.com/evoactivity))
+
 ## Release (2026-03-06)
 
 * @bertdeblock/gember 1.6.1 (patch)
