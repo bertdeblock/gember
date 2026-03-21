@@ -1,10 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`creates nested route templates 1`] = `
-"<template>{{yield}}</template>
-"
-`;
-
 exports[`generates a class-based \`.gjs\` template 1`] = `
 "import Component from '@glimmer/component';
 
@@ -19,8 +14,8 @@ exports[`generates a class-based \`.gts\` template 1`] = `
 
 export interface FooSignature {
   Args: {
-    model: unknown;
     controller: unknown;
+    model: unknown;
   };
   Blocks: {
     default: [];
@@ -36,7 +31,7 @@ export default class Foo extends Component<FooSignature> {
 "
 `;
 
-exports[`generates a nested \`.gjs\` template 1`] = `
+exports[`generates a nested template-only \`.gjs\` template 1`] = `
 "<template>{{yield}}</template>
 "
 `;
@@ -56,8 +51,8 @@ exports[`generates a template-only \`.gts\` template 1`] = `
 
 export interface FooSignature {
   Args: {
-    model: unknown;
     controller: unknown;
+    model: unknown;
   };
   Blocks: {
     default: [];
@@ -76,8 +71,8 @@ exports[`generates a template-only \`.gts\` template at a custom path 1`] = `
 
 export interface FooSignature {
   Args: {
-    model: unknown;
     controller: unknown;
+    model: unknown;
   };
   Blocks: {
     default: [];

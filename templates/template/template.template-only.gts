@@ -2,8 +2,8 @@ import type { TOC } from '@ember/component/template-only';
 
 export interface {{name.signature}} {
   Args: {
-    model: unknown;
     controller: unknown;
+    model: unknown;
   };
   Blocks: {
     default: [];

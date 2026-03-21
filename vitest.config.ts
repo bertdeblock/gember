@@ -7,6 +7,9 @@ export default defineConfig({
     },
   },
   test: {
+    coverage: {
+      exclude: ["**/dev/**", "**/templates/**"],
+    },
     forceRerunTriggers: ["**/dist/**", "**/templates/**"],
   },
 });

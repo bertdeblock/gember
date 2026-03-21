@@ -65,7 +65,7 @@ it("generates a template-only `.gts` template at a custom path", async (ctx) => 
   ctx.expect(content).toMatchSnapshot();
 });
 
-it("generates a nested `.gjs` template", async (ctx) => {
+it("generates a nested template-only `.gjs` template", async (ctx) => {
   pkg = await Package.create("v2-addon");
 
   await pkg.gember("template", "foo/bar");
@@ -85,14 +85,4 @@ it("destroys a template", async (ctx) => {
   await pkg.gember("template", "foo", "--destroy");
 
   ctx.expect(await pkg.pathExists("src/templates/foo.gjs")).to.equal(false);
-});
-
-it("creates nested route templates", async (ctx) => {
-  pkg = await Package.create("v2-addon");
-
-  await pkg.gember("template", "foo/bar/baz");
-
-  const content = await pkg.readFile("src/templates/foo/bar/baz.gjs");
-
-  ctx.expect(content).toMatchSnapshot();
 });
