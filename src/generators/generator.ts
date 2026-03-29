@@ -91,8 +91,12 @@ export function defineGenerator({
 
   async function run(args: Args): Promise<void> {
     const packagePath = args.cwd ?? env.GEMBER_CWD ?? processCwd();
-    const packageJson = await readPackageJson<EmberPackageJson>(packagePath);
-    const config = await resolveConfig(packagePath);
+
+    const [packageJson, config] = await Promise.all([
+      readPackageJson<EmberPackageJson>(packagePath),
+      resolveConfig(packagePath),
+    ]);
+
     const resolvedArgs = resolveArgs(
       config,
       generatorName,
@@ -169,11 +173,14 @@ export function defineGenerator({
         signature: entityNameCases.pascal + "Signature",
       },
       package: packageJson,
-      testHelpersImportPath:
-        (await pathExists(join(packagePath, "tests", "helpers.js"))) ||
-        (await pathExists(join(packagePath, "tests", "helpers.ts")))
-          ? `${packageJson.name}/tests/helpers`
-          : "ember-qunit",
+      testHelpersImportPath: (
+        await Promise.all([
+          pathExists(join(packagePath, "tests", "helpers.js")),
+          pathExists(join(packagePath, "tests", "helpers.ts")),
+        ])
+      ).some(Boolean)
+        ? `${packageJson.name}/tests/helpers`
+        : "ember-qunit",
     });
 
     if (resolvedArgs.copy) {
