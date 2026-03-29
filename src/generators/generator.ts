@@ -1,4 +1,3 @@
-import { Clipboard } from "@napi-rs/clipboard";
 import { camelCase, kebabCase, pascalCase } from "change-case";
 import { outputFile, pathExists, remove } from "fs-extra/esm";
 import Handlebars from "handlebars";
@@ -184,6 +183,8 @@ export function defineGenerator({
     });
 
     if (resolvedArgs.copy) {
+      const { Clipboard } = await import("@napi-rs/clipboard");
+
       const clipboard = new Clipboard();
 
       clipboard.setText(templateCompiled);
