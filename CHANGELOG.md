@@ -1,5 +1,17 @@
 # Changelog
 
+## Release (2026-04-03)
+
+* @bertdeblock/gember 1.8.0 (minor)
+
+#### :rocket: Enhancement
+* `@bertdeblock/gember`
+  * [#100](https://github.com/bertdeblock/gember/pull/100) Allow using `--copy` and `--log` at the same time ([@bertdeblock](https://github.com/bertdeblock))
+  * [#98](https://github.com/bertdeblock/gember/pull/98) Parallelize some work for better performance ([@bertdeblock](https://github.com/bertdeblock))
+
+#### Committers: 1
+- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))
+
 ## Release (2026-03-21)
 
 * @bertdeblock/gember 1.7.0 (minor)
