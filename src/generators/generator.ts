@@ -192,51 +192,57 @@ export function defineGenerator({
       logger.success(
         `Generated and copied ${generatorName} \`${entityName}\` to the clipboard.`,
       );
-    } else if (resolvedArgs.log) {
+    }
+
+    if (resolvedArgs.log) {
       logger.log(templateCompiled);
-    } else {
-      if (await targetFile.exists()) {
-        const response = await logger.prompt(
-          `${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\` already exists. Do you want to overwrite this file?`,
-          { type: "confirm" },
-        );
+    }
 
-        logger.log("");
+    if (resolvedArgs.copy || resolvedArgs.log) {
+      return;
+    }
 
-        if (response === false) {
-          return;
-        }
-      }
-
-      await outputFile(targetFile.path(), templateCompiled);
-
-      logger.success(
-        `Generated ${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\`.`,
+    if (await targetFile.exists()) {
+      const response = await logger.prompt(
+        `${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\` already exists. Do you want to overwrite this file?`,
+        { type: "confirm" },
       );
 
-      if (config.hooks?.postGenerate) {
-        logger.start("`hooks.postGenerate`: Running...");
+      logger.log("");
 
-        const targetFileParsed = targetFile.parse();
-
-        await config.hooks.postGenerate({
-          entityName,
-          files: [
-            {
-              base: targetFileParsed.base,
-              content: templateCompiled,
-              dir: targetFileParsed.dir,
-              ext: targetFileParsed.ext,
-              name: targetFileParsed.name,
-              path: targetFile.path(),
-              root: targetFileParsed.root,
-            },
-          ],
-          generatorName,
-        });
-
-        logger.success("`hooks.postGenerate`: Done!");
+      if (response === false) {
+        return;
       }
+    }
+
+    await outputFile(targetFile.path(), templateCompiled);
+
+    logger.success(
+      `Generated ${generatorName} \`${entityName}\` at \`${targetFileRelativePath}\`.`,
+    );
+
+    if (config.hooks?.postGenerate) {
+      logger.start("`hooks.postGenerate`: Running...");
+
+      const targetFileParsed = targetFile.parse();
+
+      await config.hooks.postGenerate({
+        entityName,
+        files: [
+          {
+            base: targetFileParsed.base,
+            content: templateCompiled,
+            dir: targetFileParsed.dir,
+            ext: targetFileParsed.ext,
+            name: targetFileParsed.name,
+            path: targetFile.path(),
+            root: targetFileParsed.root,
+          },
+        ],
+        generatorName,
+      });
+
+      logger.success("`hooks.postGenerate`: Done!");
     }
   }
 
