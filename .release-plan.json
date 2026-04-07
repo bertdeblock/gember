@@ -2,21 +2,17 @@
   "solution": {
     "@bertdeblock/gember": {
       "impact": "minor",
-      "oldVersion": "1.6.1",
-      "newVersion": "1.7.0",
+      "oldVersion": "1.7.0",
+      "newVersion": "1.8.0",
       "tagName": "latest",
       "constraints": [
         {
           "impact": "minor",
           "reason": "Appears in changelog section :rocket: Enhancement"
-        },
-        {
-          "impact": "patch",
-          "reason": "Appears in changelog section :house: Internal"
         }
       ],
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2026-03-21)\n\n* @bertdeblock/gember 1.7.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#96](https://github.com/bertdeblock/gember/pull/96) Update dependencies ([@bertdeblock](https://github.com/bertdeblock))\n  * [#94](https://github.com/bertdeblock/gember/pull/94) Support generating route templates ([@evoactivity](https://github.com/evoactivity))\n\n#### :house: Internal\n* `@bertdeblock/gember`\n  * [#97](https://github.com/bertdeblock/gember/pull/97) Minor refactors ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 2\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n- Liam Potter ([@evoactivity](https://github.com/evoactivity))\n"
+  "description": "## Release (2026-04-03)\n\n* @bertdeblock/gember 1.8.0 (minor)\n\n#### :rocket: Enhancement\n* `@bertdeblock/gember`\n  * [#100](https://github.com/bertdeblock/gember/pull/100) Allow using `--copy` and `--log` at the same time ([@bertdeblock](https://github.com/bertdeblock))\n  * [#98](https://github.com/bertdeblock/gember/pull/98) Parallelize some work for better performance ([@bertdeblock](https://github.com/bertdeblock))\n\n#### Committers: 1\n- Bert De Block ([@bertdeblock](https://github.com/bertdeblock))\n"
 }
